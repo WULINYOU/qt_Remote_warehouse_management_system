@@ -19,6 +19,10 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
     void on_backmanage();
     void updateShowTimeLabel();
+    void showTimetable(int row,int col);
+
+    void initializeDateTimePickers(int row);
+    void showDateTimePicker(int row, int col);
 private:
     Ui::add_record *ui;
     QSqlDatabase db2;
