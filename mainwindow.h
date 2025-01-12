@@ -8,7 +8,7 @@ namespace Ui {
 class MainWindow;
 }
 QT_END_NAMESPACE
-//1
+//
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
