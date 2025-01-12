@@ -43,6 +43,7 @@ public:
     QPushButton *add_record;
     QPushButton *manage_Exit;
     QLabel *time_label;
+    QPushButton *refresh;
 
     void setupUi(QDialog *manage)
     {
@@ -124,6 +125,9 @@ public:
         time_label = new QLabel(manage);
         time_label->setObjectName("time_label");
         time_label->setGeometry(QRect(460, 15, 311, 21));
+        refresh = new QPushButton(manage);
+        refresh->setObjectName("refresh");
+        refresh->setGeometry(QRect(500, 20, 75, 23));
 
         retranslateUi(manage);
 
@@ -142,6 +146,7 @@ public:
         add_record->setText(QCoreApplication::translate("manage", "\346\267\273\345\212\240\350\256\260\345\275\225", nullptr));
         manage_Exit->setText(QCoreApplication::translate("manage", "\351\200\200\345\207\272", nullptr));
         time_label->setText(QString());
+        refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
     } // retranslateUi
 
 };

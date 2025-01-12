@@ -48,11 +48,12 @@ constexpr auto qt_meta_stringdata_CLASSadd_recordENDCLASS = QtMocHelpers::string
     "row",
     "col",
     "initializeDateTimePickers",
-    "showDateTimePicker"
+    "showDateTimePicker",
+    "add_okButtonClicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSadd_recordENDCLASS_t {
-    uint offsetsAndSizes[22];
+    uint offsetsAndSizes[24];
     char stringdata0[11];
     char stringdata1[32];
     char stringdata2[1];
@@ -64,6 +65,7 @@ struct qt_meta_stringdata_CLASSadd_recordENDCLASS_t {
     char stringdata8[4];
     char stringdata9[26];
     char stringdata10[19];
+    char stringdata11[20];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSadd_recordENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -79,7 +81,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_recordENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(98, 3),  // "row"
         QT_MOC_LITERAL(102, 3),  // "col"
         QT_MOC_LITERAL(106, 25),  // "initializeDateTimePickers"
-        QT_MOC_LITERAL(132, 18)   // "showDateTimePicker"
+        QT_MOC_LITERAL(132, 18),  // "showDateTimePicker"
+        QT_MOC_LITERAL(151, 19)   // "add_okButtonClicked"
     },
     "add_record",
     "on_comboBox_currentIndexChanged",
@@ -91,7 +94,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_recordENDCLASS_t qt_meta_st
     "row",
     "col",
     "initializeDateTimePickers",
-    "showDateTimePicker"
+    "showDateTimePicker",
+    "add_okButtonClicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -103,7 +107,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_recordENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -111,12 +115,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_recordENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   50,    2, 0x08,    1 /* Private */,
-       4,    0,   53,    2, 0x08,    3 /* Private */,
-       5,    0,   54,    2, 0x08,    4 /* Private */,
-       6,    2,   55,    2, 0x08,    5 /* Private */,
-       9,    1,   60,    2, 0x08,    8 /* Private */,
-      10,    2,   63,    2, 0x08,   10 /* Private */,
+       1,    1,   56,    2, 0x08,    1 /* Private */,
+       4,    0,   59,    2, 0x08,    3 /* Private */,
+       5,    0,   60,    2, 0x08,    4 /* Private */,
+       6,    2,   61,    2, 0x08,    5 /* Private */,
+       9,    1,   66,    2, 0x08,    8 /* Private */,
+      10,    2,   69,    2, 0x08,   10 /* Private */,
+      11,    0,   74,    2, 0x08,   13 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -125,6 +130,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_recordENDCLASS[] = {
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    7,    8,
     QMetaType::Void, QMetaType::Int,    7,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,    7,    8,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -155,7 +161,9 @@ Q_CONSTINIT const QMetaObject add_record::staticMetaObject = { {
         // method 'showDateTimePicker'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'add_okButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -172,6 +180,7 @@ void add_record::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->showTimetable((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         case 4: _t->initializeDateTimePickers((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 5: _t->showDateTimePicker((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 6: _t->add_okButtonClicked(); break;
         default: ;
         }
     }
@@ -196,13 +205,13 @@ int add_record::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

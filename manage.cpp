@@ -6,7 +6,8 @@
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QFontMetrics>
-#include"add_record.h"
+#include "add_record.h"
+
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -37,6 +38,7 @@ manage::manage(QWidget *parent)
     connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &manage::on_comboBox_currentIndexChanged);
     connect(ui->manage_Exit,&QPushButton::clicked,this,&manage::onExitButtonClicke);
     connect(ui->add_record,&QPushButton::clicked,this,&manage::onaddrecordButtonClicke);
+    connect(ui->refresh,&QPushButton::clicked,this,&manage::onrefreshButtonClicke);
 }
 
 manage::~manage()
@@ -103,6 +105,28 @@ void manage::onaddrecordButtonClicke()
     add_recordDialog->show();
 }
 
+void manage::onrefreshButtonClicke()
+{
+    // 关闭当前的数据库连接
+    if (db1.isOpen()) {
+        db1.close();
+    }
+
+    // 移除当前的数据库连接
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+
+    // 重新创建并打开数据库连接
+    db1 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
+    db1.setDatabaseName("MySQLDSN");
+    if (!db1.open()) {
+        QMessageBox::information(this, "infor", "连接数据库失败！");
+        qDebug() << "error open database because" << db1.lastError().text();
+        return;
+    }
+
+    // 重新加载数据
+    loadData();
+}
 
 void manage::on_comboBox_currentIndexChanged(int index)
 {
@@ -138,4 +162,3 @@ void manage::onExitButtonClicke()
         QApplication::quit();
     }
 }
-

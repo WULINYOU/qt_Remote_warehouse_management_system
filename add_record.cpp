@@ -75,11 +75,15 @@ add_record::add_record(QWidget *parent)
     });
     connect(ui->add_exit,&QPushButton::clicked,this,&add_record::on_backmanage);
     connect(timer, &QTimer::timeout, this, &add_record::updateShowTimeLabel);
+    connect(ui->add_ok,&QPushButton::clicked,this,&add_record::add_okButtonClicked);
     timer->start(1000);
 }
 
 add_record::~add_record()
 {
+    if (db2.isOpen()) {
+        db2.close();
+    }
     delete ui;
 }
 
@@ -178,5 +182,64 @@ void add_record::showDateTimePicker(int row, int col) {
             ui->tableWidget->setItem(row, col, new QTableWidgetItem(dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss")));
             dateTimeEdit->deleteLater();
         });
+    }
+}
+
+void add_record::add_okButtonClicked()
+{
+    QString tableName = ui->comboBox->currentText();
+
+    if (!db2.isOpen()) {
+        QMessageBox::information(this, "Error", "数据库未打开！");
+        qDebug() << "Database is not open!";
+        return;
+    }
+    QSqlQuery query(db2);
+    QString insertQuery = QString("INSERT INTO inventory.%1 (").arg(tableName);
+    QStringList columns;
+    QStringList values;
+
+    for (int col = 1; col < ui->tableWidget->columnCount(); col++) { // 修改: 从第二列开始遍历
+        QTableWidgetItem *item = ui->tableWidget->item(ui->tableWidget->rowCount() - 1, col);
+        QString header = ui->tableWidget->horizontalHeaderItem(col)->text();
+        if (header == "type") {
+            QComboBox *comboBox = qobject_cast<QComboBox*>(ui->tableWidget->cellWidget(ui->tableWidget->rowCount() - 1, col));
+            if (comboBox) {
+                QString type = comboBox->currentText();
+                if (type != "成品库存" && type != "退货库存" && type != "季节性库存") {
+                    QMessageBox::warning(this, "数据不兼容", "type列只能插入'成品库存'、'退货库存'、'季节性库存'");
+                    return;
+                }
+                columns << header;
+                values << QString("'%1'").arg(type);
+            } else {
+                QMessageBox::warning(this, "数据不兼容", "type列不能为空");
+                return;
+            }
+        } else if (header.contains("time", Qt::CaseInsensitive)) {
+            if (item && !QDateTime::fromString(item->text(), "yyyy-MM-dd hh:mm:ss").isValid()) {
+                QMessageBox::warning(this, "数据不兼容", QString("%1列只能插入时间格式的数据").arg(header));
+                return;
+            }
+            columns << header;
+            // 确保日期时间格式正确
+            QString dateTimeStr = item ? item->text() : "";
+            if (!dateTimeStr.isEmpty()) {
+                QDateTime dateTime = QDateTime::fromString(dateTimeStr, "yyyy-MM-dd hh:mm:ss");
+                values << QString("'%1'").arg(dateTime.toString("yyyy-MM-dd hh:mm:ss"));
+            } else {
+                values << "NULL"; // 如果时间为空，插入NULL
+            }
+        } else {
+            columns << header;
+            values << QString("'%1'").arg(item ? item->text() : "");
+        }
+    }
+    insertQuery += columns.join(", ") + ") VALUES (" + values.join(", ") + ")";
+
+    if (!query.exec(insertQuery)) {
+        QMessageBox::warning(this, "插入失败", query.lastError().text());
+    } else {
+        QMessageBox::information(this, "插入成功", "数据已成功插入到数据库中");
     }
 }

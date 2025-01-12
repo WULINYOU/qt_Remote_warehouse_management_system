@@ -26,6 +26,7 @@ void adjustColumnWidths();
 void onExitButtonClicke();
  void loadData();
 void onaddrecordButtonClicke();
+ void onrefreshButtonClicke();
 
 private:
     Ui::manage *ui;
