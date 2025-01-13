@@ -8,7 +8,8 @@
 #include<QSqlRecord>
 #include<QDateTimeEdit>
 #include<QTableView>
-#include<QContextMenuEvent>
+
+
 update_record::update_record(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::update_record)
@@ -41,7 +42,9 @@ update_record::update_record(QWidget *parent)
         initializeDateTimePickers(nCount);
 
         connect(ui->comboBox,QOverload<int>::of(&QComboBox::currentIndexChanged),this,&update_record::on_comboBox_currentIndexChanged);
-        connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &update_record::showDateTimePicker);
+
+         connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &update_record::showDateTimePicker);
+        connect(ui->update_button,&QPushButton::clicked,this,&update_record::on_updateButtonClicked);
     }
 }
 
@@ -120,25 +123,26 @@ void update_record::initializeDateTimePickers(int row)
 
 void update_record::showTimetable(int row, int col)
 {
-    // 创建一个 QDateTimeEdit 控件
-    QDateTimeEdit *dateTimeEdit = new QDateTimeEdit(this);
-    dateTimeEdit->setCalendarPopup(true);
-    dateTimeEdit->setDateTime(QDateTime::currentDateTime());
+    if (ui->tableWidget->horizontalHeaderItem(col)->text().contains("time", Qt::CaseInsensitive)) {
+        QDateTimeEdit *dateTimeEdit = new QDateTimeEdit(this);
+        dateTimeEdit->setCalendarPopup(true);
+        dateTimeEdit->setDateTime(QDateTime::currentDateTime());
 
-    // 将 QDateTimeEdit 设置为表格中的单元格小部件
-    ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
+        // 设置 QDateTimeEdit 的几何位置为单元格的中心
+        QRect cellRect = ui->tableWidget->visualItemRect(ui->tableWidget->item(row, col));
+        dateTimeEdit->setGeometry(cellRect);
 
-    // 连接信号与槽，当日期时间改变时更新表格内容
-    connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
-        // 更新 QTableWidgetItem 内容
-        QTableWidgetItem *item = new QTableWidgetItem(dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss"));
-        ui->tableWidget->setItem(row, col, item);
-        // 从表格中移除 QDateTimeEdit 控件
-        ui->tableWidget->removeCellWidget(row, col);
+        // 将 QDateTimeEdit 设置为表格中的单元格小部件
+        ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
 
-        // 删除不再需要的控件
-        dateTimeEdit->deleteLater();
-    });
+        // 显示日期时间选择器
+        dateTimeEdit->show();
+
+        connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
+            ui->tableWidget->setItem(row, col, new QTableWidgetItem(dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss")));
+            dateTimeEdit->deleteLater();
+        });
+    }
 }
 
 void update_record::showDateTimePicker(int row, int col)
@@ -148,29 +152,81 @@ void update_record::showDateTimePicker(int row, int col)
         dateTimeEdit->setCalendarPopup(true);
         dateTimeEdit->setDateTime(QDateTime::currentDateTime());
 
-        // 计算单元格的右下角位置
-        QRect cellRect = ui->tableWidget->visualRect(ui->tableWidget->indexFromItem(ui->tableWidget->item(row, col)));
-        QPoint bottomRight = cellRect.bottomRight();
-        QPoint globalPos = ui->tableWidget->viewport()->mapToGlobal(bottomRight);
+        // 将 QDateTimeEdit 设置为表格中的单元格小部件
+        ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
 
-        // 设置 QDateTimeEdit 的位置为单元格的右下角
-        dateTimeEdit->setGeometry(globalPos.x(), globalPos.y(), dateTimeEdit->width(), dateTimeEdit->height());
+        // 显示日期时间选择器
         dateTimeEdit->show();
 
         connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
             ui->tableWidget->setItem(row, col, new QTableWidgetItem(dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss")));
-
-            // 从表格中移除 QDateTimeEdit 控件
-            ui->tableWidget->removeCellWidget(row, col);
-
-            // 删除不再需要的控件
             dateTimeEdit->deleteLater();
         });
     }
 }
 
-void update_record::contextMenuEvent(QContextMenuEvent *event)
+void update_record::on_updateButtonClicked()
 {
-    // 忽略右键菜单事件
-    event->ignore();
+    QString tableName = ui->comboBox->currentText();
+    QSqlQuery query(db3);
+
+    // 获取表的记录结构
+    query.prepare(QString("SELECT * FROM %1 LIMIT 0").arg(tableName));
+    if (!query.exec()) {
+        QMessageBox::information(this, "Error", "无法获取表结构: " + query.lastError().text());
+        qDebug() << "Error retrieving table structure:" << query.lastError().text();
+        return;
+    }
+    QSqlRecord record = query.record();
+
+    for (int row = 0; row < ui->tableWidget->rowCount(); row++) {
+        QString id = ui->tableWidget->item(row, 0)->text();
+        QString updateQuery = QString("UPDATE %1 SET ").arg(tableName);
+        QStringList setClauses;
+
+        for (int col = 1; col < ui->tableWidget->columnCount(); col++) {
+            QString columnName = ui->tableWidget->horizontalHeaderItem(col)->text();
+            QString value = ui->tableWidget->item(row, col)->text();
+
+            // 检查字段值是否为空
+            if (value.isEmpty()) {
+                continue;
+            }
+
+            // 处理时间字段
+            if (columnName.contains("time", Qt::CaseInsensitive)) {
+                // 删除时间字符串中的 'T'
+                value.remove('T');
+                QDateTime dateTime = QDateTime::fromString(value, "yyyy年MM月dd日hh时mm分ss秒");
+                if (!dateTime.isValid()) {
+                    // 如果解析失败，尝试解析 "yyyy-MM-dd hh:mm:ss" 格式
+                    dateTime = QDateTime::fromString(value, "yyyy-MM-dd hh:mm:ss");
+                }
+                if (!dateTime.isValid()) {
+                    QMessageBox::information(this, "Error", QString("时间格式错误: %1").arg(value));
+                    qDebug() << "Invalid date time format:" << value;
+                    return;
+                }
+                value = dateTime.toString("yyyy-MM-dd hh:mm:ss");
+            }
+
+            setClauses.append(QString("%1='%2'").arg(columnName).arg(value));
+        }
+
+        if (!setClauses.isEmpty()) {
+            updateQuery += setClauses.join(", ");
+            updateQuery += QString(" WHERE id=%1").arg(id);
+
+            if (!query.exec(updateQuery)) {
+                QMessageBox::information(this, "Error", "更新失败: " + query.lastError().text());
+                qDebug() << "Error updating data:" << query.lastError().text();
+                return;
+            }
+        }
+    }
+
+    QMessageBox::information(this, "Success", "数据更新成功！");
 }
+
+
+

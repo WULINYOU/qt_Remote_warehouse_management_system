@@ -33,7 +33,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="update_button">
    <property name="geometry">
     <rect>
      <x>680</x>
@@ -46,7 +46,7 @@
     <string>更新</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="exit_button">
    <property name="geometry">
     <rect>
      <x>680</x>

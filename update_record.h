@@ -21,7 +21,8 @@ private slots:
     void initializeDateTimePickers(int row);
     void showTimetable(int row, int col);
     void showDateTimePicker(int row, int col);
-    void contextMenuEvent(QContextMenuEvent *event);
+    void on_updateButtonClicked();
+
 
 private:
     Ui::update_record *ui;

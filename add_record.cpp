@@ -12,11 +12,7 @@
 #include<QDateTimeEdit>
 #include<QTableView>
 
-add_record::add_record(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::add_record)
-    , timer(new QTimer(this))
-{
+add_record::add_record(QWidget *parent) : QDialog(parent) , ui(new Ui::add_record) , timer(new QTimer(this)) {
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
     if (!QSqlDatabase::contains("manageUniqueConnectionName")) {
@@ -57,7 +53,7 @@ add_record::add_record(QWidget *parent)
                 ui->tableWidget->setCellWidget(nCount, col, comboBox);
             }
         }
-        //initializeDateTimePickers(nCount);
+        initializeDateTimePickers(nCount);
     });
     // 添加信号连接，当单元格被双击时显示日期时间选择器
     connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &add_record::showDateTimePicker);
@@ -79,16 +75,14 @@ add_record::add_record(QWidget *parent)
     timer->start(1000);
 }
 
-add_record::~add_record()
-{
+add_record::~add_record() {
     if (db2.isOpen()) {
         db2.close();
     }
     delete ui;
 }
 
-void add_record::on_comboBox_currentIndexChanged(int index)
-{
+void add_record::on_comboBox_currentIndexChanged(int index) {
     QString tableName = ui->comboBox->itemText(index);
     QSqlQuery query(db2);
     query.prepare(QString("SELECT * FROM %1").arg(tableName));
@@ -110,21 +104,25 @@ void add_record::on_comboBox_currentIndexChanged(int index)
         ui->tableWidget->setHorizontalHeaderLabels(header);
 
         int row = 0;
+        while (query.next()) {
+            for (int col = 0; col < header.size(); col++) {
+                QTableWidgetItem *item = new QTableWidgetItem(query.value(col).toString());
+                ui->tableWidget->setItem(row, col, item);
+            }
+            row++;
+        }
     }
 }
 
-void add_record::on_backmanage()
-{
+void add_record::on_backmanage() {
     QMessageBox::StandardButton reply;
-    reply=QMessageBox::question(this,"返回","确定要返回管理页面?",
-                                  QMessageBox::Yes|QMessageBox::No);
+    reply=QMessageBox::question(this,"返回","确定要返回管理页面?", QMessageBox::Yes|QMessageBox::No);
     if(reply==QMessageBox::Yes){
         this->close();
     }
 }
 
-void add_record::updateShowTimeLabel()
-{
+void add_record::updateShowTimeLabel() {
     QDateTime currentDateTime = QDateTime::currentDateTime();
     QString formattedTime = currentDateTime.toString("系统时间：yyyy年MM月dd日hh时mm分ss秒");
     ui->showtime_label->setText(formattedTime);
@@ -140,8 +138,7 @@ void add_record::initializeDateTimePickers(int row) {
     }
 }
 
-void add_record::showTimetable(int row, int col)
-{
+void add_record::showTimetable(int row, int col) {
     // 创建一个 QDateTimeEdit 控件
     QDateTimeEdit *dateTimeEdit = new QDateTimeEdit(this);
     dateTimeEdit->setCalendarPopup(true);
@@ -169,13 +166,10 @@ void add_record::showDateTimePicker(int row, int col) {
         dateTimeEdit->setCalendarPopup(true);
         dateTimeEdit->setDateTime(QDateTime::currentDateTime());
 
-        // 计算单元格的右下角位置
-        QRect cellRect = ui->tableWidget->visualRect(ui->tableWidget->indexFromItem(ui->tableWidget->item(row, col)));
-        QPoint bottomRight = cellRect.bottomRight();
-        QPoint globalPos = ui->tableWidget->viewport()->mapToGlobal(bottomRight);
+        // 将 QDateTimeEdit 设置为表格中的单元格小部件
+        ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
 
-        // 设置 QDateTimeEdit 的位置为单元格的右下角
-        dateTimeEdit->setGeometry(globalPos.x(), globalPos.y(), dateTimeEdit->width(), dateTimeEdit->height());
+        // 显示日期时间选择器
         dateTimeEdit->show();
 
         connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
@@ -185,8 +179,7 @@ void add_record::showDateTimePicker(int row, int col) {
     }
 }
 
-void add_record::add_okButtonClicked()
-{
+void add_record::add_okButtonClicked() {
     QString tableName = ui->comboBox->currentText();
 
     if (!db2.isOpen()) {

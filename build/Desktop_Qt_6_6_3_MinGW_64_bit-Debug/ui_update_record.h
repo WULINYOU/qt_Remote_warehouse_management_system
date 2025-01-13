@@ -24,8 +24,8 @@ class Ui_update_record
 public:
     QTableWidget *tableWidget;
     QComboBox *comboBox;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *update_button;
+    QPushButton *exit_button;
 
     void setupUi(QDialog *update_record)
     {
@@ -38,12 +38,12 @@ public:
         comboBox = new QComboBox(update_record);
         comboBox->setObjectName("comboBox");
         comboBox->setGeometry(QRect(20, 10, 69, 22));
-        pushButton = new QPushButton(update_record);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(680, 150, 91, 41));
-        pushButton_2 = new QPushButton(update_record);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(680, 250, 91, 41));
+        update_button = new QPushButton(update_record);
+        update_button->setObjectName("update_button");
+        update_button->setGeometry(QRect(680, 150, 91, 41));
+        exit_button = new QPushButton(update_record);
+        exit_button->setObjectName("exit_button");
+        exit_button->setGeometry(QRect(680, 250, 91, 41));
 
         retranslateUi(update_record);
 
@@ -53,8 +53,8 @@ public:
     void retranslateUi(QDialog *update_record)
     {
         update_record->setWindowTitle(QCoreApplication::translate("update_record", "Dialog", nullptr));
-        pushButton->setText(QCoreApplication::translate("update_record", "\346\233\264\346\226\260", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("update_record", "\351\200\200\345\207\272", nullptr));
+        update_button->setText(QCoreApplication::translate("update_record", "\346\233\264\346\226\260", nullptr));
+        exit_button->setText(QCoreApplication::translate("update_record", "\351\200\200\345\207\272", nullptr));
     } // retranslateUi
 
 };
