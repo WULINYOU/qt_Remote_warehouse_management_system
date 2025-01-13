@@ -18,7 +18,10 @@ public:
 private slots:
     void loadData();
     void on_comboBox_currentIndexChanged(int index);
-
+    void initializeDateTimePickers(int row);
+    void showTimetable(int row, int col);
+    void showDateTimePicker(int row, int col);
+    void contextMenuEvent(QContextMenuEvent *event);
 
 private:
     Ui::update_record *ui;

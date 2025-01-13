@@ -2278,7 +2278,31 @@ debug/update_record.o: ../../update_record.cpp ../../update_record.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTabWidget \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlQuery \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlquery.h
+		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlquery.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlRecord \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlrecord.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QDateTimeEdit \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qvalidator.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qregularexpression.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableView \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtableview.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyle.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\update_record.o ..\..\update_record.cpp
 
 debug/moc_add_record.o: debug/moc_add_record.cpp 

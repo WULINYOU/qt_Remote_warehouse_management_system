@@ -42,16 +42,32 @@ constexpr auto qt_meta_stringdata_CLASSupdate_recordENDCLASS = QtMocHelpers::str
     "loadData",
     "",
     "on_comboBox_currentIndexChanged",
-    "index"
+    "index",
+    "initializeDateTimePickers",
+    "row",
+    "showTimetable",
+    "col",
+    "showDateTimePicker",
+    "contextMenuEvent",
+    "QContextMenuEvent*",
+    "event"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSupdate_recordENDCLASS_t {
-    uint offsetsAndSizes[10];
+    uint offsetsAndSizes[26];
     char stringdata0[14];
     char stringdata1[9];
     char stringdata2[1];
     char stringdata3[32];
     char stringdata4[6];
+    char stringdata5[26];
+    char stringdata6[4];
+    char stringdata7[14];
+    char stringdata8[4];
+    char stringdata9[19];
+    char stringdata10[17];
+    char stringdata11[19];
+    char stringdata12[6];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSupdate_recordENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -61,13 +77,29 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSupdate_recordENDCLASS_t qt_meta
         QT_MOC_LITERAL(14, 8),  // "loadData"
         QT_MOC_LITERAL(23, 0),  // ""
         QT_MOC_LITERAL(24, 31),  // "on_comboBox_currentIndexChanged"
-        QT_MOC_LITERAL(56, 5)   // "index"
+        QT_MOC_LITERAL(56, 5),  // "index"
+        QT_MOC_LITERAL(62, 25),  // "initializeDateTimePickers"
+        QT_MOC_LITERAL(88, 3),  // "row"
+        QT_MOC_LITERAL(92, 13),  // "showTimetable"
+        QT_MOC_LITERAL(106, 3),  // "col"
+        QT_MOC_LITERAL(110, 18),  // "showDateTimePicker"
+        QT_MOC_LITERAL(129, 16),  // "contextMenuEvent"
+        QT_MOC_LITERAL(146, 18),  // "QContextMenuEvent*"
+        QT_MOC_LITERAL(165, 5)   // "event"
     },
     "update_record",
     "loadData",
     "",
     "on_comboBox_currentIndexChanged",
-    "index"
+    "index",
+    "initializeDateTimePickers",
+    "row",
+    "showTimetable",
+    "col",
+    "showDateTimePicker",
+    "contextMenuEvent",
+    "QContextMenuEvent*",
+    "event"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -79,7 +111,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -87,12 +119,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x08,    1 /* Private */,
-       3,    1,   27,    2, 0x08,    2 /* Private */,
+       1,    0,   50,    2, 0x08,    1 /* Private */,
+       3,    1,   51,    2, 0x08,    2 /* Private */,
+       5,    1,   54,    2, 0x08,    4 /* Private */,
+       7,    2,   57,    2, 0x08,    6 /* Private */,
+       9,    2,   62,    2, 0x08,    9 /* Private */,
+      10,    1,   67,    2, 0x08,   12 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    6,    8,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    6,    8,
+    QMetaType::Void, 0x80000000 | 11,   12,
 
        0        // eod
 };
@@ -110,7 +150,21 @@ Q_CONSTINIT const QMetaObject update_record::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_comboBox_currentIndexChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'initializeDateTimePickers'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'showTimetable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'showDateTimePicker'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'contextMenuEvent'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QContextMenuEvent *, std::false_type>
     >,
     nullptr
 } };
@@ -123,6 +177,10 @@ void update_record::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         switch (_id) {
         case 0: _t->loadData(); break;
         case 1: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->initializeDateTimePickers((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->showTimetable((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 4: _t->showDateTimePicker((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 5: _t->contextMenuEvent((*reinterpret_cast< std::add_pointer_t<QContextMenuEvent*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -147,13 +205,13 @@ int update_record::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
 }

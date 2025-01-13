@@ -57,7 +57,7 @@ add_record::add_record(QWidget *parent)
                 ui->tableWidget->setCellWidget(nCount, col, comboBox);
             }
         }
-        initializeDateTimePickers(nCount);
+        //initializeDateTimePickers(nCount);
     });
     // 添加信号连接，当单元格被双击时显示日期时间选择器
     connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &add_record::showDateTimePicker);
@@ -76,7 +76,7 @@ add_record::add_record(QWidget *parent)
     connect(ui->add_exit,&QPushButton::clicked,this,&add_record::on_backmanage);
     connect(timer, &QTimer::timeout, this, &add_record::updateShowTimeLabel);
     connect(ui->add_ok,&QPushButton::clicked,this,&add_record::add_okButtonClicked);
-    timer->start(500);
+    timer->start(1000);
 }
 
 add_record::~add_record()
@@ -228,9 +228,7 @@ void add_record::add_okButtonClicked()
                 QDateTime dateTime = QDateTime::fromString(dateTimeStr, "yyyy-MM-dd hh:mm:ss");
                 values << QString("'%1'").arg(dateTime.toString("yyyy-MM-dd hh:mm:ss"));
             } else {
-                // 如果时间为空，插入当前时间
-                QDateTime currentDateTime = QDateTime::currentDateTime();
-                values << QString("'%1'").arg(currentDateTime.toString("yyyy-MM-dd hh:mm:ss"));
+                values << "NULL"; // 如果时间为空，插入NULL
             }
         } else {
             columns << header;
