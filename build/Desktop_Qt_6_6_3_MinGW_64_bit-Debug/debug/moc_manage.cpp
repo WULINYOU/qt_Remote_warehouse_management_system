@@ -47,11 +47,12 @@ constexpr auto qt_meta_stringdata_CLASSmanageENDCLASS = QtMocHelpers::stringData
     "loadData",
     "onaddrecordButtonClicke",
     "onrefreshButtonClicke",
-    "updateShowTimeLabel"
+    "updateShowTimeLabel",
+    "onupdatButtonclicke"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSmanageENDCLASS_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[22];
     char stringdata0[7];
     char stringdata1[32];
     char stringdata2[1];
@@ -62,6 +63,7 @@ struct qt_meta_stringdata_CLASSmanageENDCLASS_t {
     char stringdata7[24];
     char stringdata8[22];
     char stringdata9[20];
+    char stringdata10[20];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSmanageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -76,7 +78,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSmanageENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(84, 8),  // "loadData"
         QT_MOC_LITERAL(93, 23),  // "onaddrecordButtonClicke"
         QT_MOC_LITERAL(117, 21),  // "onrefreshButtonClicke"
-        QT_MOC_LITERAL(139, 19)   // "updateShowTimeLabel"
+        QT_MOC_LITERAL(139, 19),  // "updateShowTimeLabel"
+        QT_MOC_LITERAL(159, 19)   // "onupdatButtonclicke"
     },
     "manage",
     "on_comboBox_currentIndexChanged",
@@ -87,7 +90,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSmanageENDCLASS_t qt_meta_string
     "loadData",
     "onaddrecordButtonClicke",
     "onrefreshButtonClicke",
-    "updateShowTimeLabel"
+    "updateShowTimeLabel",
+    "onupdatButtonclicke"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -99,7 +103,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmanageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -107,16 +111,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmanageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   56,    2, 0x08,    1 /* Private */,
-       4,    0,   59,    2, 0x08,    3 /* Private */,
-       5,    0,   60,    2, 0x08,    4 /* Private */,
-       6,    0,   61,    2, 0x08,    5 /* Private */,
-       7,    0,   62,    2, 0x08,    6 /* Private */,
-       8,    0,   63,    2, 0x08,    7 /* Private */,
-       9,    0,   64,    2, 0x08,    8 /* Private */,
+       1,    1,   62,    2, 0x08,    1 /* Private */,
+       4,    0,   65,    2, 0x08,    3 /* Private */,
+       5,    0,   66,    2, 0x08,    4 /* Private */,
+       6,    0,   67,    2, 0x08,    5 /* Private */,
+       7,    0,   68,    2, 0x08,    6 /* Private */,
+       8,    0,   69,    2, 0x08,    7 /* Private */,
+       9,    0,   70,    2, 0x08,    8 /* Private */,
+      10,    0,   71,    2, 0x08,    9 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -150,6 +156,8 @@ Q_CONSTINIT const QMetaObject manage::staticMetaObject = { {
         // method 'onrefreshButtonClicke'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'updateShowTimeLabel'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onupdatButtonclicke'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -168,6 +176,7 @@ void manage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 4: _t->onaddrecordButtonClicke(); break;
         case 5: _t->onrefreshButtonClicke(); break;
         case 6: _t->updateShowTimeLabel(); break;
+        case 7: _t->onupdatButtonclicke(); break;
         default: ;
         }
     }
@@ -192,13 +201,13 @@ int manage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 7;
+        _id -= 8;
     }
     return _id;
 }

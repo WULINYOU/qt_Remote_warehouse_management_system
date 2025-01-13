@@ -9,6 +9,7 @@
 #include "add_record.h"
 #include<QDateTimeEdit>
 #include<QTableView>
+#include"update_record.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -41,6 +42,7 @@ manage::manage(QWidget *parent)
     connect(ui->manage_Exit,&QPushButton::clicked,this,&manage::onExitButtonClicke);
     connect(ui->add_record,&QPushButton::clicked,this,&manage::onaddrecordButtonClicke);
     connect(ui->refresh,&QPushButton::clicked,this,&manage::onrefreshButtonClicke);
+    connect(ui->update_record,&QPushButton::clicked,this,&manage::onupdatButtonclicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -138,6 +140,12 @@ void manage::updateShowTimeLabel()
     QDateTime currentDateTime = QDateTime::currentDateTime();
     QString formattedTime = currentDateTime.toString("系统时间：yyyy年MM月dd日hh时mm分ss秒");
     ui->time_label->setText(formattedTime);
+}
+
+void manage::onupdatButtonclicke()
+{
+    update_record *updateDialog=new update_record;
+    updateDialog->show();
 }
 
 void manage::on_comboBox_currentIndexChanged(int index)

@@ -14,20 +14,23 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     manage.cpp \
-    registec.cpp
+    registec.cpp \
+    update_record.cpp
 
 
 HEADERS += \
     add_record.h \
     mainwindow.h \
     manage.h \
-    registec.h
+    registec.h \
+    update_record.h
 
 FORMS += \
     add_record.ui \
     mainwindow.ui \
     manage.ui \
-    registec.ui
+    registec.ui \
+    update_record.ui
 
 
 # Default rules for deployment.
