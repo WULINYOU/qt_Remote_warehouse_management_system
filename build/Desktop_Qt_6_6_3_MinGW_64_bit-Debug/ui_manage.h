@@ -33,17 +33,21 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *delete_record;
     QPushButton *delete_table;
-    QHBoxLayout *horizontalLayout_2;
-    QPushButton *select_record;
-    QPushButton *add_table;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *update_record;
     QPushButton *export_table;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *select_record;
+    QPushButton *add_table;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *add_record;
     QPushButton *manage_Exit;
     QLabel *time_label;
     QPushButton *refresh;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *Storage;
+    QPushButton *lessen;
 
     void setupUi(QDialog *manage)
     {
@@ -77,21 +81,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName("horizontalLayout_2");
-        select_record = new QPushButton(layoutWidget);
-        select_record->setObjectName("select_record");
-
-        horizontalLayout_2->addWidget(select_record);
-
-        add_table = new QPushButton(layoutWidget);
-        add_table->setObjectName("add_table");
-
-        horizontalLayout_2->addWidget(add_table);
-
-
-        verticalLayout->addLayout(horizontalLayout_2);
-
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
         update_record = new QPushButton(layoutWidget);
@@ -106,6 +95,21 @@ public:
 
 
         verticalLayout->addLayout(horizontalLayout_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        select_record = new QPushButton(layoutWidget);
+        select_record->setObjectName("select_record");
+
+        horizontalLayout_2->addWidget(select_record);
+
+        add_table = new QPushButton(layoutWidget);
+        add_table->setObjectName("add_table");
+
+        horizontalLayout_2->addWidget(add_table);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName("horizontalLayout_4");
@@ -124,10 +128,26 @@ public:
 
         time_label = new QLabel(manage);
         time_label->setObjectName("time_label");
-        time_label->setGeometry(QRect(460, 15, 311, 21));
+        time_label->setGeometry(QRect(580, 20, 311, 21));
         refresh = new QPushButton(manage);
         refresh->setObjectName("refresh");
         refresh->setGeometry(QRect(500, 20, 75, 23));
+        widget = new QWidget(manage);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(610, 460, 281, 51));
+        horizontalLayout_5 = new QHBoxLayout(widget);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        Storage = new QPushButton(widget);
+        Storage->setObjectName("Storage");
+
+        horizontalLayout_5->addWidget(Storage);
+
+        lessen = new QPushButton(widget);
+        lessen->setObjectName("lessen");
+
+        horizontalLayout_5->addWidget(lessen);
+
 
         retranslateUi(manage);
 
@@ -139,14 +159,16 @@ public:
         manage->setWindowTitle(QCoreApplication::translate("manage", "Dialog", nullptr));
         delete_record->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\256\260\345\275\225", nullptr));
         delete_table->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\241\250", nullptr));
-        select_record->setText(QCoreApplication::translate("manage", "\346\237\245\346\211\276\350\256\260\345\275\225", nullptr));
-        add_table->setText(QCoreApplication::translate("manage", "\346\226\260\345\273\272\350\241\250", nullptr));
         update_record->setText(QCoreApplication::translate("manage", "\346\233\264\346\224\271\350\256\260\345\275\225", nullptr));
         export_table->setText(QCoreApplication::translate("manage", "\345\257\274\345\207\272\350\241\250", nullptr));
+        select_record->setText(QCoreApplication::translate("manage", "\346\237\245\346\211\276\350\256\260\345\275\225", nullptr));
+        add_table->setText(QCoreApplication::translate("manage", "\346\226\260\345\273\272\350\241\250", nullptr));
         add_record->setText(QCoreApplication::translate("manage", "\346\267\273\345\212\240\350\256\260\345\275\225", nullptr));
         manage_Exit->setText(QCoreApplication::translate("manage", "\351\200\200\345\207\272", nullptr));
         time_label->setText(QString());
         refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
+        Storage->setText(QCoreApplication::translate("manage", "\345\205\245\345\272\223", nullptr));
+        lessen->setText(QCoreApplication::translate("manage", "\345\207\272\345\272\223", nullptr));
     } // retranslateUi
 
 };

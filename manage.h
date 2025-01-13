@@ -27,6 +27,7 @@ void onExitButtonClicke();
  void loadData();
 void onaddrecordButtonClicke();
  void onrefreshButtonClicke();
+ void updateShowTimeLabel();
 
 private:
     Ui::manage *ui;

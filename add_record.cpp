@@ -76,7 +76,7 @@ add_record::add_record(QWidget *parent)
     connect(ui->add_exit,&QPushButton::clicked,this,&add_record::on_backmanage);
     connect(timer, &QTimer::timeout, this, &add_record::updateShowTimeLabel);
     connect(ui->add_ok,&QPushButton::clicked,this,&add_record::add_okButtonClicked);
-    timer->start(1000);
+    timer->start(500);
 }
 
 add_record::~add_record()
@@ -228,7 +228,9 @@ void add_record::add_okButtonClicked()
                 QDateTime dateTime = QDateTime::fromString(dateTimeStr, "yyyy-MM-dd hh:mm:ss");
                 values << QString("'%1'").arg(dateTime.toString("yyyy-MM-dd hh:mm:ss"));
             } else {
-                values << "NULL"; // 如果时间为空，插入NULL
+                // 如果时间为空，插入当前时间
+                QDateTime currentDateTime = QDateTime::currentDateTime();
+                values << QString("'%1'").arg(currentDateTime.toString("yyyy-MM-dd hh:mm:ss"));
             }
         } else {
             columns << header;

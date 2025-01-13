@@ -62,24 +62,6 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QPushButton" name="select_record">
-        <property name="text">
-         <string>查找记录</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="add_table">
-        <property name="text">
-         <string>新建表</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
        <widget class="QPushButton" name="update_record">
@@ -92,6 +74,24 @@
        <widget class="QPushButton" name="export_table">
         <property name="text">
          <string>导出表</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="select_record">
+        <property name="text">
+         <string>查找记录</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="add_table">
+        <property name="text">
+         <string>新建表</string>
         </property>
        </widget>
       </item>
@@ -120,8 +120,8 @@
   <widget class="QLabel" name="time_label">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>15</y>
+     <x>580</x>
+     <y>20</y>
      <width>311</width>
      <height>21</height>
     </rect>
@@ -142,6 +142,32 @@
    <property name="text">
     <string>刷新</string>
    </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>460</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QPushButton" name="Storage">
+      <property name="text">
+       <string>入库</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="lessen">
+      <property name="text">
+       <string>出库</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
