@@ -18,10 +18,12 @@ public:
 private slots:
     void loadData();
     void on_comboBox_currentIndexChanged(int index);
-    void initializeDateTimePickers(int row);
-    void showTimetable(int row, int col);
+void initializeDateTimePickers(int row);
+   // void showTimetable(int row, int col);
     void showDateTimePicker(int row, int col);
     void on_updateButtonClicked();
+    void exitButtonClicked();
+
 
 
 private:

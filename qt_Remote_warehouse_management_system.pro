@@ -1,13 +1,20 @@
-QT       += core gui
-QT += core gui sql
-qt += sql
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT       += core gui sql
+greaterThan(QT_MAJOR_VERSION, 4):
+QT += widgets
+QMAKE_CXXFLAGS_RELEASE = $$QMAKE_CFLAGS_RELEASE_WITH_DEBUGINFO
+QMAKE_LFLAGS_RELEASE = $$QMAKE_LFLAGS_RELEASE_WITH_DEBUGINFO
 CONFIG += c++17
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+LIBS += -ldbghelp
+QMAKE_CXXFLAGS_RELEASE -= -O2
+QMAKE_LFLAGS_RELEASE = -mthreads -W
+QMAKE_CXXFLAGS_RELEASE += -g
+
+
+CONFIG(release, debug|release){
+    MY_POST_LINK_COMMAND = cd $$PWD F:/qt6file/qt_Remote_warehouse_management_system/release && cmd /c cv2pdb.exe $$OUT_PWD F:/qt6file/qt_Remote_warehouse_management_system/release
+    QMAKE_POST_LINK += $${MY_POST_LINK_COMMAND}
+}
 
 SOURCES += \
     add_record.cpp \
@@ -16,7 +23,6 @@ SOURCES += \
     manage.cpp \
     registec.cpp \
     update_record.cpp
-
 
 HEADERS += \
     add_record.h \
@@ -32,8 +38,6 @@ FORMS += \
     registec.ui \
     update_record.ui
 
-
-# Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
