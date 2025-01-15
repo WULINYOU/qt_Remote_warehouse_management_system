@@ -169,6 +169,13 @@ void update_record::on_updateButtonClicked()
     QString tableName = ui->comboBox->currentText();
     QSqlQuery query(db3);
 
+    // 检查数据库连接是否有效
+    if (!db3.isOpen()) {
+        QMessageBox::information(this, "Error", "数据库未连接");
+        qDebug() << "Database is not open";
+        return;
+    }
+
     // 获取表的记录结构
     query.prepare(QString("SELECT * FROM %1 LIMIT 0").arg(tableName));
     if (!query.exec()) {
@@ -178,10 +185,18 @@ void update_record::on_updateButtonClicked()
     }
     QSqlRecord record = query.record();
 
+    // 开始事务
+    if (!db3.transaction()) {
+        QMessageBox::information(this, "Error", "无法开始事务: " + db3.lastError().text());
+        qDebug() << "Error starting transaction:" << db3.lastError().text();
+        return;
+    }
+
     for (int row = 0; row < ui->tableWidget->rowCount(); row++) {
         QString id = ui->tableWidget->item(row, 0)->text();
         if (id.isEmpty()) {
             QMessageBox::information(this, "Error", "序号为空，无法更新记录！");
+            db3.rollback(); // 回滚事务
             return;
         }
 
@@ -211,6 +226,7 @@ void update_record::on_updateButtonClicked()
                 if (!dateTime.isValid()) {
                     QMessageBox::information(this, "Error", QString("时间格式错误: %1").arg(value));
                     qDebug() << "Invalid date time format:" << value;
+                    db3.rollback(); // 回滚事务
                     return;
                 }
                 value = dateTime.toString("yyyy-MM-dd hh:mm:ss");
@@ -219,12 +235,30 @@ void update_record::on_updateButtonClicked()
             data.insert(columnName, value);
         }
 
-        QString sqlWhere = QString("WHERE id=%1").arg(id);
-        if (!updateData(tableName, data, sqlWhere)) {
-            QMessageBox::information(this, "Error", "更新失败: " + query.lastError().text());
-            qDebug() << "Error updating data:" << query.lastError().text();
+        // 构建更新语句
+        QString sql = QString("UPDATE %1 SET ").arg(tableName);
+        QStringList setClauses;
+        for (auto it = data.begin(); it != data.end(); ++it) {
+            setClauses << QString("%1='%2'").arg(it.key()).arg(it.value());
+        }
+        sql += setClauses.join(", ");
+        sql += QString(" WHERE id=%1").arg(id);
+
+        // 执行更新操作
+        QSqlQuery updateQuery(db3);
+        if (!updateQuery.exec(sql)) {
+            QMessageBox::information(this, "Error", "更新失败: " + updateQuery.lastError().text());
+            qDebug() << "Error updating data:" << updateQuery.lastError().text();
+            db3.rollback(); // 回滚事务
             return;
         }
+    }
+
+    // 提交事务
+    if (!db3.commit()) {
+        QMessageBox::information(this, "Error", "无法提交事务: " + db3.lastError().text());
+        qDebug() << "Error committing transaction:" << db3.lastError().text();
+        return;
     }
 
     QMessageBox::information(this, "Success", "数据更新成功！");

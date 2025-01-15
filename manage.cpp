@@ -10,6 +10,7 @@
 #include<QDateTimeEdit>
 #include<QTableView>
 #include"update_record.h"
+#include"add_storage.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -43,6 +44,7 @@ manage::manage(QWidget *parent)
     connect(ui->add_record,&QPushButton::clicked,this,&manage::onaddrecordButtonClicke);
     connect(ui->refresh,&QPushButton::clicked,this,&manage::onrefreshButtonClicke);
     connect(ui->update_record,&QPushButton::clicked,this,&manage::onupdatButtonclicke);
+    connect(ui->Storage,&QPushButton::clicked,this,&manage::onStorageButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -147,6 +149,12 @@ void manage::onupdatButtonclicke()
 {
     update_record *updateDialog=new update_record;
     updateDialog->show();
+}
+
+void manage::onStorageButtonClicke()
+{
+    add_Storage *add_StorageDialog=new add_Storage;
+    add_StorageDialog->show();
 }
 
 void manage::on_comboBox_currentIndexChanged(int index)

@@ -15,7 +15,8 @@
 add_record::add_record(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::add_record)
-    , timer(new QTimer(this)) {
+    , timer(new QTimer(this))
+{
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
     if (!QSqlDatabase::contains("manageUniqueConnectionName")) {

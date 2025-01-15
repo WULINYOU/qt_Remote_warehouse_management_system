@@ -1,10 +1,12 @@
 release/add_record.o
+release/add_storage.o
 release/main.o
 release/mainwindow.o
 release/manage.o
 release/registec.o
 release/update_record.o
 release/moc_add_record.o
+release/moc_add_storage.o
 release/moc_mainwindow.o
 release/moc_manage.o
 release/moc_registec.o
