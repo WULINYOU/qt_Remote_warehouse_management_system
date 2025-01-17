@@ -1,4 +1,5 @@
-﻿#include "add_storage.h"
+﻿// add_storage.cpp
+#include "add_storage.h"
 #include "ui_add_storage.h"
 #include <QSqlDatabase>
 #include <QMessageBox>
@@ -22,6 +23,7 @@ add_Storage::add_Storage(QWidget *parent)
     } else {
         db4 = QSqlDatabase::database("add_storageConnectionName");
     }
+
     QSqlQuery query("SHOW TABLES", db4);
     while(query.next()){
         QString tableName = query.value(0).toString();
@@ -39,7 +41,6 @@ add_Storage::add_Storage(QWidget *parent)
     ui->verticalLayout_2->replaceWidget(ui->lineEdit_3, dateTimeEdit);
     ui->lineEdit_3->deleteLater();
     ui->lineEdit_3 = dateTimeEdit;
-
 
     // 连接 Storage_newok 按钮的点击事件
     connect(ui->Storage_newok, &QPushButton::clicked, this, &add_Storage::on_Storage_new_ok_clicked);
@@ -90,5 +91,3 @@ void add_Storage::on_Storage_new_ok_clicked()
         QMessageBox::critical(this, "Error", "Failed to get last ID: " + query.lastError().text());
     }
 }
-
-

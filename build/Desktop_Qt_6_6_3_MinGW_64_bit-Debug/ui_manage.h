@@ -44,7 +44,7 @@ public:
     QPushButton *manage_Exit;
     QLabel *time_label;
     QPushButton *refresh;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *Storage;
     QPushButton *lessen;
@@ -128,22 +128,22 @@ public:
 
         time_label = new QLabel(manage);
         time_label->setObjectName("time_label");
-        time_label->setGeometry(QRect(580, 20, 311, 21));
+        time_label->setGeometry(QRect(590, 20, 311, 21));
         refresh = new QPushButton(manage);
         refresh->setObjectName("refresh");
         refresh->setGeometry(QRect(500, 20, 75, 23));
-        widget = new QWidget(manage);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(610, 460, 281, 51));
-        horizontalLayout_5 = new QHBoxLayout(widget);
+        layoutWidget1 = new QWidget(manage);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(590, 460, 311, 51));
+        horizontalLayout_5 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_5->setObjectName("horizontalLayout_5");
         horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
-        Storage = new QPushButton(widget);
+        Storage = new QPushButton(layoutWidget1);
         Storage->setObjectName("Storage");
 
         horizontalLayout_5->addWidget(Storage);
 
-        lessen = new QPushButton(widget);
+        lessen = new QPushButton(layoutWidget1);
         lessen->setObjectName("lessen");
 
         horizontalLayout_5->addWidget(lessen);
