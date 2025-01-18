@@ -12,7 +12,7 @@ QMAKE_CXXFLAGS_RELEASE += -g
 
 
 CONFIG(release, debug|release){
-    MY_POST_LINK_COMMAND = cd $$PWD F:/qt6file/qt_Remote_warehouse_management_system/release && cmd /c cv2pdb.exe $$OUT_PWD F:/qt6file/qt_Remote_warehouse_management_system/release
+    MY_POST_LINK_COMMAND = cd $$PWD F:/qt6file/qt_Remote_warehouse_management_system/release && cmd F:/qt_Remote_warehouse_management_system/cv2pdb.exe $$OUT_PWD F:/qt6file/qt_Remote_warehouse_management_system/release
     QMAKE_POST_LINK += $${MY_POST_LINK_COMMAND}
 }
 

@@ -1,12 +1,9 @@
 ﻿#include "mainwindow.h"
 #include <QApplication>
 
-#if defined(Q_OS_WIN32)
+#if defined(Q_OS_WIN64)
 #include <windows.h>
 #include <dbghelp.h> // 添加 Dbghelp 头文件
-
-
-
 
 LONG WINAPI exceptionHandler(EXCEPTION_POINTERS* pExceptionPointers){
     // 创建 Dump 文件

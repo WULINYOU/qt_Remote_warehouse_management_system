@@ -100,7 +100,7 @@ all: Makefile.Release  release/qt_Remote_warehouse_management_system.exe
 
 release/qt_Remote_warehouse_management_system.exe: F:/qt6/6.6.3/mingw_64/lib/libQt6Widgets.a F:/qt6/6.6.3/mingw_64/lib/libQt6Gui.a F:/qt6/6.6.3/mingw_64/lib/libQt6Sql.a F:/qt6/6.6.3/mingw_64/lib/libQt6Core.a F:/qt6/6.6.3/mingw_64/lib/libQt6EntryPoint.a ui_add_record.h ui_add_storage.h ui_mainwindow.h ui_manage.h ui_registec.h ui_update_record.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @release\object_script.qt_Remote_warehouse_management_system.Release $(LIBS)
-	cd F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release && cmd /c cv2pdb.exe F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release
+	cd F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release && cmd F:/qt_Remote_warehouse_management_system/cv2pdb.exe F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release qt_Remote_warehouse_management_system.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
