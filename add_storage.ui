@@ -178,22 +178,8 @@
   </widget>
  </widget>
  <resources/>
- <connections>
-    <connection>
-        <sender>Storage_newok</sender>
-        <signal>clicked()</signal>
-        <receiver>add_Storage</receiver>
-        <slot>on_Storage_new_ok_clicked()</slot>
-        <hints>
-            <hint type="sourcelabel">
-                <x>10</x>
-                <y>10</y>
-            </hint>
-            <hint type="destinationlabel">
-                <x>10</x>
-                <y>10</y>
-            </hint>
-        </hints>
-    </connection>
-</connections>
+ <connections/>
+ <slots>
+  <slot>on_Storage_new_ok_clicked()</slot>
+ </slots>
 </ui>

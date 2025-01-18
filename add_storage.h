@@ -16,7 +16,10 @@ public:
     explicit add_Storage(QWidget *parent = nullptr);
     ~add_Storage();
 private slots:
-    void on_Storage_new_ok_clicked();
+
+
+   // void on_Storage_newok_clicked(bool checked);
+
 private:
     Ui::add_Storage *ui;
     QSqlDatabase db4;

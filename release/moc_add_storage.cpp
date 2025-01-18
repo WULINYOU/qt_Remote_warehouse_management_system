@@ -38,28 +38,20 @@ namespace {
 #ifdef QT_MOC_HAS_STRINGDATA
 struct qt_meta_stringdata_CLASSadd_StorageENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSadd_StorageENDCLASS = QtMocHelpers::stringData(
-    "add_Storage",
-    "on_Storage_new_ok_clicked",
-    ""
+    "add_Storage"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSadd_StorageENDCLASS_t {
-    uint offsetsAndSizes[6];
+    uint offsetsAndSizes[2];
     char stringdata0[12];
-    char stringdata1[26];
-    char stringdata2[1];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSadd_StorageENDCLASS_t::offsetsAndSizes) + ofs), len 
 Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_StorageENDCLASS_t qt_meta_stringdata_CLASSadd_StorageENDCLASS = {
     {
-        QT_MOC_LITERAL(0, 11),  // "add_Storage"
-        QT_MOC_LITERAL(12, 25),  // "on_Storage_new_ok_clicked"
-        QT_MOC_LITERAL(38, 0)   // ""
+        QT_MOC_LITERAL(0, 11)   // "add_Storage"
     },
-    "add_Storage",
-    "on_Storage_new_ok_clicked",
-    ""
+    "add_Storage"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -71,18 +63,12 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_StorageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       0,    0, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
-
- // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x08,    1 /* Private */,
-
- // slots: parameters
-    QMetaType::Void,
 
        0        // eod
 };
@@ -95,23 +81,16 @@ Q_CONSTINIT const QMetaObject add_Storage::staticMetaObject = { {
     nullptr,
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSadd_StorageENDCLASS_t,
         // Q_OBJECT / Q_GADGET
-        QtPrivate::TypeAndForceComplete<add_Storage, std::true_type>,
-        // method 'on_Storage_new_ok_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<add_Storage, std::true_type>
     >,
     nullptr
 } };
 
 void add_Storage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<add_Storage *>(_o);
-        (void)_t;
-        switch (_id) {
-        case 0: _t->on_Storage_new_ok_clicked(); break;
-        default: ;
-        }
-    }
+    (void)_o;
+    (void)_id;
+    (void)_c;
     (void)_a;
 }
 
@@ -131,17 +110,6 @@ void *add_Storage::qt_metacast(const char *_clname)
 int add_Storage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
-    if (_id < 0)
-        return _id;
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
-    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
-    }
     return _id;
 }
 QT_WARNING_POP

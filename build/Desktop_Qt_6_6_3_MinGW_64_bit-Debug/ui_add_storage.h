@@ -20,8 +20,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <QObject>  // 添加: 包含 QObject 以使用 connect 函数
-#include <QPushButton>  // 添加: 包含 QPushButton 以使用 QPushButton 类
+
 QT_BEGIN_NAMESPACE
 
 class Ui_add_Storage
@@ -198,7 +197,7 @@ public:
 
 
         retranslateUi(add_Storage);
-        connect(Storage_newok, &QPushButton::clicked, add_Storage, qOverload<>(&add_Storage::on_Storage_new_ok_clicked));  // 修改: 将目标对象改为 add_Storage 实例
+        QObject::connect(Storage_newok, &QPushButton::clicked, add_Storage, qOverload<>(&QDialog::on_Storage_new_ok_clicked));
 
         QMetaObject::connectSlotsByName(add_Storage);
     } // setupUi
@@ -221,7 +220,7 @@ public:
 };
 
 namespace Ui {
-class add_Storage: public Ui_add_Storage {};
+    class add_Storage: public Ui_add_Storage {};
 } // namespace Ui
 
 QT_END_NAMESPACE
