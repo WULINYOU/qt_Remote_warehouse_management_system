@@ -57,7 +57,7 @@ manage::~manage()
         db1.close();  // 关闭数据库连接
     }
 
-   // QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+   QSqlDatabase::removeDatabase("manageUniqueConnectionName");
 }
 
 void manage::loadData()

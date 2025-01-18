@@ -37,7 +37,7 @@ public:
         tableWidget->setGeometry(QRect(20, 40, 631, 261));
         comboBox = new QComboBox(update_record);
         comboBox->setObjectName("comboBox");
-        comboBox->setGeometry(QRect(20, 10, 69, 22));
+        comboBox->setGeometry(QRect(90, 10, 81, 22));
         update_button = new QPushButton(update_record);
         update_button->setObjectName("update_button");
         update_button->setGeometry(QRect(680, 150, 91, 41));

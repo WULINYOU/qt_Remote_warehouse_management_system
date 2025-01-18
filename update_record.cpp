@@ -52,7 +52,7 @@ update_record::update_record(QWidget *parent)
         qDebug() << "Database is not open!";
         return;
     }
-    db3.setConnectOptions("AUTOCOMMIT=1"); // 确保自动提交事务
+
 }
 
 update_record::~update_record()
@@ -153,7 +153,7 @@ void update_record::showDateTimePicker(int row, int col)
         ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
 
         // 显示日期时间选择器
-        dateTimeEdit->show();
+      //  dateTimeEdit->show();
 
         connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
             QString dateTimeString = dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss");
@@ -253,7 +253,7 @@ void update_record::on_updateButtonClicked()
             return;
         }
     }
-
+        db3.setConnectOptions("AUTOCOMMIT=1"); // 确保自动提交事务
     // 提交事务
     if (!db3.commit()) {
         QMessageBox::information(this, "Error", "无法提交事务: " + db3.lastError().text());
