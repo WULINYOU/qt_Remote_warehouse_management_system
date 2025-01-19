@@ -55,11 +55,12 @@ constexpr auto qt_meta_stringdata_CLASSupdate_recordENDCLASS = QtMocHelpers::str
     "data",
     "sqlWhere",
     "queryExec",
-    "queryStr"
+    "queryStr",
+    "ensureDatabaseOpen"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSupdate_recordENDCLASS_t {
-    uint offsetsAndSizes[36];
+    uint offsetsAndSizes[38];
     char stringdata0[14];
     char stringdata1[32];
     char stringdata2[1];
@@ -78,6 +79,7 @@ struct qt_meta_stringdata_CLASSupdate_recordENDCLASS_t {
     char stringdata15[9];
     char stringdata16[10];
     char stringdata17[9];
+    char stringdata18[19];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSupdate_recordENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -100,7 +102,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSupdate_recordENDCLASS_t qt_meta
         QT_MOC_LITERAL(200, 4),  // "data"
         QT_MOC_LITERAL(205, 8),  // "sqlWhere"
         QT_MOC_LITERAL(214, 9),  // "queryExec"
-        QT_MOC_LITERAL(224, 8)   // "queryStr"
+        QT_MOC_LITERAL(224, 8),  // "queryStr"
+        QT_MOC_LITERAL(233, 18)   // "ensureDatabaseOpen"
     },
     "update_record",
     "on_comboBox_currentIndexChanged",
@@ -119,7 +122,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSupdate_recordENDCLASS_t qt_meta
     "data",
     "sqlWhere",
     "queryExec",
-    "queryStr"
+    "queryStr",
+    "ensureDatabaseOpen"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -131,7 +135,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -139,14 +143,15 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   62,    2, 0x08,    1 /* Private */,
-       4,    2,   65,    2, 0x08,    3 /* Private */,
-       7,    0,   70,    2, 0x08,    6 /* Private */,
-       8,    0,   71,    2, 0x08,    7 /* Private */,
-       9,    0,   72,    2, 0x08,    8 /* Private */,
-      10,    1,   73,    2, 0x08,    9 /* Private */,
-      11,    3,   76,    2, 0x08,   11 /* Private */,
-      16,    1,   83,    2, 0x08,   15 /* Private */,
+       1,    1,   68,    2, 0x08,    1 /* Private */,
+       4,    2,   71,    2, 0x08,    3 /* Private */,
+       7,    0,   76,    2, 0x08,    6 /* Private */,
+       8,    0,   77,    2, 0x08,    7 /* Private */,
+       9,    0,   78,    2, 0x08,    8 /* Private */,
+      10,    1,   79,    2, 0x08,    9 /* Private */,
+      11,    3,   82,    2, 0x08,   11 /* Private */,
+      16,    1,   89,    2, 0x08,   15 /* Private */,
+      18,    0,   92,    2, 0x08,   17 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -157,6 +162,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Bool, QMetaType::QString, 0x80000000 | 13, QMetaType::QString,   12,   14,   15,
     QMetaType::Bool, QMetaType::QString,   17,
+    QMetaType::Bool,
 
        0        // eod
 };
@@ -193,7 +199,9 @@ Q_CONSTINIT const QMetaObject update_record::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'queryExec'
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'ensureDatabaseOpen'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>
     >,
     nullptr
 } };
@@ -213,6 +221,8 @@ void update_record::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 6: { bool _r = _t->updateData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 7: { bool _r = _t->queryExec((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 8: { bool _r = _t->ensureDatabaseOpen();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -238,13 +248,13 @@ int update_record::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

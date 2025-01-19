@@ -197,7 +197,6 @@ public:
 
 
         retranslateUi(add_Storage);
-        QObject::connect(Storage_newok, &QPushButton::clicked, add_Storage, qOverload<>(&QDialog::on_Storage_new_ok_clicked));
 
         QMetaObject::connectSlotsByName(add_Storage);
     } // setupUi

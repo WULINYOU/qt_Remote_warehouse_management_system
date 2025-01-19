@@ -26,7 +26,6 @@ private slots:
     bool updateData(QString tableName, QHash<QString, QString> data, QString sqlWhere);
     bool queryExec(const QString &queryStr);
 
-
 private:
     Ui::update_record *ui;
     QSqlDatabase db3;

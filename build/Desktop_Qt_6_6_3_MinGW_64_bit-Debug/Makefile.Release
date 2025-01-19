@@ -100,7 +100,7 @@ all: Makefile.Release  release/qt_Remote_warehouse_management_system.exe
 
 release/qt_Remote_warehouse_management_system.exe: F:/qt6/6.6.3/mingw_64/lib/libQt6Widgets.a F:/qt6/6.6.3/mingw_64/lib/libQt6Gui.a F:/qt6/6.6.3/mingw_64/lib/libQt6Sql.a F:/qt6/6.6.3/mingw_64/lib/libQt6Core.a F:/qt6/6.6.3/mingw_64/lib/libQt6EntryPoint.a ui_add_record.h ui_add_storage.h ui_mainwindow.h ui_manage.h ui_registec.h ui_update_record.h $(OBJECTS) 
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) @release\object_script.qt_Remote_warehouse_management_system.Release $(LIBS)
-	cd F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release && cmd /c cv2pdb.exe F:/qt6file/qt_Remote_warehouse_management_system/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug F:/qt6file/qt_Remote_warehouse_management_system/release
+	cd F:/qt6file/qt_Remote_warehouse_management_system F:/qt6file/qt_Remote_warehouse_management_system/release && cmd F:/qt_Remote_warehouse_management_system/cv2pdb.exe F:/qt6file/qt_Remote_warehouse_management_system/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug F:/qt6file/qt_Remote_warehouse_management_system/release
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\..\qt_Remote_warehouse_management_system.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -484,7 +484,6 @@ release/moc_add_storage.cpp: ../../add_storage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsql-config.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlexports.h \
-		ui_add_storage.h \
 		release/moc_predefs.h \
 		../../../../qt6/6.6.3/mingw_64/bin/moc.exe
 	F:\qt6\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include F:/qt6file/qt_Remote_warehouse_management_system/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/release/moc_predefs.h -IF:/qt6/6.6.3/mingw_64/mkspecs/win32-g++ -IF:/qt6file/qt_Remote_warehouse_management_system -IF:/qt6/6.6.3/mingw_64/include -IF:/qt6/6.6.3/mingw_64/include/QtWidgets -IF:/qt6/6.6.3/mingw_64/include/QtGui -IF:/qt6/6.6.3/mingw_64/include/QtSql -IF:/qt6/6.6.3/mingw_64/include/QtCore -I. -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IF:/qt6/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\add_storage.h -o release\moc_add_storage.cpp
@@ -2301,8 +2300,7 @@ release/manage.o: ../../manage.cpp ../../manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableView \
 		../../update_record.h \
-		../../add_storage.h \
-		ui_add_storage.h
+		../../add_storage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\manage.o ..\..\manage.cpp
 
 release/registec.o: ../../registec.cpp ../../registec.h \
@@ -2489,8 +2487,7 @@ release/registec.o: ../../registec.cpp ../../registec.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\registec.o ..\..\registec.cpp
 
-release/update_record.o: ../../update_record.cpp ui_update_record.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+release/update_record.o: ../../update_record.cpp ../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtguiglobal.h \

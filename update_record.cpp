@@ -192,6 +192,8 @@ void update_record::on_updateButtonClicked()
         return;
     }
 
+    int totalAffectedRows = 0; // 累计受影响的行数
+
     for (int row = 0; row < ui->tableWidget->rowCount(); row++) {
         QString id = ui->tableWidget->item(row, 0)->text();
         if (id.isEmpty()) {
@@ -214,6 +216,9 @@ void update_record::on_updateButtonClicked()
                 value = "";
             }
 
+            // 打印原始值
+            qDebug() << "Original value for column " << columnName << ": " << value;
+
             // 处理时间字段
             if (columnName.contains("time", Qt::CaseInsensitive)) {
                 // 删除时间字符串中的 'T'
@@ -232,17 +237,26 @@ void update_record::on_updateButtonClicked()
                 value = dateTime.toString("yyyy-MM-dd hh:mm:ss");
             }
 
+            // 打印处理后的值
+            qDebug() << "Processed value for column " << columnName << ": " << value;
+
             data.insert(columnName, value);
         }
+
+        // 打印id和要更新的数据
+        qDebug() << "Updating record with id: " << id << " and data: " << data;
 
         // 构建更新语句
         QString sql = QString("UPDATE %1 SET ").arg(tableName);
         QStringList setClauses;
-        for (auto it = data.begin(); it != data.end(); ++it) {
+        for (auto it = data.begin(); it!= data.end(); ++it) {
             setClauses << QString("%1='%2'").arg(it.key()).arg(it.value());
         }
         sql += setClauses.join(", ");
         sql += QString(" WHERE id=%1").arg(id);
+
+        // 打印生成的 SQL 语句以供调试
+        qDebug() << "Executing SQL:" << sql;
 
         // 执行更新操作
         QSqlQuery updateQuery(db3);
@@ -252,8 +266,13 @@ void update_record::on_updateButtonClicked()
             db3.rollback(); // 回滚事务
             return;
         }
+
+        // 累加受影响的行数
+        int affectedRows = updateQuery.numRowsAffected();
+        totalAffectedRows += affectedRows;
+        qDebug() << "Rows affected in this update:" << affectedRows;
     }
-        db3.setConnectOptions("AUTOCOMMIT=1"); // 确保自动提交事务
+
     // 提交事务
     if (!db3.commit()) {
         QMessageBox::information(this, "Error", "无法提交事务: " + db3.lastError().text());
@@ -261,7 +280,19 @@ void update_record::on_updateButtonClicked()
         return;
     }
 
-    QMessageBox::information(this, "Success", "数据更新成功！");
+    // 输出受影响的总行数
+    qDebug() << "Total affected rows:" << totalAffectedRows;
+    //测试用例
+    // QString updateSql = QString("UPDATE inv_table SET number = number + 50, price = price + 50 WHERE id = 1005");
+    // if (!query.exec(updateSql)) {
+    //     qDebug() << "Update failed: " << query.lastError().text();
+    // } else {
+    //     qDebug() << "Record updated successfully.";
+    // }
+    // 显示成功消息并包含受影响的行数
+    QMessageBox::information(this, "Success", QString("数据更新成功！共更新了 %1 行").arg(totalAffectedRows));
+
+    // 确保重新加载最新数据
     loadData(); // 重新加载数据
 }
 
