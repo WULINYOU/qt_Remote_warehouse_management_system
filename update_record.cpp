@@ -21,30 +21,18 @@ update_record::update_record(QWidget *parent)
         db3.setDatabaseName("MySQLDSN");
         if(!db3.open()){
             QMessageBox::information(this,"infor","连接数据库失败");
-            qDebug()<<"err"<<db3.lastError().text();
+            qDebug() << "err" << db3.lastError().text();
         }
     } else {
         db3 = QSqlDatabase::database(connectionName);
     }
 
-    ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->setAlternatingRowColors(true);
     QSqlQuery query("SHOW TABLES", db3);
     while (query.next()) {
         QString tableName = query.value(0).toString();
         ui->comboBox->addItem(tableName);
     }
-    QTableWidgetItem *item[10];
-    int nCount = ui->tableWidget->rowCount();
-    if (nCount < 10) {
-        ui->tableWidget->insertRow(nCount);
-        item[0] = new QTableWidgetItem(QString::number(nCount + 1)); // 添加序号
-        ui->tableWidget->setItem(nCount, 0, item[0]);
-    }
-    initializeDateTimePickers(nCount);
-
     connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &update_record::on_comboBox_currentIndexChanged);
-    connect(ui->tableWidget, &QTableWidget::cellDoubleClicked, this, &update_record::showDateTimePicker);
     connect(ui->update_button, &QPushButton::clicked, this, &update_record::on_updateButtonClicked);
     connect(ui->exit_button, &QPushButton::clicked, this, &update_record::exitButtonClicked);
     if (!db3.isOpen()) {
@@ -52,7 +40,10 @@ update_record::update_record(QWidget *parent)
         qDebug() << "Database is not open!";
         return;
     }
-
+    ui->table_element->addItem("成品库存"); // 添加新的下拉选项
+    ui->table_element->addItem("退货库存");
+    ui->table_element->addItem("季节性库存");
+  //  ui->table_element->hide(); // 初始化时隐藏table_element
 }
 
 update_record::~update_record()
@@ -60,265 +51,33 @@ update_record::~update_record()
     if (db3.isOpen()) {
         db3.close();
     }
-    QSqlDatabase::removeDatabase(db3.connectionName()); // 移除数据库连接
+    QSqlDatabase::removeDatabase(db3.connectionName()); // 确保移除数据库连接
     delete ui;
-}
-
-void update_record::loadData()
-{
-    QString tableName = ui->comboBox->currentText();
-    QSqlQuery query(db3);
-    query.prepare(QString("SELECT * FROM %1").arg(tableName));
-    ui->tableWidget->clearContents(); // 清空 tableWidget 的内容
-    ui->tableWidget->setRowCount(0); // 清空行数
-    if (!db3.isOpen()) {
-        QMessageBox::information(this, "Error", "数据库未打开！");
-        qDebug() << "Database is not open!";
-        return;
-    }
-    if (query.exec()) {
-        QSqlRecord record = query.record();
-        QStringList header;
-        header << "序号";
-        for (int col = 0; col < record.count(); col++) {
-            header << record.fieldName(col);
-        }
-        ui->tableWidget->setColumnCount(header.size());
-        ui->tableWidget->setHorizontalHeaderLabels(header);
-
-        int rowCount = 0;
-        while (query.next()) {
-            ui->tableWidget->insertRow(rowCount);
-            QTableWidgetItem *item = new QTableWidgetItem(QString::number(rowCount + 1)); // 添加序号
-            ui->tableWidget->setItem(rowCount, 0, item);
-            for (int col = 0; col < query.record().count(); col++) {
-                QVariant value = query.value(col);
-                QString itemText;
-                if (value.metaType().id() == QMetaType::QDateTime) {
-                    QDateTime dateTime = value.toDateTime();
-                    itemText = dateTime.toString("yyyy年MM月dd日Thh时mm分ss秒");
-                } else {
-                    itemText = value.toString();
-                }
-                QTableWidgetItem *item = new QTableWidgetItem(itemText);
-                ui->tableWidget->setItem(rowCount, col + 1, item); // 从第二列开始填充数据
-            }
-            for (int col = 0; col < ui->tableWidget->columnCount(); col++) {
-                if (ui->tableWidget->horizontalHeaderItem(col)->text() == "type") {
-                    QComboBox *comboBox = new QComboBox();
-                    comboBox->addItem("      ");
-                    comboBox->addItem("成品库存");
-                    comboBox->addItem("退货库存");
-                    comboBox->addItem("季节性库存");
-                    // 获取原有数据并设置到 QComboBox 中
-                    QString currentValue = ui->tableWidget->item(rowCount, col)->text();
-                    comboBox->setCurrentText(currentValue);
-                    ui->tableWidget->setCellWidget(rowCount, col, comboBox);
-                }
-            }
-            rowCount++;
-        }
-
-    } else {
-        QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
-        qDebug() << "Error retrieving table data:" << query.lastError().text();
-    }
-}
-
-void update_record::on_comboBox_currentIndexChanged(int index)
-{
-    QString tableName = ui->comboBox->itemText(index);
-    loadData();
-}
-
-void update_record::initializeDateTimePickers(int row)
-{
-    for(int col = 0; col < ui->tableWidget->columnCount(); col++) {
-        QTableWidgetItem *headerItem = ui->tableWidget->horizontalHeaderItem(col);
-        if(headerItem && headerItem->text().contains("time", Qt::CaseInsensitive)) {
-            qDebug() << "Found column with 'time' in its name at index:" << col;
-            showDateTimePicker(row, col);
-        }
-    }
-}
-
-void update_record::showDateTimePicker(int row, int col)
-{
-    if (ui->tableWidget->horizontalHeaderItem(col)->text().contains("time", Qt::CaseInsensitive)) {
-        QDateTimeEdit *dateTimeEdit = new QDateTimeEdit(this);
-        dateTimeEdit->setCalendarPopup(true);
-        dateTimeEdit->setDateTime(QDateTime::currentDateTime());
-
-        // 将 QDateTimeEdit 设置为表格中的单元格小部件
-        ui->tableWidget->setCellWidget(row, col, dateTimeEdit);
-
-        // 显示日期时间选择器
-      //  dateTimeEdit->show();
-
-        connect(dateTimeEdit, &QDateTimeEdit::dateTimeChanged, [this, row, col, dateTimeEdit]() {
-            QString dateTimeString = dateTimeEdit->dateTime().toString("yyyy-MM-dd hh:mm:ss");
-            ui->tableWidget->setItem(row, col, new QTableWidgetItem(dateTimeString));
-            ui->tableWidget->removeCellWidget(row, col); // 删除 QDateTimeEdit 小部件
-            dateTimeEdit->deleteLater();
-        });
-    }
 }
 
 void update_record::on_updateButtonClicked()
 {
     QString tableName = ui->comboBox->currentText();
-    QSqlQuery query(db3);
+    QString columnName = ui->table_element->currentText();
+    QString name = ui->name->text();
+    QString newValue = ui->newword->text();
 
-    // 检查数据库连接是否有效
-    if (!db3.isOpen()) {
-        QMessageBox::information(this, "Error", "数据库未连接");
-        qDebug() << "Database is not open";
+    if (tableName.isEmpty() || columnName.isEmpty() || name.isEmpty() || newValue.isEmpty()) {
+        QMessageBox::warning(this, "警告", "请填写所有字段！");
         return;
     }
 
-    // 获取表的记录结构
-    query.prepare(QString("SELECT * FROM %1 LIMIT 0").arg(tableName));
-    if (!query.exec()) {
-        QMessageBox::information(this, "Error", "无法获取表结构: " + query.lastError().text());
-        qDebug() << "Error retrieving table structure:" << query.lastError().text();
-        return;
+    QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
+    QString sql = QString("UPDATE %1 SET %2 = :newValue WHERE name = :name").arg(tableName).arg(columnName);
+    query.prepare(sql);
+    query.bindValue(":newValue", newValue);
+    query.bindValue(":name", name);
+
+    if (query.exec()) {
+        QMessageBox::information(this, "成功", "数据更新成功！");
+    } else {
+        QMessageBox::critical(this, "错误", "数据更新失败：" + query.lastError().text());
     }
-    QSqlRecord record = query.record();
-
-    // 开始事务
-    if (!db3.transaction()) {
-        QMessageBox::information(this, "Error", "无法开始事务: " + db3.lastError().text());
-        qDebug() << "Error starting transaction:" << db3.lastError().text();
-        return;
-    }
-
-    int totalAffectedRows = 0; // 累计受影响的行数
-
-    for (int row = 0; row < ui->tableWidget->rowCount(); row++) {
-        QString id = ui->tableWidget->item(row, 0)->text();
-        if (id.isEmpty()) {
-            QMessageBox::information(this, "Error", "序号为空，无法更新记录！");
-            db3.rollback(); // 回滚事务
-            return;
-        }
-
-        QHash<QString, QString> data;
-
-        for (int col = 1; col < ui->tableWidget->columnCount(); col++) {
-            QString columnName = ui->tableWidget->horizontalHeaderItem(col)->text();
-            QTableWidgetItem *item = ui->tableWidget->item(row, col);
-
-            QString value;
-            if (item) {
-                value = item->text();
-            } else {
-                // 处理项为空的情况
-                value = "";
-            }
-
-            // 打印原始值
-            qDebug() << "Original value for column " << columnName << ": " << value;
-
-            // 处理时间字段
-            if (columnName.contains("time", Qt::CaseInsensitive)) {
-                // 删除时间字符串中的 'T'
-                value.remove('T');
-                QDateTime dateTime = QDateTime::fromString(value, "yyyy年MM月dd日hh时mm分ss秒");
-                if (!dateTime.isValid()) {
-                    // 如果解析失败，尝试解析 "yyyy-MM-dd hh:mm:ss" 格式
-                    dateTime = QDateTime::fromString(value, "yyyy-MM-dd hh:mm:ss");
-                }
-                if (!dateTime.isValid()) {
-                    QMessageBox::information(this, "Error", QString("时间格式错误: %1").arg(value));
-                    qDebug() << "Invalid date time format:" << value;
-                    db3.rollback(); // 回滚事务
-                    return;
-                }
-                value = dateTime.toString("yyyy-MM-dd hh:mm:ss");
-            }
-
-            // 打印处理后的值
-            qDebug() << "Processed value for column " << columnName << ": " << value;
-
-            data.insert(columnName, value);
-        }
-
-        // 打印id和要更新的数据
-        qDebug() << "Updating record with id: " << id << " and data: " << data;
-
-        // 构建更新语句
-        QString sql = QString("UPDATE %1 SET ").arg(tableName);
-        QStringList setClauses;
-        for (auto it = data.begin(); it!= data.end(); ++it) {
-            setClauses << QString("%1='%2'").arg(it.key()).arg(it.value());
-        }
-        sql += setClauses.join(", ");
-        sql += QString(" WHERE id=%1").arg(id);
-
-        // 打印生成的 SQL 语句以供调试
-        qDebug() << "Executing SQL:" << sql;
-
-        // 执行更新操作
-        QSqlQuery updateQuery(db3);
-        if (!updateQuery.exec(sql)) {
-            QMessageBox::information(this, "Error", "更新失败: " + updateQuery.lastError().text());
-            qDebug() << "Error updating data:" << updateQuery.lastError().text();
-            db3.rollback(); // 回滚事务
-            return;
-        }
-
-        // 累加受影响的行数
-        int affectedRows = updateQuery.numRowsAffected();
-        totalAffectedRows += affectedRows;
-        qDebug() << "Rows affected in this update:" << affectedRows;
-    }
-
-    // 提交事务
-    if (!db3.commit()) {
-        QMessageBox::information(this, "Error", "无法提交事务: " + db3.lastError().text());
-        qDebug() << "Error committing transaction:" << db3.lastError().text();
-        return;
-    }
-
-    // 输出受影响的总行数
-    qDebug() << "Total affected rows:" << totalAffectedRows;
-    //测试用例
-    // QString updateSql = QString("UPDATE inv_table SET number = number + 50, price = price + 50 WHERE id = 1005");
-    // if (!query.exec(updateSql)) {
-    //     qDebug() << "Update failed: " << query.lastError().text();
-    // } else {
-    //     qDebug() << "Record updated successfully.";
-    // }
-    // 显示成功消息并包含受影响的行数
-    QMessageBox::information(this, "Success", QString("数据更新成功！共更新了 %1 行").arg(totalAffectedRows));
-
-    // 确保重新加载最新数据
-    loadData(); // 重新加载数据
-}
-
-bool update_record::updateData(QString tableName, QHash<QString, QString> data, QString sqlWhere) {
-    QString queryStr = "UPDATE " + tableName + " ";
-    QHash<QString, QString>::iterator it;
-    QString setStr = "SET ";
-    for(it = data.begin(); it != data.end(); ++it) {
-        setStr += it.key() + "='" + it.value().replace("'", "''") + "',";
-    }
-    setStr = setStr.left(setStr.length() - 1);
-    queryStr += setStr;
-    if(!sqlWhere.isEmpty()) {
-        queryStr += " " + sqlWhere;
-    }
-    qDebug() << "Executing SQL:" << queryStr; // 打印SQL语句
-    return queryExec(queryStr);
-}
-
-bool update_record::queryExec(const QString &queryStr) {
-    QSqlQuery query(db3);
-    if (!query.exec(queryStr)) {
-        qDebug() << "Error executing query:" << query.lastError().text();
-        return false;
-    }
-    return true;
 }
 
 void update_record::exitButtonClicked()
@@ -328,4 +87,28 @@ void update_record::exitButtonClicked()
     if(reply == QMessageBox::Yes){
         this->close();
     }
+}
+
+void update_record::on_comboBox_currentIndexChanged(int index)
+{
+    QString tableName = ui->comboBox->itemText(index);
+
+    ui->table_element->clear();
+
+    QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
+    query.prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = :tableName");
+    query.bindValue(":tableName", tableName);
+    if (query.exec()) {
+        while (query.next()) {
+            QString columnName = query.value(0).toString();
+            ui->table_element->addItem(columnName);
+        }
+    } else {
+        QMessageBox::critical(this, "错误", "获取列信息失败：" + query.lastError().text());
+    }
+
+    if (ui->table_element->currentText() == "type") {
+        ui->table_element->show();
+        ui->newword->hide();}
+
 }

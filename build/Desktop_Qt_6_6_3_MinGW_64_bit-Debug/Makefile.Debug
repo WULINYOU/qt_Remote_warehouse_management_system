@@ -2486,7 +2486,8 @@ debug/registec.o: ../../registec.cpp ../../registec.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\registec.o ..\..\registec.cpp
 
-debug/update_record.o: ../../update_record.cpp ../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+debug/update_record.o: ../../update_record.cpp ui_update_record.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtguiglobal.h \

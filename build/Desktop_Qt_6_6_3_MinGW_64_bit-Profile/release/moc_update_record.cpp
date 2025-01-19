@@ -42,42 +42,18 @@ constexpr auto qt_meta_stringdata_CLASSupdate_recordENDCLASS = QtMocHelpers::str
     "on_comboBox_currentIndexChanged",
     "",
     "index",
-    "showDateTimePicker",
-    "row",
-    "col",
     "on_updateButtonClicked",
-    "exitButtonClicked",
-    "loadData",
-    "initializeDateTimePickers",
-    "updateData",
-    "tableName",
-    "QHash<QString,QString>",
-    "data",
-    "sqlWhere",
-    "queryExec",
-    "queryStr"
+    "exitButtonClicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSupdate_recordENDCLASS_t {
-    uint offsetsAndSizes[36];
+    uint offsetsAndSizes[12];
     char stringdata0[14];
     char stringdata1[32];
     char stringdata2[1];
     char stringdata3[6];
-    char stringdata4[19];
-    char stringdata5[4];
-    char stringdata6[4];
-    char stringdata7[23];
-    char stringdata8[18];
-    char stringdata9[9];
-    char stringdata10[26];
-    char stringdata11[11];
-    char stringdata12[10];
-    char stringdata13[23];
-    char stringdata14[5];
-    char stringdata15[9];
-    char stringdata16[10];
-    char stringdata17[9];
+    char stringdata4[23];
+    char stringdata5[18];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSupdate_recordENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -87,39 +63,15 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSupdate_recordENDCLASS_t qt_meta
         QT_MOC_LITERAL(14, 31),  // "on_comboBox_currentIndexChanged"
         QT_MOC_LITERAL(46, 0),  // ""
         QT_MOC_LITERAL(47, 5),  // "index"
-        QT_MOC_LITERAL(53, 18),  // "showDateTimePicker"
-        QT_MOC_LITERAL(72, 3),  // "row"
-        QT_MOC_LITERAL(76, 3),  // "col"
-        QT_MOC_LITERAL(80, 22),  // "on_updateButtonClicked"
-        QT_MOC_LITERAL(103, 17),  // "exitButtonClicked"
-        QT_MOC_LITERAL(121, 8),  // "loadData"
-        QT_MOC_LITERAL(130, 25),  // "initializeDateTimePickers"
-        QT_MOC_LITERAL(156, 10),  // "updateData"
-        QT_MOC_LITERAL(167, 9),  // "tableName"
-        QT_MOC_LITERAL(177, 22),  // "QHash<QString,QString>"
-        QT_MOC_LITERAL(200, 4),  // "data"
-        QT_MOC_LITERAL(205, 8),  // "sqlWhere"
-        QT_MOC_LITERAL(214, 9),  // "queryExec"
-        QT_MOC_LITERAL(224, 8)   // "queryStr"
+        QT_MOC_LITERAL(53, 22),  // "on_updateButtonClicked"
+        QT_MOC_LITERAL(76, 17)   // "exitButtonClicked"
     },
     "update_record",
     "on_comboBox_currentIndexChanged",
     "",
     "index",
-    "showDateTimePicker",
-    "row",
-    "col",
     "on_updateButtonClicked",
-    "exitButtonClicked",
-    "loadData",
-    "initializeDateTimePickers",
-    "updateData",
-    "tableName",
-    "QHash<QString,QString>",
-    "data",
-    "sqlWhere",
-    "queryExec",
-    "queryStr"
+    "exitButtonClicked"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -131,7 +83,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -139,24 +91,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSupdate_recordENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   62,    2, 0x08,    1 /* Private */,
-       4,    2,   65,    2, 0x08,    3 /* Private */,
-       7,    0,   70,    2, 0x08,    6 /* Private */,
-       8,    0,   71,    2, 0x08,    7 /* Private */,
-       9,    0,   72,    2, 0x08,    8 /* Private */,
-      10,    1,   73,    2, 0x08,    9 /* Private */,
-      11,    3,   76,    2, 0x08,   11 /* Private */,
-      16,    1,   83,    2, 0x08,   15 /* Private */,
+       1,    1,   32,    2, 0x08,    1 /* Private */,
+       4,    0,   35,    2, 0x08,    3 /* Private */,
+       5,    0,   36,    2, 0x08,    4 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    5,
-    QMetaType::Bool, QMetaType::QString, 0x80000000 | 13, QMetaType::QString,   12,   14,   15,
-    QMetaType::Bool, QMetaType::QString,   17,
 
        0        // eod
 };
@@ -173,27 +115,10 @@ Q_CONSTINIT const QMetaObject update_record::staticMetaObject = { {
         // method 'on_comboBox_currentIndexChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'showDateTimePicker'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_updateButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'exitButtonClicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'loadData'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'initializeDateTimePickers'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'updateData'
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QHash<QString,QString>, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
-        // method 'queryExec'
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -205,15 +130,8 @@ void update_record::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         (void)_t;
         switch (_id) {
         case 0: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 1: _t->showDateTimePicker((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
-        case 2: _t->on_updateButtonClicked(); break;
-        case 3: _t->exitButtonClicked(); break;
-        case 4: _t->loadData(); break;
-        case 5: _t->initializeDateTimePickers((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 6: { bool _r = _t->updateData((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QHash<QString,QString>>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 7: { bool _r = _t->queryExec((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 1: _t->on_updateButtonClicked(); break;
+        case 2: _t->exitButtonClicked(); break;
         default: ;
         }
     }
@@ -238,13 +156,13 @@ int update_record::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 3;
     }
     return _id;
 }

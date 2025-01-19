@@ -1423,60 +1423,7 @@ release/add_record.o: ../../add_record.cpp ../../add_record.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QTimer \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtimer.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qbasictimer.h \
-		../../ui_add_record.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QComboBox \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qcombobox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qvalidator.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qregularexpression.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qslider.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyle.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHeaderView \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qheaderview.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableWidget \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtablewidget.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtableview.h \
+		ui_add_record.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlError \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlerror.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDebug \
@@ -1488,10 +1435,30 @@ release/add_record.o: ../../add_record.cpp ../../add_record.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDateTime \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlquery.h \
 		../../manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableWidgetItem \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtablewidget.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtableview.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qvalidator.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qregularexpression.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyle.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QDateTimeEdit \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableView
@@ -1666,69 +1633,7 @@ release/add_storage.o: ../../add_storage.cpp ../../add_storage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsql-config.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlexports.h \
-		../../ui_add_storage.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QComboBox \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qcombobox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qvalidator.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qregularexpression.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qslider.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyle.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QDateTimeEdit \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLineEdit \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextcursor.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextformat.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpen.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextoption.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QWidget \
+		ui_add_storage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
@@ -1736,12 +1641,30 @@ release/add_storage.o: ../../add_storage.cpp ../../add_storage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlerror.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlQuery \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlquery.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QDateTimeEdit \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdatetimeedit.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qvalidator.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qregularexpression.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableWidgetItem \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtablewidget.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtableview.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyleoption.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractslider.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstyle.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabbar.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\add_storage.o ..\..\add_storage.cpp
 
 release/main.o: ../../main.cpp ../../mainwindow.h \
@@ -2098,8 +2021,11 @@ release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		../../ui_mainwindow.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
+		ui_mainwindow.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialog.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QApplication \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qapplication.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
@@ -2122,38 +2048,6 @@ release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLineEdit \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextcursor.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextformat.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpen.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextoption.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMenuBar \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmenubar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmenu.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QStatusBar \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qstatusbar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QToolBar \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtoolbar.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QWidget \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialog.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlDatabase \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqldatabase.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlglobal.h \
@@ -2177,6 +2071,7 @@ release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtableview.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemview.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qabstractitemmodel.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qitemselectionmodel.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractitemdelegate.h \
@@ -2394,48 +2289,7 @@ release/manage.o: ../../manage.cpp ../../manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDateTime \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
-		../../ui_manage.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QComboBox \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qcombobox.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHeaderView \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qheaderview.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QTableWidget \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QWidget \
+		ui_manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlError \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlerror.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDebug \
@@ -2619,51 +2473,7 @@ release/registec.o: ../../registec.cpp ../../registec.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsql-config.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qtsqlexports.h \
-		../../ui_registec.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QVariant \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QApplication \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qmutex.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qthread.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qexception.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qpromise.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qlocale.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QHBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qboxlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlayoutitem.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qgridlayout.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLabel \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlabel.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qframe.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpicture.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextdocument.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QLineEdit \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qlineedit.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextcursor.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextformat.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qpen.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtextoption.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QPushButton \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qpushbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qabstractbutton.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QVBoxLayout \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QWidget \
+		ui_registec.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
@@ -2678,7 +2488,8 @@ release/registec.o: ../../registec.cpp ../../registec.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtabwidget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\registec.o ..\..\registec.cpp
 
-release/update_record.o: ../../update_record.cpp ../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
+release/update_record.o: ../../update_record.cpp ui_update_record.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/QMessageBox \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qmessagebox.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/qtguiglobal.h \
