@@ -20,7 +20,8 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
     void on_updateButtonClicked();
     void exitButtonClicked();
-    //void on_table_element_currentIndexChanged(int index);
+
+
 
 private:
     Ui::update_record *ui;

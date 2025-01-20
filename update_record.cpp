@@ -10,17 +10,14 @@
 #include "update_record.h"
 #include <QSqlDatabase>
 
-update_record::update_record(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::update_record)
-{
+update_record::update_record(QWidget *parent) : QDialog(parent), ui(new Ui::update_record) {
     ui->setupUi(this);
     QString connectionName = "update_recordName"; // 使用唯一的连接名称
-    if(!QSqlDatabase::contains(connectionName)){
+    if (!QSqlDatabase::contains(connectionName)) {
         db3 = QSqlDatabase::addDatabase("QODBC", connectionName);
         db3.setDatabaseName("MySQLDSN");
-        if(!db3.open()){
-            QMessageBox::information(this,"infor","连接数据库失败");
+        if (!db3.open()) {
+            QMessageBox::information(this, "infor", "连接数据库失败");
             qDebug() << "err" << db3.lastError().text();
         }
     } else {
@@ -40,14 +37,17 @@ update_record::update_record(QWidget *parent)
         qDebug() << "Database is not open!";
         return;
     }
-    ui->table_element->addItem("成品库存"); // 添加新的下拉选项
-    ui->table_element->addItem("退货库存");
-    ui->table_element->addItem("季节性库存");
-  //  ui->table_element->hide(); // 初始化时隐藏table_element
+
+    ui->type_show->addItem("      ");
+    ui->type_show->addItem("成品库存");
+    ui->type_show->addItem("退货库存");
+    ui->type_show->addItem("季节性库存");
+
+    // ui->type_show->hide(); // 初始化时隐藏 type_show 下拉框
+    // ui->newword->hide();  // 初始化时隐藏 newword 输入框
 }
 
-update_record::~update_record()
-{
+update_record::~update_record() {
     if (db3.isOpen()) {
         db3.close();
     }
@@ -55,17 +55,12 @@ update_record::~update_record()
     delete ui;
 }
 
-void update_record::on_updateButtonClicked()
-{
+void update_record::on_updateButtonClicked() {
     QString tableName = ui->comboBox->currentText();
     QString columnName = ui->table_element->currentText();
     QString name = ui->name->text();
     QString newValue = ui->newword->text();
 
-    if (tableName.isEmpty() || columnName.isEmpty() || name.isEmpty() || newValue.isEmpty()) {
-        QMessageBox::warning(this, "警告", "请填写所有字段！");
-        return;
-    }
 
     QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
     QString sql = QString("UPDATE %1 SET %2 = :newValue WHERE name = :name").arg(tableName).arg(columnName);
@@ -80,20 +75,19 @@ void update_record::on_updateButtonClicked()
     }
 }
 
-void update_record::exitButtonClicked()
-{
+void update_record::exitButtonClicked() {
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "返回", "确定要返回管理页面?", QMessageBox::Yes | QMessageBox::No);
-    if(reply == QMessageBox::Yes){
+    if (reply == QMessageBox::Yes) {
         this->close();
     }
 }
 
-void update_record::on_comboBox_currentIndexChanged(int index)
-{
+void update_record::on_comboBox_currentIndexChanged(int index) {
     QString tableName = ui->comboBox->itemText(index);
 
     ui->table_element->clear();
+
 
     QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
     query.prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = :tableName");
@@ -107,8 +101,5 @@ void update_record::on_comboBox_currentIndexChanged(int index)
         QMessageBox::critical(this, "错误", "获取列信息失败：" + query.lastError().text());
     }
 
-    if (ui->table_element->currentText() == "type") {
-        ui->table_element->show();
-        ui->newword->hide();}
 
 }

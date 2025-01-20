@@ -32,6 +32,8 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
+    QComboBox *type_show;
+    QLabel *label;
 
     void setupUi(QDialog *update_record)
     {
@@ -40,34 +42,40 @@ public:
         update_record->resize(389, 224);
         comboBox = new QComboBox(update_record);
         comboBox->setObjectName("comboBox");
-        comboBox->setGeometry(QRect(80, 30, 121, 22));
+        comboBox->setGeometry(QRect(80, 10, 121, 22));
         update_button = new QPushButton(update_record);
         update_button->setObjectName("update_button");
-        update_button->setGeometry(QRect(250, 40, 91, 41));
+        update_button->setGeometry(QRect(250, 10, 91, 41));
         exit_button = new QPushButton(update_record);
         exit_button->setObjectName("exit_button");
-        exit_button->setGeometry(QRect(250, 140, 91, 41));
+        exit_button->setGeometry(QRect(250, 90, 91, 41));
         label_2 = new QLabel(update_record);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(40, 70, 31, 21));
+        label_2->setGeometry(QRect(40, 50, 31, 21));
         name = new QLineEdit(update_record);
         name->setObjectName("name");
-        name->setGeometry(QRect(80, 70, 113, 21));
+        name->setGeometry(QRect(80, 50, 121, 21));
         table_element = new QComboBox(update_record);
         table_element->setObjectName("table_element");
-        table_element->setGeometry(QRect(80, 110, 121, 21));
+        table_element->setGeometry(QRect(80, 90, 121, 21));
         newword = new QLineEdit(update_record);
         newword->setObjectName("newword");
-        newword->setGeometry(QRect(80, 160, 113, 21));
+        newword->setGeometry(QRect(80, 120, 121, 21));
         label_3 = new QLabel(update_record);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(20, 110, 53, 15));
+        label_3->setGeometry(QRect(20, 90, 53, 15));
         label_4 = new QLabel(update_record);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(10, 160, 71, 21));
+        label_4->setGeometry(QRect(10, 120, 71, 21));
         label_5 = new QLabel(update_record);
         label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(20, 40, 53, 15));
+        label_5->setGeometry(QRect(20, 20, 53, 15));
+        type_show = new QComboBox(update_record);
+        type_show->setObjectName("type_show");
+        type_show->setGeometry(QRect(80, 160, 121, 21));
+        label = new QLabel(update_record);
+        label->setObjectName("label");
+        label->setGeometry(QRect(20, 160, 51, 21));
 
         retranslateUi(update_record);
 
@@ -83,6 +91,7 @@ public:
         label_3->setText(QCoreApplication::translate("update_record", "\345\261\236\346\200\247\345\220\215", nullptr));
         label_4->setText(QCoreApplication::translate("update_record", "\346\233\264\346\224\271\347\232\204\346\226\260\345\200\274", nullptr));
         label_5->setText(QCoreApplication::translate("update_record", "\344\275\234\347\224\250\350\241\250", nullptr));
+        label->setText(QCoreApplication::translate("update_record", "\344\272\247\345\223\201\347\261\273\345\236\213", nullptr));
     } // retranslateUi
 
 };
