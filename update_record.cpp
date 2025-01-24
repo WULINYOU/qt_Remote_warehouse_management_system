@@ -48,11 +48,7 @@ update_record::update_record(QWidget *parent) : QDialog(parent), ui(new Ui::upda
 }
 
 update_record::~update_record() {
-    if (db3.isOpen()) {
-        db3.close();
-    }
-    QSqlDatabase::removeDatabase(db3.connectionName()); // 确保移除数据库连接
-    delete ui;
+      delete ui;
 }
 
 void update_record::on_updateButtonClicked() {
@@ -60,7 +56,6 @@ void update_record::on_updateButtonClicked() {
     QString columnName = ui->table_element->currentText();
     QString name = ui->name->text();
     QString newValue = ui->newword->text();
-
 
     QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
     QString sql = QString("UPDATE %1 SET %2 = :newValue WHERE name = :name").arg(tableName).arg(columnName);
@@ -88,7 +83,6 @@ void update_record::on_comboBox_currentIndexChanged(int index) {
 
     ui->table_element->clear();
 
-
     QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
     query.prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = :tableName");
     query.bindValue(":tableName", tableName);
@@ -100,6 +94,4 @@ void update_record::on_comboBox_currentIndexChanged(int index) {
     } else {
         QMessageBox::critical(this, "错误", "获取列信息失败：" + query.lastError().text());
     }
-
-
 }

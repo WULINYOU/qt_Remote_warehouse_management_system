@@ -18,7 +18,8 @@ public:
 private slots:
 
 
-   // void on_Storage_newok_clicked(bool checked);
+   void on_Storage_oldok_clicked(bool checked);
+    bool validatePositiveInteger(const QString &input, int &output);
 
 private:
     Ui::add_Storage *ui;
