@@ -20,7 +20,8 @@ private slots:
 
    void on_Storage_oldok_clicked(bool checked);
     bool validatePositiveInteger(const QString &input, int &output);
-
+   void on_Storage_newok_clicked(bool checked);
+    void on_Storage_exit_clicked(bool checked);
 private:
     Ui::add_Storage *ui;
     QSqlDatabase db4;
