@@ -41,24 +41,27 @@ add_Storage::add_Storage(QWidget *parent)
     ui->lineEdit_3->deleteLater();
     ui->lineEdit_3 = dateTimeEdit;
 
-
-   // connect(ui->Storage_oldok,&QPushButton::clicked,this,&add_Storage::on_Storage_oldok_clicked);
-
+    connect(ui->Storage_oldok, &QPushButton::clicked, this, &add_Storage::on_Storage_oldok_clicked);
 }
 
 add_Storage::~add_Storage()
 {
     delete ui;
 }
+
 bool add_Storage::validatePositiveInteger(const QString &input, int &output) {
     bool isValid;
     output = input.toInt(&isValid);
     return isValid && output > 0;
 }
 
-
 void add_Storage::on_Storage_oldok_clicked(bool checked)
 {
+    if (!db4.isOpen()) {
+        QMessageBox::information(this, "Error", "数据库连接已关闭");
+        return;
+    }
+
     // 获取 QLineEdit 的文本
     QString productName = ui->lineEdit->text();  // 产品名称
     QString quantityStr = ui->lineEdit_2->text();  // 入库数量
@@ -102,96 +105,118 @@ void add_Storage::on_Storage_oldok_clicked(bool checked)
         }
         QMessageBox::information(this, "Error", "未找到该产品，请检查产品名称");
     }
-}
-void add_Storage::on_Storage_newok_clicked(bool checked)
-{
-
-    // 获取 QLineEdit 的文本
-    QString productName = ui->lineEdit->text();  // 产品名称
-    QString quantityStr = ui->lineEdit_2->text();  // 入库数量
-    int number;
-    if (!validatePositiveInteger(quantityStr, number)) {
-        QMessageBox::information(this, "Error", "请输入有效的正整数作为入库数量");
-        return;
-    }
-    QSqlQuery query(db4);
-    query.prepare("SELECT id, number FROM inv_table WHERE name = :name");
-    query.bindValue(":name", productName);
-
-    if (query.exec() && query.next()) {
-      QMessageBox::information(this, "Error", "找到该产品，请检查产品名称");
-    } else {
-        // 未找到产品,添加记录
-        QString productName = ui->lineEdit->text().trimmed();  // 产品名称
-        QString quantityStr = ui->lineEdit_2->text().trimmed();  // 入库数量
-        QString priceStr = ui->lineEdit_4->text().trimmed();  // 价格
-        QString storagePerson = ui->lineEdit_5->text().trimmed();  // 入库员
-        QDateTime storageTime = ui->lineEdit_3->dateTime();  // 入库时间
-        QString storageType = ui->comboBox_2->currentText();  // 入库类型
-        QString tableName = ui->comboBox->currentText();  // 表名
-
-        // 验证必填字段是否为空
-        if (productName.isEmpty() || quantityStr.isEmpty() || priceStr.isEmpty() || storagePerson.isEmpty()) {
-            QMessageBox::information(this, "Error", "请填写所有必填字段");
-            return;
-        }
-
-        // 验证入库数量是否为正整数
-        bool isQuantityValid;
-        int quantity = quantityStr.toInt(&isQuantityValid);
-        if (!isQuantityValid || quantity <= 0) {
-            QMessageBox::information(this, "Error", "请输入有效的正整数作为入库数量");
-            return;
-        }
-
-        // 验证价格是否为有效的数字
-        bool isPriceValid;
-        double price = priceStr.toDouble(&isPriceValid);
-        if (!isPriceValid || price <= 0) {
-            QMessageBox::information(this, "Error", "请输入有效的正数作为价格");
-            return;
-        }
-
-        // 检查产品是否已存在
-        QSqlQuery query(db4);
-        query.prepare("SELECT id FROM inv_table WHERE name = :name");
-        query.bindValue(":name", productName);
-
-        if (query.exec() && query.next()) {
-            QMessageBox::information(this, "Error", "该产品已存在，请检查产品名称");
-            return;
-        }
-
-        // 准备插入语句
-        query.prepare(QString("INSERT INTO %1 (name, number, price, type, storage_time, storage_person) "
-                              "VALUES (:name, :number, :price, :type, :storage_time, :storage_person)")
-                          .arg(tableName));
-
-        query.bindValue(":name", productName);
-        query.bindValue(":number", quantity);
-        query.bindValue(":price", price);
-        query.bindValue(":type", storageType);
-        query.bindValue(":storage_time",  storageTime.toString("yyyy-MM-dd hh:mm:ss"));
-        query.bindValue(":storage_person", storagePerson);
-
-        // 执行插入操作
-        if (query.exec()) {
-            QMessageBox::information(this, "成功", "新产品已成功入库");
-        } else {
-            QMessageBox::critical(this, "错误", "入库失败: " + query.lastError().text());
-            qDebug() << "Failed to execute insert query:" << query.lastQuery();
-            qDebug() << "Error details:" << query.lastError().text();
-            return;
-        }
-
-    }
+    query.finish();
 }
 
 void add_Storage::on_Storage_exit_clicked(bool checked)
 {
     QMessageBox::StandardButton reply;
-    reply=QMessageBox::question(this,"返回","确定要返回管理页面?", QMessageBox::Yes|QMessageBox::No);
-    if(reply==QMessageBox::Yes){
+    reply = QMessageBox::question(this, "返回", "确定要返回管理页面?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
         this->close();
     }
+}
+
+void add_Storage::on_Storage_newok_clicked(bool checked)
+{
+    if (!db4.isOpen()) {
+        QMessageBox::information(this, "Error", "数据库连接已关闭");
+        return;
+    }
+
+    // 获取 QLineEdit 和 QComboBox 的文本
+    QString productName = ui->lineEdit->text().trimmed();  // 产品名称
+    QString quantityStr = ui->lineEdit_2->text().trimmed();  // 入库数量
+    QString priceStr = ui->lineEdit_4->text().trimmed();  // 价格
+    QString storagePerson = ui->lineEdit_5->text().trimmed();  // 入库员
+    QDateTime storageTime1 = ui->lineEdit_3->dateTime();  // 入库时间
+    QString storageType = ui->comboBox_2->currentText();  // 入库类型
+
+    // 创建第二个 QDateTimeEdit 用于出库时间
+   // QDateTime storageTime2 = QDateTime::fromString("0001-01-01 00:00:00"); // 出库时间
+
+    QString tableName = ui->comboBox->currentText();  // 表名
+
+    // 验证必填字段是否为空
+    if (productName.isEmpty() || quantityStr.isEmpty() || priceStr.isEmpty() || storagePerson.isEmpty()) {
+        QMessageBox::information(this, "Error", "请填写所有必填字段");
+        return;
+    }
+
+    // 验证入库数量是否为正整数
+    bool isQuantityValid;
+    int quantity = quantityStr.toInt(&isQuantityValid);
+    if (!isQuantityValid || quantity <= 0) {
+        QMessageBox::information(this, "Error", "请输入有效的正整数作为入库数量");
+        return;
+    }
+
+    // 验证价格是否为有效的数字
+    bool isPriceValid;
+    double price = priceStr.toDouble(&isPriceValid);
+    if (!isPriceValid || price <= 0) {
+        QMessageBox::information(this, "Error", "请输入有效的正数作为价格");
+        return;
+    }
+
+    // 检查产品是否已存在
+    QSqlQuery checkProductQuery(db4);
+    checkProductQuery.prepare(QString("SELECT id FROM %1 WHERE name = :name").arg(tableName));
+    checkProductQuery.bindValue(":name", productName);
+
+    if (!checkProductQuery.exec() || checkProductQuery.next()) {
+        checkProductQuery.finish();
+        if (checkProductQuery.next()) {
+            QMessageBox::information(this, "Error", "该产品已存在，请检查产品名称");
+            return;
+        }
+    } else {
+
+
+
+    // 获取最大ID并加1
+    QSqlQuery getMaxIdQuery(db4);
+    getMaxIdQuery.prepare(QString("SELECT MAX(id) FROM %1").arg(tableName));
+
+    if (!getMaxIdQuery.exec() || !getMaxIdQuery.next()) {
+        getMaxIdQuery.finish();
+        QMessageBox::critical(this, "错误", "无法获取最大ID: " + getMaxIdQuery.lastError().text());
+        qDebug() << "Failed to get max ID:" << getMaxIdQuery.lastQuery();
+        qDebug() << "Error details:" << getMaxIdQuery.lastError().text();
+        return;
+    }
+
+    int maxid = getMaxIdQuery.value(0).toInt() + 1;
+
+    // 准备插入语句
+    QSqlQuery insertQuery(db4);
+    insertQuery.prepare(QString("INSERT INTO %1 (id, name, number, price, type, in_time, out_time, inop) "
+                                "VALUES (:id, :name, :number, :price, :type, :in_time, :inop)")
+                            .arg(tableName));
+
+    insertQuery.bindValue(":id", maxid);
+    insertQuery.bindValue(":name", productName);
+    insertQuery.bindValue(":number", quantity);
+    insertQuery.bindValue(":price", price);
+    insertQuery.bindValue(":type", storageType);
+    insertQuery.bindValue(":in_time", storageTime1.toString("yyyy-MM-dd hh:mm:ss"));  // 确保时间格式正确
+   // insertQuery.bindValue(":out_time", storageTime2.toString("yyyy-MM-dd hh:mm:ss"));
+    insertQuery.bindValue(":inop", storagePerson);
+
+    // 执行插入操作
+    if (!insertQuery.exec()) {
+        insertQuery.finish();
+        QMessageBox::critical(this, "错误", "入库失败: " + insertQuery.lastError().text());
+        qDebug() << "Failed to execute insert query:" << insertQuery.lastQuery();
+        qDebug() << "Error details:" << insertQuery.lastError().text();
+        return;
+    }
+
+    QMessageBox::information(this, "成功", "新产品已成功入库");
+
+    // 确保在退出时正确释放资源
+    checkProductQuery.finish();
+    getMaxIdQuery.finish();
+    insertQuery.finish();
+}
 }

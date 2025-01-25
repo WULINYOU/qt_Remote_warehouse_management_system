@@ -147,12 +147,14 @@ void manage::updateShowTimeLabel()
 
 void manage::onupdatButtonclicke()
 {
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     update_record *updateDialog=new update_record;
     updateDialog->show();
 }
 
 void manage::onStorageButtonClicke()
 {
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     add_Storage *add_StorageDialog=new add_Storage;
     add_StorageDialog->show();
 }
