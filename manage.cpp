@@ -11,6 +11,7 @@
 #include<QTableView>
 #include"update_record.h"
 #include"add_storage.h"
+#include"lessen_storage.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -45,6 +46,7 @@ manage::manage(QWidget *parent)
     connect(ui->refresh,&QPushButton::clicked,this,&manage::onrefreshButtonClicke);
     connect(ui->update_record,&QPushButton::clicked,this,&manage::onupdatButtonclicke);
     connect(ui->Storage,&QPushButton::clicked,this,&manage::onStorageButtonClicke);
+    connect(ui->lessen,&QPushButton::clicked,this,&manage::onlessenButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -157,6 +159,13 @@ void manage::onStorageButtonClicke()
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     add_Storage *add_StorageDialog=new add_Storage;
     add_StorageDialog->show();
+}
+
+void manage::onlessenButtonClicke()
+{
+      QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    lessen_storage *lessen_storageDialog=new lessen_storage;
+      lessen_storageDialog->show();
 }
 
 void manage::on_comboBox_currentIndexChanged(int index)

@@ -46,12 +46,11 @@ constexpr auto qt_meta_stringdata_CLASSadd_StorageENDCLASS = QtMocHelpers::strin
     "input",
     "int&",
     "output",
-    "on_Storage_newok_clicked",
     "on_Storage_exit_clicked"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSadd_StorageENDCLASS_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[18];
     char stringdata0[12];
     char stringdata1[25];
     char stringdata2[1];
@@ -60,8 +59,7 @@ struct qt_meta_stringdata_CLASSadd_StorageENDCLASS_t {
     char stringdata5[6];
     char stringdata6[5];
     char stringdata7[7];
-    char stringdata8[25];
-    char stringdata9[24];
+    char stringdata8[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSadd_StorageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -75,8 +73,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_StorageENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(70, 5),  // "input"
         QT_MOC_LITERAL(76, 4),  // "int&"
         QT_MOC_LITERAL(81, 6),  // "output"
-        QT_MOC_LITERAL(88, 24),  // "on_Storage_newok_clicked"
-        QT_MOC_LITERAL(113, 23)   // "on_Storage_exit_clicked"
+        QT_MOC_LITERAL(88, 23)   // "on_Storage_exit_clicked"
     },
     "add_Storage",
     "on_Storage_oldok_clicked",
@@ -86,7 +83,6 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_StorageENDCLASS_t qt_meta_s
     "input",
     "int&",
     "output",
-    "on_Storage_newok_clicked",
     "on_Storage_exit_clicked"
 };
 #undef QT_MOC_LITERAL
@@ -99,7 +95,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_StorageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -107,15 +103,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_StorageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   38,    2, 0x08,    1 /* Private */,
-       4,    2,   41,    2, 0x08,    3 /* Private */,
-       8,    1,   46,    2, 0x08,    6 /* Private */,
-       9,    1,   49,    2, 0x08,    8 /* Private */,
+       1,    1,   32,    2, 0x08,    1 /* Private */,
+       4,    2,   35,    2, 0x08,    3 /* Private */,
+       8,    1,   40,    2, 0x08,    6 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Bool, QMetaType::QString, 0x80000000 | 6,    5,    7,
-    QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Void, QMetaType::Bool,    3,
 
        0        // eod
@@ -137,9 +131,6 @@ Q_CONSTINIT const QMetaObject add_Storage::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int &, std::false_type>,
-        // method 'on_Storage_newok_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'on_Storage_exit_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>
@@ -156,8 +147,7 @@ void add_Storage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->on_Storage_oldok_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         case 1: { bool _r = _t->validatePositiveInteger((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int&>>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 2: _t->on_Storage_newok_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 3: _t->on_Storage_exit_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->on_Storage_exit_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     }
@@ -182,13 +172,13 @@ int add_Storage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }

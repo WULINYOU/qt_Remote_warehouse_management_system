@@ -1,5 +1,6 @@
 debug/add_record.o
 debug/add_storage.o
+debug/lessen_storage.o
 debug/main.o
 debug/mainwindow.o
 debug/manage.o
@@ -7,6 +8,7 @@ debug/registec.o
 debug/update_record.o
 debug/moc_add_record.o
 debug/moc_add_storage.o
+debug/moc_lessen_storage.o
 debug/moc_mainwindow.o
 debug/moc_manage.o
 debug/moc_registec.o

@@ -19,6 +19,7 @@ CONFIG(release, debug|release){
 SOURCES += \
     add_record.cpp \
     add_storage.cpp \
+    lessen_storage.cpp \
     main.cpp \
     mainwindow.cpp \
     manage.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 HEADERS += \
     add_record.h \
     add_storage.h \
+    lessen_storage.h \
     mainwindow.h \
     manage.h \
     registec.h \
@@ -36,6 +38,7 @@ HEADERS += \
 FORMS += \
     add_record.ui \
     add_storage.ui \
+    lessen_storage.ui \
     mainwindow.ui \
     manage.ui \
     registec.ui \

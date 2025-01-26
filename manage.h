@@ -31,7 +31,7 @@ void onaddrecordButtonClicke();
  void onupdatButtonclicke();
  void onStorageButtonClicke();
 
-
+ void onlessenButtonClicke();
 private:
     Ui::manage *ui;
 
