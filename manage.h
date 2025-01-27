@@ -30,6 +30,7 @@ void onaddrecordButtonClicke();
  void updateShowTimeLabel();
  void onupdatButtonclicke();
  void onStorageButtonClicke();
+ void ondeleteButtonClicke();
 
  void onlessenButtonClicke();
 private:

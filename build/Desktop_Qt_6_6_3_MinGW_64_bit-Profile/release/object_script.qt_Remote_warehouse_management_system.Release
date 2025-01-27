@@ -1,5 +1,7 @@
 release/add_record.o
 release/add_storage.o
+release/confirmdeletedialog.o
+release/delete_record.o
 release/lessen_storage.o
 release/main.o
 release/mainwindow.o
@@ -8,6 +10,8 @@ release/registec.o
 release/update_record.o
 release/moc_add_record.o
 release/moc_add_storage.o
+release/moc_confirmdeletedialog.o
+release/moc_delete_record.o
 release/moc_lessen_storage.o
 release/moc_mainwindow.o
 release/moc_manage.o

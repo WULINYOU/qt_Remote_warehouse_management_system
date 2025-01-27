@@ -10,15 +10,16 @@ QMAKE_CXXFLAGS_RELEASE -= -O2
 QMAKE_LFLAGS_RELEASE = -mthreads -W
 QMAKE_CXXFLAGS_RELEASE += -g
 
-
-CONFIG(release, debug|release){
-    MY_POST_LINK_COMMAND = cd $$PWD F:/qt6file/qt_Remote_warehouse_management_system/release && cmd F:/qt_Remote_warehouse_management_system/cv2pdb.exe $$OUT_PWD F:/qt6file/qt_Remote_warehouse_management_system/release
+CONFIG(release, debug|release) {
+    MY_POST_LINK_COMMAND = F:\\qt_Remote_warehouse_management_system\\cv2pdb.exe $$OUT_PWD F:\\qt6file\\qt_Remote_warehouse_management_system\\release
     QMAKE_POST_LINK += $${MY_POST_LINK_COMMAND}
 }
 
 SOURCES += \
     add_record.cpp \
     add_storage.cpp \
+    confirmdeletedialog.cpp \
+    delete_record.cpp \
     lessen_storage.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -29,6 +30,8 @@ SOURCES += \
 HEADERS += \
     add_record.h \
     add_storage.h \
+    confirmdeletedialog.h \
+    delete_record.h \
     lessen_storage.h \
     mainwindow.h \
     manage.h \
@@ -38,6 +41,8 @@ HEADERS += \
 FORMS += \
     add_record.ui \
     add_storage.ui \
+    confirmdeletedialog.ui \
+    delete_record.ui \
     lessen_storage.ui \
     mainwindow.ui \
     manage.ui \
