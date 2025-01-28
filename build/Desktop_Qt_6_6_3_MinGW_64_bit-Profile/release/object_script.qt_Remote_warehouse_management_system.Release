@@ -7,6 +7,7 @@ release/main.o
 release/mainwindow.o
 release/manage.o
 release/registec.o
+release/select_record.o
 release/update_record.o
 release/moc_add_record.o
 release/moc_add_storage.o
@@ -16,4 +17,5 @@ release/moc_lessen_storage.o
 release/moc_mainwindow.o
 release/moc_manage.o
 release/moc_registec.o
+release/moc_select_record.o
 release/moc_update_record.o

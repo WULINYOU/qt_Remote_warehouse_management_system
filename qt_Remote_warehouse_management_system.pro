@@ -25,6 +25,7 @@ SOURCES += \
     mainwindow.cpp \
     manage.cpp \
     registec.cpp \
+    select_record.cpp \
     update_record.cpp
 
 HEADERS += \
@@ -36,6 +37,7 @@ HEADERS += \
     mainwindow.h \
     manage.h \
     registec.h \
+    select_record.h \
     update_record.h
 
 FORMS += \
@@ -47,6 +49,7 @@ FORMS += \
     mainwindow.ui \
     manage.ui \
     registec.ui \
+    select_record.ui \
     update_record.ui
 
 qnx: target.path = /tmp/$${TARGET}/bin

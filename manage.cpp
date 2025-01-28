@@ -13,6 +13,7 @@
 #include"add_storage.h"
 #include"lessen_storage.h"
 #include"delete_record.h"
+#include"select_record.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -49,7 +50,7 @@ manage::manage(QWidget *parent)
     connect(ui->Storage,&QPushButton::clicked,this,&manage::onStorageButtonClicke);
     connect(ui->lessen,&QPushButton::clicked,this,&manage::onlessenButtonClicke);
     connect(ui->delete_record,&QPushButton::clicked,this,&manage::ondeleteButtonClicke);
-
+    connect(ui->select_record,&QPushButton::clicked,this,&manage::onselectButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -171,11 +172,18 @@ void manage::ondeleteButtonClicke()
     delete_recordDialog->show();
 }
 
+void manage::onselectButtonClicke()
+{
+ QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    select_record *select_recordDialog=new select_record;
+    select_recordDialog->show();
+}
+
 void manage::onlessenButtonClicke()
 {
-      QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     lessen_storage *lessen_storageDialog=new lessen_storage;
-      lessen_storageDialog->show();
+    lessen_storageDialog->show();
 }
 
 

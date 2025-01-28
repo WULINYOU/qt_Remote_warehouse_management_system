@@ -31,6 +31,7 @@ void onaddrecordButtonClicke();
  void onupdatButtonclicke();
  void onStorageButtonClicke();
  void ondeleteButtonClicke();
+ void onselectButtonClicke();
 
  void onlessenButtonClicke();
 private:
