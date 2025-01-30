@@ -14,6 +14,7 @@
 #include"lessen_storage.h"
 #include"delete_record.h"
 #include"select_record.h"
+#include"add_table.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -51,6 +52,7 @@ manage::manage(QWidget *parent)
     connect(ui->lessen,&QPushButton::clicked,this,&manage::onlessenButtonClicke);
     connect(ui->delete_record,&QPushButton::clicked,this,&manage::ondeleteButtonClicke);
     connect(ui->select_record,&QPushButton::clicked,this,&manage::onselectButtonClicke);
+    connect(ui->add_table,&QPushButton::clicked,this,&manage::onaddButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -186,12 +188,20 @@ void manage::onlessenButtonClicke()
     lessen_storageDialog->show();
 }
 
+void manage::onaddButtonClicke()
+{
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    add_table *add_tableDialog=new add_table;
+    add_tableDialog->show();
+}
+
 
 void manage::on_comboBox_currentIndexChanged(int index)
 {
     QString tableName = ui->comboBox->itemText(index);
     loadData(); // 调用 loadData 方法加载所选表的数据
 }
+
 
 void manage::adjustColumnWidths()
 {

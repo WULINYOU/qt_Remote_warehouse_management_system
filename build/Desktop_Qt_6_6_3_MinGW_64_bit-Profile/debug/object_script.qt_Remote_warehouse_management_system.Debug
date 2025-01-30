@@ -1,5 +1,6 @@
 debug/add_record.o
 debug/add_storage.o
+debug/add_table.o
 debug/confirmdeletedialog.o
 debug/delete_record.o
 debug/lessen_storage.o
@@ -11,6 +12,7 @@ debug/select_record.o
 debug/update_record.o
 debug/moc_add_record.o
 debug/moc_add_storage.o
+debug/moc_add_table.o
 debug/moc_confirmdeletedialog.o
 debug/moc_delete_record.o
 debug/moc_lessen_storage.o

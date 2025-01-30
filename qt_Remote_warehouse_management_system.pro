@@ -18,6 +18,7 @@ CONFIG(release, debug|release) {
 SOURCES += \
     add_record.cpp \
     add_storage.cpp \
+    add_table.cpp \
     confirmdeletedialog.cpp \
     delete_record.cpp \
     lessen_storage.cpp \
@@ -31,6 +32,7 @@ SOURCES += \
 HEADERS += \
     add_record.h \
     add_storage.h \
+    add_table.h \
     confirmdeletedialog.h \
     delete_record.h \
     lessen_storage.h \
@@ -43,6 +45,7 @@ HEADERS += \
 FORMS += \
     add_record.ui \
     add_storage.ui \
+    add_table.ui \
     confirmdeletedialog.ui \
     delete_record.ui \
     lessen_storage.ui \

@@ -52,11 +52,12 @@ constexpr auto qt_meta_stringdata_CLASSmanageENDCLASS = QtMocHelpers::stringData
     "onStorageButtonClicke",
     "ondeleteButtonClicke",
     "onselectButtonClicke",
-    "onlessenButtonClicke"
+    "onlessenButtonClicke",
+    "onaddButtonClicke"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSmanageENDCLASS_t {
-    uint offsetsAndSizes[30];
+    uint offsetsAndSizes[32];
     char stringdata0[7];
     char stringdata1[32];
     char stringdata2[1];
@@ -72,6 +73,7 @@ struct qt_meta_stringdata_CLASSmanageENDCLASS_t {
     char stringdata12[21];
     char stringdata13[21];
     char stringdata14[21];
+    char stringdata15[18];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSmanageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -91,7 +93,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSmanageENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(179, 21),  // "onStorageButtonClicke"
         QT_MOC_LITERAL(201, 20),  // "ondeleteButtonClicke"
         QT_MOC_LITERAL(222, 20),  // "onselectButtonClicke"
-        QT_MOC_LITERAL(243, 20)   // "onlessenButtonClicke"
+        QT_MOC_LITERAL(243, 20),  // "onlessenButtonClicke"
+        QT_MOC_LITERAL(264, 17)   // "onaddButtonClicke"
     },
     "manage",
     "on_comboBox_currentIndexChanged",
@@ -107,7 +110,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSmanageENDCLASS_t qt_meta_string
     "onStorageButtonClicke",
     "ondeleteButtonClicke",
     "onselectButtonClicke",
-    "onlessenButtonClicke"
+    "onlessenButtonClicke",
+    "onaddButtonClicke"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -119,7 +123,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmanageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -127,21 +131,23 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmanageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   86,    2, 0x08,    1 /* Private */,
-       4,    0,   89,    2, 0x08,    3 /* Private */,
-       5,    0,   90,    2, 0x08,    4 /* Private */,
-       6,    0,   91,    2, 0x08,    5 /* Private */,
-       7,    0,   92,    2, 0x08,    6 /* Private */,
-       8,    0,   93,    2, 0x08,    7 /* Private */,
-       9,    0,   94,    2, 0x08,    8 /* Private */,
-      10,    0,   95,    2, 0x08,    9 /* Private */,
-      11,    0,   96,    2, 0x08,   10 /* Private */,
-      12,    0,   97,    2, 0x08,   11 /* Private */,
-      13,    0,   98,    2, 0x08,   12 /* Private */,
-      14,    0,   99,    2, 0x08,   13 /* Private */,
+       1,    1,   92,    2, 0x08,    1 /* Private */,
+       4,    0,   95,    2, 0x08,    3 /* Private */,
+       5,    0,   96,    2, 0x08,    4 /* Private */,
+       6,    0,   97,    2, 0x08,    5 /* Private */,
+       7,    0,   98,    2, 0x08,    6 /* Private */,
+       8,    0,   99,    2, 0x08,    7 /* Private */,
+       9,    0,  100,    2, 0x08,    8 /* Private */,
+      10,    0,  101,    2, 0x08,    9 /* Private */,
+      11,    0,  102,    2, 0x08,   10 /* Private */,
+      12,    0,  103,    2, 0x08,   11 /* Private */,
+      13,    0,  104,    2, 0x08,   12 /* Private */,
+      14,    0,  105,    2, 0x08,   13 /* Private */,
+      15,    0,  106,    2, 0x08,   14 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -190,6 +196,8 @@ Q_CONSTINIT const QMetaObject manage::staticMetaObject = { {
         // method 'onselectButtonClicke'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onlessenButtonClicke'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onaddButtonClicke'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -213,6 +221,7 @@ void manage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 9: _t->ondeleteButtonClicke(); break;
         case 10: _t->onselectButtonClicke(); break;
         case 11: _t->onlessenButtonClicke(); break;
+        case 12: _t->onaddButtonClicke(); break;
         default: ;
         }
     }
@@ -237,13 +246,13 @@ int manage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 12)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 12;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 12)
+        if (_id < 13)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 12;
+        _id -= 13;
     }
     return _id;
 }
