@@ -3,6 +3,7 @@ debug/add_storage.o
 debug/add_table.o
 debug/confirmdeletedialog.o
 debug/delete_record.o
+debug/delete_table.o
 debug/lessen_storage.o
 debug/main.o
 debug/mainwindow.o
@@ -15,6 +16,7 @@ debug/moc_add_storage.o
 debug/moc_add_table.o
 debug/moc_confirmdeletedialog.o
 debug/moc_delete_record.o
+debug/moc_delete_table.o
 debug/moc_lessen_storage.o
 debug/moc_mainwindow.o
 debug/moc_manage.o

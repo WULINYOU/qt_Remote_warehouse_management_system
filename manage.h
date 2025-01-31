@@ -32,6 +32,7 @@ void onaddrecordButtonClicke();
  void onStorageButtonClicke();
  void ondeleteButtonClicke();
  void onselectButtonClicke();
+ void ondeleteTableButtonClicke();
 
  void onlessenButtonClicke();
  void onaddButtonClicke();

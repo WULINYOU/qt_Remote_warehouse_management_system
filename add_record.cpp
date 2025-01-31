@@ -8,7 +8,6 @@
 #include <QDateTime>
 #include<QVariant>
 #include "qsqlquery.h"
-#include"manage.h"
 #include<QDateTimeEdit>
 #include<QTableView>
 

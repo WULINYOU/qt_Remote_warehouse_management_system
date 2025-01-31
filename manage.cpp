@@ -6,15 +6,16 @@
 #include <QMessageBox>
 #include <QSqlRecord>
 #include <QFontMetrics>
-#include "add_record.h"
 #include<QDateTimeEdit>
 #include<QTableView>
+#include "add_record.h"
 #include"update_record.h"
 #include"add_storage.h"
 #include"lessen_storage.h"
 #include"delete_record.h"
 #include"select_record.h"
 #include"add_table.h"
+#include"delete_table.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -27,8 +28,8 @@ manage::manage(QWidget *parent)
         db1 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
         db1.setDatabaseName("MySQLDSN");
         if (!db1.open()) {
-            QMessageBox::information(this, "infor", "连接数据库失败！");
-            qDebug() << "error open database because" << db1.lastError().text();
+            // QMessageBox::information(this, "infor", "连接数据库失败！");
+            // qDebug() << "error open database because" << db1.lastError().text();
         }
     } else {
         db1 = QSqlDatabase::database("manageUniqueConnectionName");
@@ -53,6 +54,7 @@ manage::manage(QWidget *parent)
     connect(ui->delete_record,&QPushButton::clicked,this,&manage::ondeleteButtonClicke);
     connect(ui->select_record,&QPushButton::clicked,this,&manage::onselectButtonClicke);
     connect(ui->add_table,&QPushButton::clicked,this,&manage::onaddButtonClicke);
+    connect(ui->delete_table,&QPushButton::clicked,this,&manage::ondeleteTableButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -72,14 +74,22 @@ void manage::loadData()
 {
     QString tableName = ui->comboBox->currentText();
     QSqlQuery query(db1);
-    query.prepare(QString("SELECT * FROM %1").arg(tableName));
-    ui->tableWidget->clearContents(); // 清空 tableWidget 的内容
-    ui->tableWidget->setRowCount(0); // 清空行数
+
+    // 检查数据库连接是否打开
     if (!db1.isOpen()) {
-        QMessageBox::information(this, "Error", "数据库未打开！");
-        qDebug() << "Database is not open!";
-        return;
+        if (!db1.open()) {
+            return;
+        }
     }
+
+    // 准备查询
+    query.prepare(QString("SELECT * FROM %1").arg(tableName));
+
+    // 清空 tableWidget 的内容
+    ui->tableWidget->clearContents();
+    ui->tableWidget->setRowCount(0);
+
+    // 执行查询
     if (query.exec()) {
         QSqlRecord record = query.record();
         QStringList header;
@@ -90,6 +100,7 @@ void manage::loadData()
         ui->tableWidget->setColumnCount(header.size());
         ui->tableWidget->setHorizontalHeaderLabels(header);
 
+        // 填充数据
         int rowCount = 0;
         while (query.next()) {
             ui->tableWidget->insertRow(rowCount);
@@ -111,8 +122,8 @@ void manage::loadData()
         }
         adjustColumnWidths();
     } else {
-        QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
-        qDebug() << "Error retrieving table data:" << query.lastError().text();
+        // QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
+        // qDebug() << "Error retrieving table data:" << query.lastError().text();
     }
 }
 
@@ -136,14 +147,23 @@ void manage::onrefreshButtonClicke()
     db1 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
     db1.setDatabaseName("MySQLDSN");
     if (!db1.open()) {
-        QMessageBox::information(this, "infor", "连接数据库失败！");
-        qDebug() << "error open database because" << db1.lastError().text();
+        // QMessageBox::information(this, "infor", "连接数据库失败！");
+        // qDebug() << "error open database because" << db1.lastError().text();
         return;
     }
 
-    // 重新加载数据
+    // 清空 comboBox 的当前内容
+    ui->comboBox->clear();
+
+    // 重新查询数据库中的表名并填充到 comboBox 中
+    QSqlQuery query("SHOW TABLES", db1);
+    while (query.next()) {
+        QString tableName = query.value(0).toString();
+        ui->comboBox->addItem(tableName);
+    }
+
+    // 重新加载当前选中表的数据
     loadData();
-    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
 }
 
 void manage::updateShowTimeLabel()
@@ -181,6 +201,13 @@ void manage::onselectButtonClicke()
     select_recordDialog->show();
 }
 
+void manage::ondeleteTableButtonClicke()
+{
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    delete_table *delete_tableDialog=new delete_table;
+    delete_tableDialog->show();
+}
+
 void manage::onlessenButtonClicke()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
@@ -198,7 +225,7 @@ void manage::onaddButtonClicke()
 
 void manage::on_comboBox_currentIndexChanged(int index)
 {
-    QString tableName = ui->comboBox->itemText(index);
+   // QString tableName = ui->comboBox->itemText(index);
     loadData(); // 调用 loadData 方法加载所选表的数据
 }
 

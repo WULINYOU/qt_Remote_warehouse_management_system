@@ -8,8 +8,8 @@
 LONG WINAPI exceptionHandler(EXCEPTION_POINTERS* pExceptionPointers){
     // 创建 Dump 文件
     //路径
-//F:\qt6file\qt_Remote_warehouse_management_system
-    QString dumpFileName = "newbug.dmp";
+//F:\qt6file\qt_Remote_warehouse_management_system\build\Desktop_Qt_6_6_3_MinGW_64_bit-Profile
+    QString dumpFileName = "newbug1.dmp";
     HANDLE hDumpFile = CreateFile(dumpFileName.toStdWString().c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
     if (hDumpFile != INVALID_HANDLE_VALUE)
     {

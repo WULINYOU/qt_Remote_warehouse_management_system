@@ -18,7 +18,7 @@ private slots:
     void addRow();
     void createTable();
    void clearAll();
-
+    void exit();
 private:
     Ui::add_table *ui;
     QSqlDatabase db8;

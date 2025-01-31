@@ -21,6 +21,7 @@ SOURCES += \
     add_table.cpp \
     confirmdeletedialog.cpp \
     delete_record.cpp \
+    delete_table.cpp \
     lessen_storage.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     add_table.h \
     confirmdeletedialog.h \
     delete_record.h \
+    delete_table.h \
     lessen_storage.h \
     mainwindow.h \
     manage.h \
@@ -48,6 +50,7 @@ FORMS += \
     add_table.ui \
     confirmdeletedialog.ui \
     delete_record.ui \
+    delete_table.ui \
     lessen_storage.ui \
     mainwindow.ui \
     manage.ui \
