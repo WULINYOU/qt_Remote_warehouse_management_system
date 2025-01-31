@@ -36,6 +36,7 @@ void onaddrecordButtonClicke();
 
  void onlessenButtonClicke();
  void onaddButtonClicke();
+ void onexportButtonClicke();
 private:
     Ui::manage *ui;
 

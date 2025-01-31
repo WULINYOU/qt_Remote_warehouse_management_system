@@ -16,6 +16,7 @@
 #include"select_record.h"
 #include"add_table.h"
 #include"delete_table.h"
+#include"export_table.h"
 manage::manage(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -55,6 +56,7 @@ manage::manage(QWidget *parent)
     connect(ui->select_record,&QPushButton::clicked,this,&manage::onselectButtonClicke);
     connect(ui->add_table,&QPushButton::clicked,this,&manage::onaddButtonClicke);
     connect(ui->delete_table,&QPushButton::clicked,this,&manage::ondeleteTableButtonClicke);
+    connect(ui->export_table,&QPushButton::clicked,this,&manage::onexportButtonClicke);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -220,6 +222,14 @@ void manage::onaddButtonClicke()
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     add_table *add_tableDialog=new add_table;
     add_tableDialog->show();
+}
+
+void manage::onexportButtonClicke()
+{
+ QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    export_table *export_tableDialog=new export_table;
+    export_tableDialog->show();
+
 }
 
 
