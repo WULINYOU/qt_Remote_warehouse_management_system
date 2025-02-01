@@ -71,7 +71,7 @@ void MainWindow::onLoginButtonClicked()
         msgBox.setStandardButtons(QMessageBox::Ok);
         int ret = msgBox.exec();
         if (ret == QMessageBox::Ok) {
-            manage *manageDialog = new manage(this);
+            manage *manageDialog = new manage(this,comment);
             manageDialog->show();
 
         }}else {
@@ -85,4 +85,5 @@ void MainWindow::onRegisterButtonClicked()
     registec *registerDialog=new registec;
     registerDialog->show();
 }
+
 

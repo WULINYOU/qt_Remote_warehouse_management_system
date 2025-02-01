@@ -22,13 +22,13 @@ SOURCES += \
     confirmdeletedialog.cpp \
     delete_record.cpp \
     delete_table.cpp \
-    export_table.cpp \
     lessen_storage.cpp \
     main.cpp \
     mainwindow.cpp \
     manage.cpp \
     registec.cpp \
     select_record.cpp \
+    select_table.cpp \
     update_record.cpp
 
 HEADERS += \
@@ -38,12 +38,12 @@ HEADERS += \
     confirmdeletedialog.h \
     delete_record.h \
     delete_table.h \
-    export_table.h \
     lessen_storage.h \
     mainwindow.h \
     manage.h \
     registec.h \
     select_record.h \
+    select_table.h \
     update_record.h
 
 FORMS += \
@@ -53,12 +53,12 @@ FORMS += \
     confirmdeletedialog.ui \
     delete_record.ui \
     delete_table.ui \
-    export_table.ui \
     lessen_storage.ui \
     mainwindow.ui \
     manage.ui \
     registec.ui \
     select_record.ui \
+    select_table.ui \
     update_record.ui
 
 qnx: target.path = /tmp/$${TARGET}/bin

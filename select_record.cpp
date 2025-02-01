@@ -62,7 +62,7 @@ void select_record::on_comboBox_currentIndexChanged(int index)
     } else {
         QMessageBox::critical(this, "错误", "获取列信息失败：" + query.lastError().text());
     }
-    //loadData();
+
 }
 
 void select_record::on_exitButtonClicke()
@@ -74,52 +74,7 @@ void select_record::on_exitButtonClicke()
     }
 }
 
-// void select_record::loadData()
-// {
-//     QString tableName = ui->comboBox->currentText();
-//     QSqlQuery query(db7);
-//     query.prepare(QString("SELECT * FROM %1").arg(tableName));
-//     ui->tableWidget->clearContents(); // 清空 tableWidget 的内容
-//     ui->tableWidget->setRowCount(0); // 清空行数
-//     if (!db7.isOpen()) {
-//         QMessageBox::information(this, "Error", "数据库未打开！");
-//         qDebug() << "Database is not open!";
-//         return;
-//     }
-//     if (query.exec()) {
-//         QSqlRecord record = query.record();
-//         QStringList header;
-//         header << "序号";
-//         for (int col = 0; col < record.count(); col++) {
-//             header << record.fieldName(col);
-//         }
-//         ui->tableWidget->setColumnCount(header.size());
-//         ui->tableWidget->setHorizontalHeaderLabels(header);
 
-//         int rowCount = 0;
-//         while (query.next()) {
-//             ui->tableWidget->insertRow(rowCount);
-//             QTableWidgetItem *item = new QTableWidgetItem(QString::number(rowCount + 1)); // 添加序号
-//             ui->tableWidget->setItem(rowCount, 0, item);
-//             for (int col = 0; col < query.record().count(); col++) {
-//                 QVariant value = query.value(col);
-//                 QString itemText;
-//                 if (value.metaType().id() == QMetaType::QDateTime) {
-//                     QDateTime dateTime = value.toDateTime();
-//                     itemText = dateTime.toString("yyyy年MM月dd日Thh时mm分ss秒");
-//                 } else {
-//                     itemText = value.toString();
-//                 }
-//                 QTableWidgetItem *item = new QTableWidgetItem(itemText);
-//                 ui->tableWidget->setItem(rowCount, col + 1, item); // 从第二列开始填充数据
-//             }
-//             rowCount++;
-//         }
-//     } else {
-//         QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
-//         qDebug() << "Error retrieving table data:" << query.lastError().text();
-//     }
-// }
 
 void select_record::on_selectButtonClicke()
 {

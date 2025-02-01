@@ -4,13 +4,13 @@ debug/add_table.o
 debug/confirmdeletedialog.o
 debug/delete_record.o
 debug/delete_table.o
-debug/export_table.o
 debug/lessen_storage.o
 debug/main.o
 debug/mainwindow.o
 debug/manage.o
 debug/registec.o
 debug/select_record.o
+debug/select_table.o
 debug/update_record.o
 debug/moc_add_record.o
 debug/moc_add_storage.o
@@ -18,10 +18,10 @@ debug/moc_add_table.o
 debug/moc_confirmdeletedialog.o
 debug/moc_delete_record.o
 debug/moc_delete_table.o
-debug/moc_export_table.o
 debug/moc_lessen_storage.o
 debug/moc_mainwindow.o
 debug/moc_manage.o
 debug/moc_registec.o
 debug/moc_select_record.o
+debug/moc_select_table.o
 debug/moc_update_record.o

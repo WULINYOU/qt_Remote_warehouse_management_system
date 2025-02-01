@@ -35,7 +35,7 @@ public:
     QPushButton *delete_table;
     QHBoxLayout *horizontalLayout_3;
     QPushButton *update_record;
-    QPushButton *export_table;
+    QPushButton *select_table;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *select_record;
     QPushButton *add_table;
@@ -43,11 +43,14 @@ public:
     QPushButton *add_record;
     QPushButton *manage_Exit;
     QLabel *time_label;
-    QPushButton *refresh;
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *Storage;
     QPushButton *lessen;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout_6;
+    QPushButton *journal;
+    QPushButton *refresh;
 
     void setupUi(QDialog *manage)
     {
@@ -88,10 +91,10 @@ public:
 
         horizontalLayout_3->addWidget(update_record);
 
-        export_table = new QPushButton(layoutWidget);
-        export_table->setObjectName("export_table");
+        select_table = new QPushButton(layoutWidget);
+        select_table->setObjectName("select_table");
 
-        horizontalLayout_3->addWidget(export_table);
+        horizontalLayout_3->addWidget(select_table);
 
 
         verticalLayout->addLayout(horizontalLayout_3);
@@ -129,9 +132,6 @@ public:
         time_label = new QLabel(manage);
         time_label->setObjectName("time_label");
         time_label->setGeometry(QRect(590, 20, 311, 21));
-        refresh = new QPushButton(manage);
-        refresh->setObjectName("refresh");
-        refresh->setGeometry(QRect(500, 20, 75, 23));
         layoutWidget1 = new QWidget(manage);
         layoutWidget1->setObjectName("layoutWidget1");
         layoutWidget1->setGeometry(QRect(590, 460, 311, 51));
@@ -148,6 +148,22 @@ public:
 
         horizontalLayout_5->addWidget(lessen);
 
+        widget = new QWidget(manage);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(410, 20, 158, 25));
+        horizontalLayout_6 = new QHBoxLayout(widget);
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
+        journal = new QPushButton(widget);
+        journal->setObjectName("journal");
+
+        horizontalLayout_6->addWidget(journal);
+
+        refresh = new QPushButton(widget);
+        refresh->setObjectName("refresh");
+
+        horizontalLayout_6->addWidget(refresh);
+
 
         retranslateUi(manage);
 
@@ -160,15 +176,16 @@ public:
         delete_record->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\256\260\345\275\225", nullptr));
         delete_table->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\241\250", nullptr));
         update_record->setText(QCoreApplication::translate("manage", "\346\233\264\346\224\271\350\256\260\345\275\225", nullptr));
-        export_table->setText(QCoreApplication::translate("manage", "\345\257\274\345\207\272\350\241\250", nullptr));
+        select_table->setText(QCoreApplication::translate("manage", "\346\237\245\350\257\242\350\241\250", nullptr));
         select_record->setText(QCoreApplication::translate("manage", "\346\237\245\346\211\276\350\256\260\345\275\225", nullptr));
         add_table->setText(QCoreApplication::translate("manage", "\346\226\260\345\273\272\350\241\250", nullptr));
         add_record->setText(QCoreApplication::translate("manage", "\346\267\273\345\212\240\350\256\260\345\275\225", nullptr));
         manage_Exit->setText(QCoreApplication::translate("manage", "\351\200\200\345\207\272", nullptr));
         time_label->setText(QString());
-        refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
         Storage->setText(QCoreApplication::translate("manage", "\345\205\245\345\272\223", nullptr));
         lessen->setText(QCoreApplication::translate("manage", "\345\207\272\345\272\223", nullptr));
+        journal->setText(QCoreApplication::translate("manage", "\346\227\245\345\277\227", nullptr));
+        refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
     } // retranslateUi
 
 };

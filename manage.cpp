@@ -16,11 +16,12 @@
 #include"select_record.h"
 #include"add_table.h"
 #include"delete_table.h"
-#include"export_table.h"
-manage::manage(QWidget *parent)
+#include"select_table.h"
+manage::manage(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::manage)
-, timer(new QTimer(this))
+    , timer(new QTimer(this))
+    , comment(comment)
 {
     ui->setupUi(this);
 
@@ -44,6 +45,7 @@ manage::manage(QWidget *parent)
         ui->comboBox->addItem(tableName);
     }
 
+
     // 连接 comboBox 的 currentIndexChanged 信号到槽函数
     connect(ui->comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &manage::on_comboBox_currentIndexChanged);
     connect(ui->manage_Exit,&QPushButton::clicked,this,&manage::onExitButtonClicke);
@@ -56,7 +58,8 @@ manage::manage(QWidget *parent)
     connect(ui->select_record,&QPushButton::clicked,this,&manage::onselectButtonClicke);
     connect(ui->add_table,&QPushButton::clicked,this,&manage::onaddButtonClicke);
     connect(ui->delete_table,&QPushButton::clicked,this,&manage::ondeleteTableButtonClicke);
-    connect(ui->export_table,&QPushButton::clicked,this,&manage::onexportButtonClicke);
+    connect(ui->select_table,&QPushButton::clicked,this,&manage::onselecttableButtonClikce);
+    connect(ui->journal,&QPushButton::clicked,this,&manage::onlogButtonClickee);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
          timer->start(500);
@@ -224,13 +227,25 @@ void manage::onaddButtonClicke()
     add_tableDialog->show();
 }
 
-void manage::onexportButtonClicke()
+void manage::onselecttableButtonClikce()
 {
  QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    export_table *export_tableDialog=new export_table;
-    export_tableDialog->show();
-
+    select_table *select_tableDialog =new select_table;
+ select_tableDialog->show();
 }
+
+void manage::onlogButtonClickee()
+{ /*if (comment != "管理员") {
+        QMessageBox::information(this, "提示", "您不是管理员，无法执行此操作！");
+        return;
+    }*/
+
+//     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+//     log *logDialog = new log;
+//     logDialog->show();
+}
+
+
 
 
 void manage::on_comboBox_currentIndexChanged(int index)
