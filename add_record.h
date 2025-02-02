@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QSqlDatabase>
 #include <QTimer>
+#include"journal.h"
 namespace Ui {
 class add_record;
 }
@@ -13,7 +14,7 @@ class add_record : public QDialog
     Q_OBJECT
 
 public:
-    explicit add_record(QWidget *parent = nullptr);
+    explicit add_record(QWidget *parent = nullptr, const QString &comment = "");
     ~add_record();
 private slots:
     void on_comboBox_currentIndexChanged(int index);
@@ -29,7 +30,8 @@ private:
     Ui::add_record *ui;
     QSqlDatabase db2;
     QTimer *timer;
-
+     journal *m_journal;
+    QString m_comment;
 };
 
 #endif // ADD_RECORD_H

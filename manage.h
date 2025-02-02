@@ -18,7 +18,7 @@ class manage : public QDialog
     Q_OBJECT
 
 public:
-   explicit manage(QWidget *parent = nullptr, const QString &comment = QString()); // 修改构造函数
+   explicit manage(QWidget *parent = nullptr, const QString &comment = "");// 修改构造函数
     ~manage();
 private slots:
 
@@ -39,7 +39,6 @@ void onaddrecordButtonClicke();
  void onaddButtonClicke();
  void onselecttableButtonClikce();
  void onlogButtonClickee();
-
 private:
     Ui::manage *ui;
 
@@ -47,7 +46,7 @@ private:
     QSqlDatabase db1;
     QLabel *time_label;
     QTimer *timer;
-    QString comment;
+    QString m_comment;
 
 };
 

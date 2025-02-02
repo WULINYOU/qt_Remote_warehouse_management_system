@@ -71,7 +71,7 @@ void MainWindow::onLoginButtonClicked()
         QMessageBox msgBox;
         msgBox.setWindowTitle("恭喜你");
         msgBox.setText(QString("%1 登录成功").arg(comment));
-        m_journal->logAction(username,"登录成功");
+        m_journal->logAction(comment,"登录成功");
         msgBox.setStandardButtons(QMessageBox::Ok);
         int ret = msgBox.exec();
         if (ret == QMessageBox::Ok) {
@@ -80,7 +80,7 @@ void MainWindow::onLoginButtonClicked()
 
         }
         }else {
-        m_journal->logAction(username,"登录失败");
+        m_journal->logAction(comment,"登录失败");
         QMessageBox::information(this,"infor","用户名或密码错误");
     }
     db.close();

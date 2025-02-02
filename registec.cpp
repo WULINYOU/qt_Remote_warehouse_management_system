@@ -35,26 +35,35 @@ registec::~registec()
 
 void registec::onMakeUserButtonClicked()
 {
-    QString username =ui->add_username->text();
-    QString password=ui->add_password->text();
-    QString confirmPassword=ui->add_password_again->text();
-    QString comment=ui->add_comment->text();
-    QString inviteCode =ui->ask_number->text();
-    if(username.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()||comment.isEmpty()||inviteCode.isEmpty()){
-        QMessageBox::warning(this,"错误","所有信息必须填写！");
+    QString username = ui->add_username->text();
+    QString password = ui->add_password->text();
+    QString confirmPassword = ui->add_password_again->text();
+    QString comment = ui->add_comment->text();
+    QString inviteCode = ui->ask_number->text();
+
+    if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || comment.isEmpty() || inviteCode.isEmpty()) {
+        QMessageBox::warning(this, "错误", "所有信息必须填写！");
         return;
     }
-    if(password != confirmPassword){
-        QMessageBox::warning(this,"错误","两次输入密码不一致");
+
+    if (password != confirmPassword) {
+        QMessageBox::warning(this, "错误", "两次输入密码不一致");
         return;
     }
+
+    if (comment == "请输入中文名称") {
+        QMessageBox::warning(this, "错误", "中文名不能这样");
+        return;
+    }
+
     QSqlQuery captchaQuery(db);  // 使用已打开的数据库连接
-    QString captchaSql = "SELECT * FROM inventory.users_captcha WHERE invite_code = :inviteCode"; // 修改字段名 captcha 为 invite_code
+    QString captchaSql = "SELECT * FROM inventory.invite_code WHERE inviteCode = :inviteCode";  // 使用 inviteCode 字段名
     captchaQuery.prepare(captchaSql);
     captchaQuery.bindValue(":inviteCode", inviteCode);
+
     if (!captchaQuery.exec()) {
-        QMessageBox::information(this, "infor", "查询邀请码失败");
-        qDebug() << "查询邀请码失败Query failed:" << captchaQuery.lastError().text();
+        QMessageBox::information(this, "提示", "查询邀请码失败");
+        qDebug() << "查询邀请码失败 Query failed:" << captchaQuery.lastError().text();
         return;
     }
 
@@ -63,27 +72,32 @@ void registec::onMakeUserButtonClicked()
         return;
     }
 
-    QSqlQuery checkInviteCodeQuery(db);  // 检查 invite_code 是否已存在
-    QString checkInviteCodeSql = "SELECT COUNT(*) FROM inventory.login WHERE invite_code = :inviteCode";
+    // 检查 inviteCode 是否已被使用
+    QSqlQuery checkInviteCodeQuery(db);
+    QString checkInviteCodeSql = "SELECT COUNT(*) FROM inventory.login WHERE invite_code = :invite_code";
     checkInviteCodeQuery.prepare(checkInviteCodeSql);
-    checkInviteCodeQuery.bindValue(":inviteCode", inviteCode);
-    if (!checkInviteCodeQuery.exec()) { // 修正 exec 调用位置
-        QMessageBox::information(this, "infor", "检查邀请码失败");
-        qDebug() << "检查邀请码失败Query failed:" << checkInviteCodeQuery.lastError().text();
+    checkInviteCodeQuery.bindValue(":invite_code", inviteCode);
+
+    if (!checkInviteCodeQuery.exec()) {
+        QMessageBox::information(this, "提示", "检查邀请码失败");
+        qDebug() << "检查邀请码失败 Query failed:" << checkInviteCodeQuery.lastError().text();
         return;
     }
 
-    QSqlQuery query(db);  // 使用已打开的数据库连接
+    checkInviteCodeQuery.first();  // 移动到第一行结果
+
+    // 插入新用户记录
+    QSqlQuery query(db);
     QString sql = "INSERT INTO inventory.login (name, password, comment, invite_code) VALUES (:username, :password, :comment, :invite_code)";
     query.prepare(sql);
     query.bindValue(":username", username);
     query.bindValue(":password", password);
     query.bindValue(":comment", comment);
-    query.bindValue(":invite_code", inviteCode); // 添加 invite_code 绑定值
+    query.bindValue(":invite_code", inviteCode);
 
     if (!query.exec()) {
-        QMessageBox::information(this, "infor", "注册失败,出现库中出现重复记录");
-        qDebug() << "注册失败Query failed:" << query.lastError().text();
+        QMessageBox::information(this, "提示", "注册失败，出现库中重复记录");
+        qDebug() << "注册失败 Query failed:" << query.lastError().text();
         return;
     }
 

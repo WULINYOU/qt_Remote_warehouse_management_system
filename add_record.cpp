@@ -10,11 +10,15 @@
 #include "qsqlquery.h"
 #include<QDateTimeEdit>
 #include<QTableView>
+#include"journal.h"
 
-add_record::add_record(QWidget *parent)
+
+add_record::add_record(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::add_record)
     , timer(new QTimer(this))
+   , m_journal (new journal(this))
+, m_comment(comment)
 {
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
@@ -196,6 +200,11 @@ void add_record::add_okButtonClicked() {
     QStringList columns;
     QStringList values;
 
+    // 获取 comment 值
+    QString comment = m_comment;
+
+    qDebug() << "Comment value:" << comment; // 添加调试输出
+
     for (int col = 1; col < ui->tableWidget->columnCount(); col++) { // 修改: 从第二列开始遍历
         QTableWidgetItem *item = ui->tableWidget->item(ui->tableWidget->rowCount() - 1, col);
         QString header = ui->tableWidget->horizontalHeaderItem(col)->text();
@@ -236,7 +245,10 @@ void add_record::add_okButtonClicked() {
 
     if (!query.exec(insertQuery)) {
         QMessageBox::warning(this, "插入失败", query.lastError().text());
+        m_journal->logAction(comment, "插入失败");
     } else {
         QMessageBox::information(this, "插入成功", "数据已成功插入到数据库中");
+        m_journal->logAction(comment, "插入成功");
+        qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
     }
 }

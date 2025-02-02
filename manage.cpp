@@ -18,11 +18,12 @@
 #include"delete_table.h"
 #include"select_table.h"
 #include"journal.h"
+
 manage::manage(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::manage)
     , timer(new QTimer(this))
-    , comment(comment)
+    , m_comment(comment)
 {
     ui->setupUi(this);
 
@@ -42,7 +43,11 @@ manage::manage(QWidget *parent, const QString &comment)
     ui->tableWidget->setAlternatingRowColors(true);
     QSqlQuery query("SHOW TABLES", db1);
     while (query.next()) {
+
         QString tableName = query.value(0).toString();
+        if (this->m_comment != "管理员" && (tableName == "inventory.login" || tableName == "inventory.invite_code")) {
+            continue;
+        }
         ui->comboBox->addItem(tableName);
     }
 
@@ -63,7 +68,7 @@ manage::manage(QWidget *parent, const QString &comment)
     connect(ui->journal,&QPushButton::clicked,this,&manage::onlogButtonClickee);
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
-         timer->start(500);
+    timer->start(500);
 }
 
 manage::~manage()
@@ -73,7 +78,7 @@ manage::~manage()
         db1.close();  // 关闭数据库连接
     }
 
-   QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
 }
 
 void manage::loadData()
@@ -86,6 +91,13 @@ void manage::loadData()
         if (!db1.open()) {
             return;
         }
+    }
+
+    // 检查是否为管理员，如果不是管理员则不允许访问某些表
+    QStringList hiddenTables = {"inventory.login", "inventory.invite_code"};
+    if (m_comment != "管理员" && hiddenTables.contains(tableName)) {
+        QMessageBox::information(this, "提示", "您没有权限访问该表！");
+        return;
     }
 
     // 准备查询
@@ -135,9 +147,10 @@ void manage::loadData()
 
 void manage::onaddrecordButtonClicke()
 {
-    add_record *add_recordDialog=new add_record;
+    add_record *add_recordDialog=new add_record(this,m_comment);
     add_recordDialog->show();
 }
+
 
 void manage::onrefreshButtonClicke()
 {
@@ -153,18 +166,20 @@ void manage::onrefreshButtonClicke()
     db1 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
     db1.setDatabaseName("MySQLDSN");
     if (!db1.open()) {
-        // QMessageBox::information(this, "infor", "连接数据库失败！");
-        // qDebug() << "error open database because" << db1.lastError().text();
+        QMessageBox::information(this, "提示", "连接数据库失败！");
+        qDebug() << "连接数据库失败：" << db1.lastError().text();
         return;
     }
 
-    // 清空 comboBox 的当前内容
     ui->comboBox->clear();
 
     // 重新查询数据库中的表名并填充到 comboBox 中
     QSqlQuery query("SHOW TABLES", db1);
     while (query.next()) {
         QString tableName = query.value(0).toString();
+        if (this->m_comment != "管理员" && (tableName == "inventory.login" || tableName == "inventory.invite_code")) {
+            continue;
+        }
         ui->comboBox->addItem(tableName);
     }
 
@@ -202,7 +217,7 @@ void manage::ondeleteButtonClicke()
 
 void manage::onselectButtonClicke()
 {
- QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     select_record *select_recordDialog=new select_record;
     select_recordDialog->show();
 }
@@ -230,13 +245,13 @@ void manage::onaddButtonClicke()
 
 void manage::onselecttableButtonClikce()
 {
- QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     select_table *select_tableDialog =new select_table;
- select_tableDialog->show();
+    select_tableDialog->show();
 }
 
 void manage::onlogButtonClickee()
-{  if (comment != "管理员") {
+{  if (m_comment != "管理员") {
         QMessageBox::information(this, "提示", "您不是管理员，无法执行此操作！");
         return;
     }
@@ -246,15 +261,11 @@ void manage::onlogButtonClickee()
     journalDialog->show();
 }
 
-
-
-
 void manage::on_comboBox_currentIndexChanged()
 {
-   // QString tableName = ui->comboBox->itemText(index);
+    // QString tableName = ui->comboBox->itemText(index);
     loadData(); // 调用 loadData 方法加载所选表的数据
 }
-
 
 void manage::adjustColumnWidths()
 {
