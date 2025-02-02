@@ -4,6 +4,7 @@ release/add_table.o
 release/confirmdeletedialog.o
 release/delete_record.o
 release/delete_table.o
+release/journal.o
 release/lessen_storage.o
 release/main.o
 release/mainwindow.o
@@ -18,6 +19,7 @@ release/moc_add_table.o
 release/moc_confirmdeletedialog.o
 release/moc_delete_record.o
 release/moc_delete_table.o
+release/moc_journal.o
 release/moc_lessen_storage.o
 release/moc_mainwindow.o
 release/moc_manage.o

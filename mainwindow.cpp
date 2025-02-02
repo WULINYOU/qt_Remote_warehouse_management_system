@@ -10,11 +10,14 @@
 #include <QSqlRecord>
 #include"registec.h"
 #include"manage.h"
+#include"journal.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_journal (new journal(this))
 {
     ui->setupUi(this);
+
     connect(ui->btn_exit,&QPushButton::clicked,this,&MainWindow::onExitButtonClicked);
     connect(ui->btn_login, &QPushButton::clicked, this, &MainWindow::onLoginButtonClicked);// 添加登录按钮的信号与槽连接
     connect(ui->btn_register,&QPushButton::clicked,this,&MainWindow::onRegisterButtonClicked);  // 添加注册按钮的信号与槽连接
@@ -68,13 +71,16 @@ void MainWindow::onLoginButtonClicked()
         QMessageBox msgBox;
         msgBox.setWindowTitle("恭喜你");
         msgBox.setText(QString("%1 登录成功").arg(comment));
+        m_journal->logAction(username,"登录成功");
         msgBox.setStandardButtons(QMessageBox::Ok);
         int ret = msgBox.exec();
         if (ret == QMessageBox::Ok) {
             manage *manageDialog = new manage(this,comment);
             manageDialog->show();
 
-        }}else {
+        }
+        }else {
+        m_journal->logAction(username,"登录失败");
         QMessageBox::information(this,"infor","用户名或密码错误");
     }
     db.close();

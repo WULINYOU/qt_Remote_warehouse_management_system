@@ -17,6 +17,7 @@
 #include"add_table.h"
 #include"delete_table.h"
 #include"select_table.h"
+#include"journal.h"
 manage::manage(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::manage)
@@ -235,20 +236,20 @@ void manage::onselecttableButtonClikce()
 }
 
 void manage::onlogButtonClickee()
-{ /*if (comment != "管理员") {
+{  if (comment != "管理员") {
         QMessageBox::information(this, "提示", "您不是管理员，无法执行此操作！");
         return;
-    }*/
+    }
 
-//     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-//     log *logDialog = new log;
-//     logDialog->show();
+    QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+    journal *journalDialog = new journal;
+    journalDialog->show();
 }
 
 
 
 
-void manage::on_comboBox_currentIndexChanged(int index)
+void manage::on_comboBox_currentIndexChanged()
 {
    // QString tableName = ui->comboBox->itemText(index);
     loadData(); // 调用 loadData 方法加载所选表的数据

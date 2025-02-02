@@ -41,7 +41,6 @@ constexpr auto qt_meta_stringdata_CLASSmanageENDCLASS = QtMocHelpers::stringData
     "manage",
     "on_comboBox_currentIndexChanged",
     "",
-    "index",
     "adjustColumnWidths",
     "onExitButtonClicke",
     "loadData",
@@ -60,26 +59,25 @@ constexpr auto qt_meta_stringdata_CLASSmanageENDCLASS = QtMocHelpers::stringData
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSmanageENDCLASS_t {
-    uint offsetsAndSizes[38];
+    uint offsetsAndSizes[36];
     char stringdata0[7];
     char stringdata1[32];
     char stringdata2[1];
-    char stringdata3[6];
+    char stringdata3[19];
     char stringdata4[19];
-    char stringdata5[19];
-    char stringdata6[9];
-    char stringdata7[24];
-    char stringdata8[22];
+    char stringdata5[9];
+    char stringdata6[24];
+    char stringdata7[22];
+    char stringdata8[20];
     char stringdata9[20];
-    char stringdata10[20];
-    char stringdata11[22];
+    char stringdata10[22];
+    char stringdata11[21];
     char stringdata12[21];
-    char stringdata13[21];
-    char stringdata14[26];
-    char stringdata15[21];
-    char stringdata16[18];
-    char stringdata17[26];
-    char stringdata18[19];
+    char stringdata13[26];
+    char stringdata14[21];
+    char stringdata15[18];
+    char stringdata16[26];
+    char stringdata17[19];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSmanageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -88,27 +86,25 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSmanageENDCLASS_t qt_meta_string
         QT_MOC_LITERAL(0, 6),  // "manage"
         QT_MOC_LITERAL(7, 31),  // "on_comboBox_currentIndexChanged"
         QT_MOC_LITERAL(39, 0),  // ""
-        QT_MOC_LITERAL(40, 5),  // "index"
-        QT_MOC_LITERAL(46, 18),  // "adjustColumnWidths"
-        QT_MOC_LITERAL(65, 18),  // "onExitButtonClicke"
-        QT_MOC_LITERAL(84, 8),  // "loadData"
-        QT_MOC_LITERAL(93, 23),  // "onaddrecordButtonClicke"
-        QT_MOC_LITERAL(117, 21),  // "onrefreshButtonClicke"
-        QT_MOC_LITERAL(139, 19),  // "updateShowTimeLabel"
-        QT_MOC_LITERAL(159, 19),  // "onupdatButtonclicke"
-        QT_MOC_LITERAL(179, 21),  // "onStorageButtonClicke"
-        QT_MOC_LITERAL(201, 20),  // "ondeleteButtonClicke"
-        QT_MOC_LITERAL(222, 20),  // "onselectButtonClicke"
-        QT_MOC_LITERAL(243, 25),  // "ondeleteTableButtonClicke"
-        QT_MOC_LITERAL(269, 20),  // "onlessenButtonClicke"
-        QT_MOC_LITERAL(290, 17),  // "onaddButtonClicke"
-        QT_MOC_LITERAL(308, 25),  // "onselecttableButtonClikce"
-        QT_MOC_LITERAL(334, 18)   // "onlogButtonClickee"
+        QT_MOC_LITERAL(40, 18),  // "adjustColumnWidths"
+        QT_MOC_LITERAL(59, 18),  // "onExitButtonClicke"
+        QT_MOC_LITERAL(78, 8),  // "loadData"
+        QT_MOC_LITERAL(87, 23),  // "onaddrecordButtonClicke"
+        QT_MOC_LITERAL(111, 21),  // "onrefreshButtonClicke"
+        QT_MOC_LITERAL(133, 19),  // "updateShowTimeLabel"
+        QT_MOC_LITERAL(153, 19),  // "onupdatButtonclicke"
+        QT_MOC_LITERAL(173, 21),  // "onStorageButtonClicke"
+        QT_MOC_LITERAL(195, 20),  // "ondeleteButtonClicke"
+        QT_MOC_LITERAL(216, 20),  // "onselectButtonClicke"
+        QT_MOC_LITERAL(237, 25),  // "ondeleteTableButtonClicke"
+        QT_MOC_LITERAL(263, 20),  // "onlessenButtonClicke"
+        QT_MOC_LITERAL(284, 17),  // "onaddButtonClicke"
+        QT_MOC_LITERAL(302, 25),  // "onselecttableButtonClikce"
+        QT_MOC_LITERAL(328, 18)   // "onlogButtonClickee"
     },
     "manage",
     "on_comboBox_currentIndexChanged",
     "",
-    "index",
     "adjustColumnWidths",
     "onExitButtonClicke",
     "loadData",
@@ -143,25 +139,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSmanageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,  110,    2, 0x08,    1 /* Private */,
-       4,    0,  113,    2, 0x08,    3 /* Private */,
-       5,    0,  114,    2, 0x08,    4 /* Private */,
-       6,    0,  115,    2, 0x08,    5 /* Private */,
-       7,    0,  116,    2, 0x08,    6 /* Private */,
-       8,    0,  117,    2, 0x08,    7 /* Private */,
-       9,    0,  118,    2, 0x08,    8 /* Private */,
-      10,    0,  119,    2, 0x08,    9 /* Private */,
-      11,    0,  120,    2, 0x08,   10 /* Private */,
-      12,    0,  121,    2, 0x08,   11 /* Private */,
-      13,    0,  122,    2, 0x08,   12 /* Private */,
-      14,    0,  123,    2, 0x08,   13 /* Private */,
-      15,    0,  124,    2, 0x08,   14 /* Private */,
-      16,    0,  125,    2, 0x08,   15 /* Private */,
-      17,    0,  126,    2, 0x08,   16 /* Private */,
-      18,    0,  127,    2, 0x08,   17 /* Private */,
+       1,    0,  110,    2, 0x08,    1 /* Private */,
+       3,    0,  111,    2, 0x08,    2 /* Private */,
+       4,    0,  112,    2, 0x08,    3 /* Private */,
+       5,    0,  113,    2, 0x08,    4 /* Private */,
+       6,    0,  114,    2, 0x08,    5 /* Private */,
+       7,    0,  115,    2, 0x08,    6 /* Private */,
+       8,    0,  116,    2, 0x08,    7 /* Private */,
+       9,    0,  117,    2, 0x08,    8 /* Private */,
+      10,    0,  118,    2, 0x08,    9 /* Private */,
+      11,    0,  119,    2, 0x08,   10 /* Private */,
+      12,    0,  120,    2, 0x08,   11 /* Private */,
+      13,    0,  121,    2, 0x08,   12 /* Private */,
+      14,    0,  122,    2, 0x08,   13 /* Private */,
+      15,    0,  123,    2, 0x08,   14 /* Private */,
+      16,    0,  124,    2, 0x08,   15 /* Private */,
+      17,    0,  125,    2, 0x08,   16 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Int,    3,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -192,7 +188,6 @@ Q_CONSTINIT const QMetaObject manage::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<manage, std::true_type>,
         // method 'on_comboBox_currentIndexChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'adjustColumnWidths'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'onExitButtonClicke'
@@ -233,7 +228,7 @@ void manage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<manage *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_comboBox_currentIndexChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 0: _t->on_comboBox_currentIndexChanged(); break;
         case 1: _t->adjustColumnWidths(); break;
         case 2: _t->onExitButtonClicke(); break;
         case 3: _t->loadData(); break;
@@ -252,6 +247,7 @@ void manage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         default: ;
         }
     }
+    (void)_a;
 }
 
 const QMetaObject *manage::metaObject() const
