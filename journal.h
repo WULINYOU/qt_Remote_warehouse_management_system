@@ -18,7 +18,8 @@ class journal : public QDialog
 public:
     explicit journal(QWidget *parent = nullptr);
     ~journal();
-    void logAction(const QString &username,const QString &action);
+    void extracted();
+    void logAction(const QString &username, const QString &action);
 
 private:
     Ui::journal *ui;

@@ -29,6 +29,7 @@ private slots:
 private:
     Ui::add_record *ui;
     QSqlDatabase db2;
+     QSqlDatabase db1;
     QTimer *timer;
      journal *m_journal;
     QString m_comment;

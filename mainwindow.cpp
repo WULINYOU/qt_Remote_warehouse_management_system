@@ -75,6 +75,7 @@ void MainWindow::onLoginButtonClicked()
         msgBox.setStandardButtons(QMessageBox::Ok);
         int ret = msgBox.exec();
         if (ret == QMessageBox::Ok) {
+             QSqlDatabase::removeDatabase("MySQLDSN-login");
             manage *manageDialog = new manage(this,comment);
             manageDialog->show();
 
@@ -87,7 +88,7 @@ void MainWindow::onLoginButtonClicked()
 }
 
 void MainWindow::onRegisterButtonClicked()
-{
+{   QSqlDatabase::removeDatabase("MySQLDSN-login");
     registec *registerDialog=new registec;
     registerDialog->show();
 }

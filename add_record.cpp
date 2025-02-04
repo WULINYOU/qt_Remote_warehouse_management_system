@@ -17,8 +17,8 @@ add_record::add_record(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::add_record)
     , timer(new QTimer(this))
-   , m_journal (new journal(this))
-, m_comment(comment)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
@@ -195,6 +195,7 @@ void add_record::add_okButtonClicked() {
         qDebug() << "Database is not open!";
         return;
     }
+
     QSqlQuery query(db2);
     QString insertQuery = QString("INSERT INTO inventory.%1 (").arg(tableName);
     QStringList columns;
@@ -249,6 +250,7 @@ void add_record::add_okButtonClicked() {
     } else {
         QMessageBox::information(this, "插入成功", "数据已成功插入到数据库中");
         m_journal->logAction(comment, "插入成功");
+        m_journal->logAction(comment, insertQuery);
         qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
     }
 }

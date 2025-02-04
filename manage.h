@@ -8,7 +8,7 @@
 #include <QTableWidgetItem>
 #include<QTimer>
 #include<QDateTime>
-#include"mainwindow.h"
+
 namespace Ui {
 class manage;
 }
