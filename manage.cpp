@@ -218,7 +218,10 @@ void manage::ondeleteButtonClicke()
 void manage::onselectButtonClicke()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    select_record *select_recordDialog=new select_record;
+    if (db1.isOpen()) {
+        db1.close();
+    }
+    select_record *select_recordDialog=new select_record(this,m_comment);
     select_recordDialog->show();
 }
 

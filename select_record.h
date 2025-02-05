@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include<QSqlDatabase>
-
+#include"journal.h"
 namespace Ui {
 class select_record;
 }
@@ -13,7 +13,7 @@ class select_record : public QDialog
     Q_OBJECT
 
 public:
-    explicit select_record(QWidget *parent = nullptr);
+    explicit select_record(QWidget *parent = nullptr, const QString &comment = "");
     ~select_record();
 private slots:
 
@@ -23,6 +23,8 @@ private slots:
 private:
     Ui::select_record *ui;
     QSqlDatabase db7;
+    journal *m_journal;
+    QString m_comment;
 
 };
 

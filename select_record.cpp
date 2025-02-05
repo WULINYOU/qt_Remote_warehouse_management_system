@@ -10,20 +10,23 @@
 #include "qsqlquery.h"
 #include<QDateTimeEdit>
 #include<QTableView>
-select_record::select_record(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::select_record)
+#include"journal.h"
+select_record::select_record(QWidget *parent, const QString &comment)
+ : QDialog(parent)
+, ui(new Ui::select_record)
+, m_journal (new journal(this))
+, m_comment(comment)
 {
     ui->setupUi(this);
-    if (!QSqlDatabase::contains("manageUniqueConnectionName")) {
-        db7 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
+    if (!QSqlDatabase::contains("select_recordConnectionName")) {
+        db7 = QSqlDatabase::addDatabase("QODBC", "select_recordConnectionName");
         db7.setDatabaseName("MySQLDSN");
         if (!db7.open()) {
             QMessageBox::information(this, "infor", "连接数据库失败！");
             qDebug() << "error open database because" << db7.lastError().text();
         }
     } else {
-        db7 = QSqlDatabase::database("manageUniqueConnectionName");
+        db7 = QSqlDatabase::database("select_recordConnectionName");
     }
 
     ui->tableWidget->verticalHeader()->setVisible(false);
@@ -90,7 +93,8 @@ void select_record::on_selectButtonClicke()
     QSqlQuery query(db7);
     ui->tableWidget->clearContents(); // 清空 tableWidget 的内容
     ui->tableWidget->setRowCount(0); // 清空行数
-
+    QString comment = m_comment;
+    qDebug() << "Comment value:" << comment;
     if (!db7.isOpen()) {
         QMessageBox::information(this, "Error", "数据库未打开！");
         qDebug() << "Database is not open!";
@@ -103,6 +107,7 @@ void select_record::on_selectButtonClicke()
     query.prepare(sql);
 
     if (query.exec()) {
+
         QSqlRecord record = query.record();
         QStringList header;
         header << "序号";
@@ -135,5 +140,7 @@ void select_record::on_selectButtonClicke()
         QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
         qDebug() << "Error retrieving table data:" << query.lastError().text();
     }
-
+    m_journal->logAction(comment, "查询成功");
+    m_journal->logAction(comment, sql);
+ qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
 }

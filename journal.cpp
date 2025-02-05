@@ -32,6 +32,8 @@ journal::journal(QWidget *parent)
     model->select();
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
+    ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->setAlternatingRowColors(true);
 }
 
 journal::~journal()
