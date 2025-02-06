@@ -5,8 +5,7 @@
 #include<QSqlError>
 #include<QDebug>
 #include<QSqlQuery>
-#include"mainwindow.h"
-
+#include <QRegularExpression> // 引入正则表达式头文件
 registec::registec(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::registec)
@@ -33,6 +32,8 @@ registec::~registec()
     }
 }
 
+
+
 void registec::onMakeUserButtonClicked()
 {
     QString username = ui->add_username->text();
@@ -41,23 +42,36 @@ void registec::onMakeUserButtonClicked()
     QString comment = ui->add_comment->text();
     QString inviteCode = ui->ask_number->text();
 
+    // 检查输入是否为空
     if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || comment.isEmpty() || inviteCode.isEmpty()) {
         QMessageBox::warning(this, "错误", "所有信息必须填写！");
         return;
     }
 
+    // 检查两次输入的密码是否一致
     if (password != confirmPassword) {
         QMessageBox::warning(this, "错误", "两次输入密码不一致");
         return;
     }
 
+    // 检查中文名称是否有效
     if (comment == "请输入中文名称") {
         QMessageBox::warning(this, "错误", "中文名不能这样");
         return;
     }
 
-    QSqlQuery captchaQuery(db);  // 使用已打开的数据库连接
-    QString captchaSql = "SELECT * FROM inventory.invite_code WHERE inviteCode = :inviteCode";  // 使用 inviteCode 字段名
+    // 验证用户名格式：必须包含大小写字母和数字
+
+    // 验证密码格式：必须包含大小写字母和数字
+    QRegularExpression passwordRegex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$");
+    if (!passwordRegex.match(password).hasMatch()) {
+        QMessageBox::warning(this, "错误", "密码必须包含大小写字母和数字");
+        return;
+    }
+
+    // 检查邀请码是否有效
+    QSqlQuery captchaQuery(db);
+    QString captchaSql = "SELECT * FROM inventory.invite_code WHERE inviteCode = :inviteCode";
     captchaQuery.prepare(captchaSql);
     captchaQuery.bindValue(":inviteCode", inviteCode);
 
@@ -72,7 +86,7 @@ void registec::onMakeUserButtonClicked()
         return;
     }
 
-    // 检查 inviteCode 是否已被使用
+    // 检查邀请码是否已被使用
     QSqlQuery checkInviteCodeQuery(db);
     QString checkInviteCodeSql = "SELECT COUNT(*) FROM inventory.login WHERE invite_code = :invite_code";
     checkInviteCodeQuery.prepare(checkInviteCodeSql);
@@ -84,7 +98,7 @@ void registec::onMakeUserButtonClicked()
         return;
     }
 
-    checkInviteCodeQuery.first();  // 移动到第一行结果
+    checkInviteCodeQuery.first(); // 移动到第一行结果
 
     // 插入新用户记录
     QSqlQuery query(db);
@@ -102,9 +116,8 @@ void registec::onMakeUserButtonClicked()
     }
 
     QMessageBox::information(this, "恭喜你", "注册成功");
-    this->close();  // 关闭注册对话框
+    this->close(); // 关闭注册对话框
 }
-
 
 void registec::onBackloginButtonClicked()
 {
