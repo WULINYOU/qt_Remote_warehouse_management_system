@@ -11,8 +11,6 @@
 #include<QDateTimeEdit>
 #include<QTableView>
 #include"journal.h"
-
-
 add_record::add_record(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::add_record)
@@ -243,6 +241,11 @@ void add_record::add_okButtonClicked() {
         }
     }
     insertQuery += columns.join(", ") + ") VALUES (" + values.join(", ") + ")";
+    QString logMessage = QString("添加记录到表 %1:\n").arg(tableName);
+    for (int i = 0; i < columns.size(); ++i) {
+        logMessage += QString("  %1: %2\n").arg(columns[i]).arg(values[i].remove('\'')); // 去掉引号以提高可读性
+    }
+
 
     if (!query.exec(insertQuery)) {
         QMessageBox::warning(this, "插入失败", query.lastError().text());
@@ -250,7 +253,7 @@ void add_record::add_okButtonClicked() {
     } else {
         QMessageBox::information(this, "插入成功", "数据已成功插入到数据库中");
         m_journal->logAction(comment, "插入成功");
-        m_journal->logAction(comment, insertQuery);
+        m_journal->logAction(comment, logMessage);
         qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
     }
 }

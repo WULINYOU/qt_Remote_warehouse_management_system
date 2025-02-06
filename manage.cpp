@@ -187,6 +187,7 @@ void manage::onrefreshButtonClicke()
     loadData();
 }
 
+
 void manage::updateShowTimeLabel()
 {
     QDateTime currentDateTime = QDateTime::currentDateTime();
@@ -197,7 +198,10 @@ void manage::updateShowTimeLabel()
 void manage::onupdatButtonclicke()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    update_record *updateDialog=new update_record;
+    if (db1.isOpen()) {
+        db1.close();
+    }
+    update_record *updateDialog=new update_record(this,m_comment);
     updateDialog->show();
 }
 
@@ -211,7 +215,10 @@ void manage::onStorageButtonClicke()
 void manage::ondeleteButtonClicke()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    delete_record *delete_recordDialog= new delete_record;
+    if (db1.isOpen()) {
+        db1.close();
+    }
+    delete_record *delete_recordDialog= new delete_record(this,m_comment);
     delete_recordDialog->show();
 }
 
@@ -227,7 +234,9 @@ void manage::onselectButtonClicke()
 
 void manage::ondeleteTableButtonClicke()
 {
+
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
+
     delete_table *delete_tableDialog=new delete_table;
     delete_tableDialog->show();
 }
@@ -242,14 +251,20 @@ void manage::onlessenButtonClicke()
 void manage::onaddButtonClicke()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    add_table *add_tableDialog=new add_table;
+    if (db1.isOpen()) {
+        db1.close();
+    }
+    add_table *add_tableDialog=new add_table(this,m_comment);
     add_tableDialog->show();
 }
 
 void manage::onselecttableButtonClikce()
 {
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
-    select_table *select_tableDialog =new select_table;
+    if (db1.isOpen()) {
+        db1.close();
+    }
+    select_table *select_tableDialog =new select_table(this,m_comment);
     select_tableDialog->show();
 }
 
@@ -296,5 +311,6 @@ void manage::onExitButtonClicke()
                                   QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         QApplication::quit();
+
     }
 }

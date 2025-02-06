@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include<QSqlDatabase>
-
+#include"journal.h"
 namespace Ui {
 class update_record;
 }
@@ -13,7 +13,7 @@ class update_record : public QDialog
     Q_OBJECT
 
 public:
-    explicit update_record(QWidget *parent = nullptr);
+    explicit update_record(QWidget *parent = nullptr, const QString &comment = "");
     ~update_record();
 
 private slots:
@@ -26,6 +26,8 @@ private slots:
 private:
     Ui::update_record *ui;
     QSqlDatabase db3;
+    journal *m_journal;
+    QString m_comment;
 
 };
 

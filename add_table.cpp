@@ -11,9 +11,12 @@
 #include <QDateTimeEdit>
 #include <QTableView>
 #include <QComboBox>
-add_table::add_table(QWidget *parent)
+#include"journal.h"
+add_table::add_table(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::add_table)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
@@ -161,14 +164,34 @@ void add_table::createTable()
     }
 
     createTableSQL += ")";
+   QString comment = m_comment;
+    QString logMessage = QString("添加新建表 %1:\n").arg(tableName);
+   for (int i = 0; i < ui->tableWidget->rowCount(); ++i) {
+       QTableWidgetItem *item = ui->tableWidget->item(i, 0);
+       QComboBox *comboBox = qobject_cast<QComboBox*>(ui->tableWidget->cellWidget(i, 1));
+       QCheckBox *checkBox = qobject_cast<QCheckBox*>(ui->tableWidget->cellWidget(i, 2));
 
+       QString columnName = item ? item->text() : "";
+       QString columnType = comboBox ? comboBox->currentText() : "";
+       bool isPrimaryKey = checkBox ? checkBox->isChecked() : false;
 
+       logMessage += QString("  列名: %1, 类型: %2, 主键: %3\n")
+                         .arg(columnName)
+                         .arg(columnType)
+                         .arg(isPrimaryKey ? "是" : "否");
+   }
     // 执行创建表的SQL语句
     if (query.exec(createTableSQL)) {
         QMessageBox::information(this, "信息", "表创建成功！");
+        m_journal->logAction(comment, tableName+"表创建成功！");
+          m_journal->logAction(comment, logMessage);
+
+
     } else {
         QMessageBox::warning(this, "警告", "表创建失败！");
+        m_journal->logAction(comment, "表创建失败！："+query.lastError().text());
         qDebug() << "error create table because" << query.lastError().text();
+
     }
 }
 void add_table::clearAll()

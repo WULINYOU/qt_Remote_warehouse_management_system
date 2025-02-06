@@ -11,9 +11,12 @@
 #include<QDateTimeEdit>
 #include<QTableView>
 #include "ConfirmDeleteDialog.h"
-delete_table::delete_table(QWidget *parent)
+#include"journal.h"
+delete_table::delete_table(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::delete_table)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     if (!QSqlDatabase::contains("manageUniqueConnectionName1")) {
@@ -93,6 +96,7 @@ void delete_table::on_comboBox_currentIndexChanged(int index) {
 void delete_table::on_deleta_table_ButtonClicke()
 {
     ConfirmDeleteDialog dialog(this);
+     QString comment = m_comment;
     if (dialog.exec() == QDialog::Accepted) {
         QString tableName = ui->comboBox->currentText();
         QSqlQuery query(db9);
@@ -105,10 +109,16 @@ void delete_table::on_deleta_table_ButtonClicke()
             return;
         }
         QString dropTableSQL = QString("DROP TABLE %1").arg(tableName); // 修正 SQL 语句
+        QString logMessage = QString("删除记录表 ：%1")
+                                 .arg(tableName);
         if (query.exec(dropTableSQL)) {
+            m_journal->logAction(comment, "成功删除");
+            m_journal->logAction(comment, logMessage);
             QMessageBox::information(this, "信息", "表删除成功！");
+
         } else {
             QMessageBox::warning(this, "警告", "表删除失败！");
+             m_journal->logAction(comment, "删除错误"+ query.lastError().text());
             qDebug() << "error dropping table because" << query.lastError().text();
         }
     } else {

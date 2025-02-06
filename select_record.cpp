@@ -100,7 +100,8 @@ void select_record::on_selectButtonClicke()
         qDebug() << "Database is not open!";
         return;
     }
-
+    QString logMessage = QString("查询记录：表 %1，属性值 %2，指定值 %3")
+                             .arg(tableName).arg(columnName).arg(searchCondition);
     // 构建 SQL 查询语句，使用指定的列进行 LIKE 模糊匹配
     QString sql = QString("SELECT * FROM %1 WHERE %2 = %3").arg(tableName).arg(columnName).arg(searchCondition);
 
@@ -139,8 +140,10 @@ void select_record::on_selectButtonClicke()
     } else {
         QMessageBox::information(this, "Error", "无法查询表数据: " + query.lastError().text());
         qDebug() << "Error retrieving table data:" << query.lastError().text();
+        m_journal->logAction(comment, "无法查询");
+        m_journal->logAction(comment, query.lastError().text());
     }
     m_journal->logAction(comment, "查询成功");
-    m_journal->logAction(comment, sql);
+    m_journal->logAction(comment, logMessage);
  qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
 }

@@ -1,4 +1,4 @@
-#include "lessen_storage.h"
+﻿#include "lessen_storage.h"
 #include "ui_lessen_storage.h"
 #include <QSqlDatabase>
 #include <QMessageBox>
@@ -7,9 +7,12 @@
 #include <QDateTimeEdit>
 #include <QTableWidgetItem>
 #include <QSqlTableModel>
-lessen_storage::lessen_storage(QWidget *parent)
+#include"journal.h"
+lessen_storage::lessen_storage(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::lessen_storage)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     if(!QSqlDatabase::contains("add_storageConnectionName")){
@@ -36,7 +39,7 @@ lessen_storage::~lessen_storage()
     delete ui;
 }
 
-void lessen_storage::on_lessen_storage_clicked(bool checked)
+void lessen_storage::on_lessen_storage_clicked()
 {
     if (!db5.isOpen()) {
         QMessageBox::information(this, "Error", "数据库连接已关闭");
@@ -71,7 +74,7 @@ void lessen_storage::on_lessen_storage_clicked(bool checked)
         // 更新库存数量
         int newNumber = currentNumber - number;
         QDateTime currentDateTime = QDateTime::currentDateTime();
-
+               QString comment = m_comment;
         // 更新数据库中的数量
         QSqlQuery updateQuery(db5);
         updateQuery.prepare("UPDATE inv_table SET number = :newNumber, out_time = :out_time WHERE id = :id");
@@ -79,11 +82,17 @@ void lessen_storage::on_lessen_storage_clicked(bool checked)
         updateQuery.bindValue(":out_time", currentDateTime.toString("yyyy-MM-dd hh:mm:ss"));
         updateQuery.bindValue(":id", productId);
         if (updateQuery.exec()) {
+            QString logMessage = QString("出库记录：表 inv_table，名称 %1，数量 %2")
+                                     .arg(productName).arg(quantityStr);
             qDebug() << "Updated inventory for product ID:" << productId;
-            QMessageBox::information(this, "提示", "入库成功！");
+            QMessageBox::information(this, "提示", "出库成功！");
+            m_journal->logAction(comment, "出库成功！");
+            m_journal->logAction(comment, logMessage);
         } else {
             qDebug() << "Error updating database:" << updateQuery.lastError().text();
             QMessageBox::critical(this, "Error", "更新库存失败，请重试");
+            m_journal->logAction(comment, "更新库存失败，请重试"+ updateQuery.lastError().text());
+
         }
     } else {
         // 未找到产品
@@ -102,7 +111,7 @@ bool lessen_storage::validatePositiveInteger(const QString &input, int &output)
     return isValid && output > 0;
 }
 
-void lessen_storage::on_lessen_storage_exit_clicked(bool checked)
+void lessen_storage::on_lessen_storage_exit_clicked()
 {
     QMessageBox::StandardButton reply;
     reply=QMessageBox::question(this,"返回","确定要返回管理页面?", QMessageBox::Yes|QMessageBox::No);

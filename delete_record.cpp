@@ -14,21 +14,24 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlError>
+#include"journal.h"
 #include "ConfirmDeleteDialog.h"
-delete_record::delete_record(QWidget *parent)
+delete_record::delete_record(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::delete_record)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
-    if (!QSqlDatabase::contains("manageUniqueConnectionName")) {
-        db6 = QSqlDatabase::addDatabase("QODBC", "manageUniqueConnectionName");
+    if (!QSqlDatabase::contains("delete_recordConnectionName")) {
+        db6 = QSqlDatabase::addDatabase("QODBC", "delete_recordConnectionName");
         db6.setDatabaseName("MySQLDSN");
         if (!db6.open()) {
             QMessageBox::information(this, "infor", "连接数据库失败！");
             qDebug() << "error open database because" << db6.lastError().text();
         }
     } else {
-        db6 = QSqlDatabase::database("manageUniqueConnectionName");
+        db6 = QSqlDatabase::database("delete_recordConnectionName");
     }
 
 
@@ -50,7 +53,8 @@ void delete_record::onfirst_sureButtonClicke()
 {
     QString name = ui->name->text();
     QString again_name = ui->agagin_name->text();
-
+     QString comment = m_comment;
+    qDebug() << "Comment value:" << comment;
     if (name != again_name) {
         QMessageBox::warning(this, "两次产品名称不兼容", "请确认产品名称");
         return;
@@ -71,13 +75,17 @@ void delete_record::onfirst_sureButtonClicke()
         QString insertQuery = QString("DELETE FROM %1 WHERE name = :name").arg(tableName);
         query.prepare(insertQuery);
         query.bindValue(":name", name);
-
+        QString logMessage = QString("删除记录：表 %1，名称 %2")
+                                 .arg(tableName).arg(name);
         if (query.exec()) {
+            m_journal->logAction(comment, "成功删除");
+            m_journal->logAction(comment, logMessage);
             QString successMessage = QString("成功删除 %1").arg(name);
             QMessageBox::information(this, "提示", successMessage);
         } else {
             QString errorMessage = query.lastError().text();
             QMessageBox::critical(this, "错误", errorMessage);
+            m_journal->logAction(comment, "删除错误");
         }
     } else {
         // 用户点击了取消

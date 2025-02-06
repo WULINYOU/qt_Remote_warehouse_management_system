@@ -10,7 +10,13 @@
 #include "update_record.h"
 #include <QSqlDatabase>
 
-update_record::update_record(QWidget *parent) : QDialog(parent), ui(new Ui::update_record) {
+update_record::update_record(QWidget *parent, const QString &comment)
+    : QDialog(parent)
+    , ui(new Ui::update_record)
+    , m_journal (new journal(this))
+    , m_comment(comment)
+{
+
     ui->setupUi(this);
     QString connectionName = "update_recordName"; // 使用唯一的连接名称
     if (!QSqlDatabase::contains(connectionName)) {
@@ -56,7 +62,8 @@ void update_record::on_updateButtonClicked() {
     QString columnName = ui->table_element->currentText();
     QString name = ui->name->text();
     QString newValue = ui->newword->text();
-
+    QString comment = m_comment;
+    qDebug() << "Comment value:" << comment;
     QSqlQuery query(db3); // 确保查询对象使用正确的数据库连接
     QString sql = QString("UPDATE %1 SET %2 = :newValue WHERE name = :name").arg(tableName).arg(columnName);
     query.prepare(sql);
@@ -65,8 +72,15 @@ void update_record::on_updateButtonClicked() {
 
     if (query.exec()) {
         QMessageBox::information(this, "成功", "数据更新成功！");
+        m_journal->logAction(comment, "数据更新成功！");
+        QString logMessage = QString("数据更新成功：表 %1，列 %2，名称 %3，新值 %4")
+                                 .arg(tableName).arg(columnName).arg(name).arg(newValue);
+        m_journal->logAction(comment, logMessage);
+        qDebug() << "Log action called with comment:" << comment << "and action: 插入成功"; // 添加调试输出
+
     } else {
         QMessageBox::critical(this, "错误", "数据更新失败：" + query.lastError().text());
+        m_journal->logAction(comment, "数据更新失败");
     }
 }
 

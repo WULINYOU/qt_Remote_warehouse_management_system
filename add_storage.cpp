@@ -7,10 +7,12 @@
 #include <QDateTimeEdit>
 #include <QTableWidgetItem>
 #include <QSqlTableModel>
-
-add_Storage::add_Storage(QWidget *parent)
+#include"journal.h"
+add_Storage::add_Storage(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::add_Storage)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     if(!QSqlDatabase::contains("add_storageConnectionName")){
@@ -42,7 +44,7 @@ bool add_Storage::validatePositiveInteger(const QString &input, int &output) {
     return isValid && output > 0;
 }
 
-void add_Storage::on_Storage_exit_clicked(bool checked)
+void add_Storage::on_Storage_exit_clicked()
 {
     QMessageBox::StandardButton reply;
     reply=QMessageBox::question(this,"返回","确定要返回管理页面?", QMessageBox::Yes|QMessageBox::No);
@@ -51,7 +53,7 @@ void add_Storage::on_Storage_exit_clicked(bool checked)
     }
 }
 
-void add_Storage::on_Storage_oldok_clicked(bool checked)
+void add_Storage::on_Storage_oldok_clicked()
 {
     if (!db4.isOpen()) {
         QMessageBox::information(this, "Error", "数据库连接已关闭");
@@ -81,7 +83,7 @@ void add_Storage::on_Storage_oldok_clicked(bool checked)
         // 更新库存数量
         int newNumber = currentNumber + number;
      QDateTime currentDateTime = QDateTime::currentDateTime();
-
+        QString comment = m_comment;
         // 更新数据库中的数量
         QSqlQuery updateQuery(db4);
      updateQuery.prepare("UPDATE inv_table SET number = :newNumber, in_time = :in_time WHERE id = :id");
@@ -89,11 +91,17 @@ void add_Storage::on_Storage_oldok_clicked(bool checked)
      updateQuery.bindValue(":in_time", currentDateTime.toString("yyyy-MM-dd hh:mm:ss"));
      updateQuery.bindValue(":id", productId);
         if (updateQuery.exec()) {
+            QString logMessage = QString("入库记录：表 inv_table，名称 %1，数量 %2")
+                                     .arg(productName).arg(quantityStr);
             qDebug() << "Updated inventory for product ID:" << productId;
             QMessageBox::information(this, "提示", "入库成功！");
+            m_journal->logAction(comment, "入库成功！");
+            m_journal->logAction(comment, logMessage);
+
         } else {
             qDebug() << "Error updating database:" << updateQuery.lastError().text();
             QMessageBox::critical(this, "Error", "更新库存失败，请重试");
+            m_journal->logAction(comment, "更新库存失败，请重试"+ updateQuery.lastError().text());
         }
     } else {
         // 未找到产品

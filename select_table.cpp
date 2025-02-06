@@ -10,9 +10,12 @@
 #include "qsqlquery.h"
 #include<QDateTimeEdit>
 #include<QTableView>
-select_table::select_table(QWidget *parent)
+#include"journal.h"
+select_table::select_table(QWidget *parent, const QString &comment)
     : QDialog(parent)
     , ui(new Ui::select_table)
+    , m_journal (new journal(this))
+    , m_comment(comment)
 {
     ui->setupUi(this);
     // 检查数据库连接是否已经存在
@@ -40,7 +43,7 @@ select_table::~select_table()
 void select_table::onselectButtonClick()
 {
     QString tableName = ui->tablename->text().trimmed();
-
+    QString comment = m_comment;
     // Step 1: 获取表的列名
     QSqlQuery columnQuery(db10);
     columnQuery.prepare("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = :tableName");
@@ -48,8 +51,11 @@ void select_table::onselectButtonClick()
 
     if (!columnQuery.exec()) {
         QMessageBox::information(this, "infor", "查询失败");
+         m_journal->logAction(comment, tableName+"查询失败");
         qDebug() << "Error fetching columns:" << columnQuery.lastError();
         return;
+    }else{
+        m_journal->logAction(comment, tableName+"查询成功");
     }
 
     QStringList columnNames;
