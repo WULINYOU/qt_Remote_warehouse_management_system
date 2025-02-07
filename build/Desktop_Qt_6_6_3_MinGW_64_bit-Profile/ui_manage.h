@@ -51,7 +51,6 @@ public:
     QHBoxLayout *horizontalLayout_6;
     QPushButton *journal;
     QPushButton *refresh;
-    QPushButton *SkinPeeler;
 
     void setupUi(QDialog *manage)
     {
@@ -165,9 +164,6 @@ public:
 
         horizontalLayout_6->addWidget(refresh);
 
-        SkinPeeler = new QPushButton(manage);
-        SkinPeeler->setObjectName("SkinPeeler");
-        SkinPeeler->setGeometry(QRect(820, 20, 75, 23));
 
         retranslateUi(manage);
 
@@ -190,7 +186,6 @@ public:
         lessen->setText(QCoreApplication::translate("manage", "\345\207\272\345\272\223", nullptr));
         journal->setText(QCoreApplication::translate("manage", "\346\227\245\345\277\227", nullptr));
         refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
-        SkinPeeler->setText(QCoreApplication::translate("manage", "\346\215\242\350\202\244", nullptr));
     } // retranslateUi
 
 };

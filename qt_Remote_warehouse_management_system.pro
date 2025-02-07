@@ -30,7 +30,6 @@ SOURCES += \
     registec.cpp \
     select_record.cpp \
     select_table.cpp \
-    skin_peeler.cpp \
     update_record.cpp
 
 HEADERS += \
@@ -47,7 +46,6 @@ HEADERS += \
     registec.h \
     select_record.h \
     select_table.h \
-    skin_peeler.h \
     update_record.h
 
 FORMS += \
@@ -64,7 +62,6 @@ FORMS += \
     registec.ui \
     select_record.ui \
     select_table.ui \
-    skin_peeler.ui \
     update_record.ui
 
 qnx: target.path = /tmp/$${TARGET}/bin

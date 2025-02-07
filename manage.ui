@@ -182,19 +182,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="SkinPeeler">
-   <property name="geometry">
-    <rect>
-     <x>820</x>
-     <y>20</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>换肤</string>
-   </property>
-  </widget>
  </widget>
  <resources/>
  <connections/>

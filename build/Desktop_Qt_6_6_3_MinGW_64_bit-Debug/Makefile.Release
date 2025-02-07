@@ -2025,6 +2025,7 @@ release/moc_manage.cpp: ../../manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDateTime \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../skin_peeler.h \
 		release/moc_predefs.h \
 		../../../../qt6/6.6.3/mingw_64/bin/moc.exe
 	F:\qt6\6.6.3\mingw_64\bin\moc.exe $(DEFINES) --include F:/qt6file/qt_Remote_warehouse_management_system/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/release/moc_predefs.h -IF:/qt6/6.6.3/mingw_64/mkspecs/win32-g++ -IF:/qt6file/qt_Remote_warehouse_management_system -IF:/qt6/6.6.3/mingw_64/include -IF:/qt6/6.6.3/mingw_64/include/QtWidgets -IF:/qt6/6.6.3/mingw_64/include/QtGui -IF:/qt6/6.6.3/mingw_64/include/QtSql -IF:/qt6/6.6.3/mingw_64/include/QtCore -I. -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IF:/qt6/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IF:/qt6/Tools/mingw1120_64/x86_64-w64-mingw32/include ..\..\manage.h -o release\moc_manage.cpp
@@ -5124,7 +5125,8 @@ release/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QTimer \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qtimer.h \
-		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qbasictimer.h
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qbasictimer.h \
+		../../skin_peeler.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\..\mainwindow.cpp
 
 release/manage.o: ../../manage.cpp ../../manage.h \
@@ -5327,6 +5329,7 @@ release/manage.o: ../../manage.cpp ../../manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDateTime \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
+		../../skin_peeler.h \
 		ui_manage.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/QSqlError \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtSql/qsqlerror.h \
@@ -5350,8 +5353,7 @@ release/manage.o: ../../manage.cpp ../../manage.h \
 		../../select_record.h \
 		../../add_table.h \
 		../../delete_table.h \
-		../../select_table.h \
-		../../skin_peeler.h
+		../../select_table.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\manage.o ..\..\manage.cpp
 
 release/registec.o: ../../registec.cpp ../../registec.h \
@@ -6124,7 +6126,9 @@ release/skin_peeler.o: ../../skin_peeler.cpp ../../skin_peeler.h \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QSizeF \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/QTransform \
 		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/qnativeinterface.h \
-		ui_skin_peeler.h
+		ui_skin_peeler.h \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtCore/QDebug \
+		../../../../../../qt6/6.6.3/mingw_64/include/QtGui/QPalette
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\skin_peeler.o ..\..\skin_peeler.cpp
 
 release/update_record.o: ../../update_record.cpp ui_update_record.h \

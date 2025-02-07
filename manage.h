@@ -8,7 +8,6 @@
 #include <QTableWidgetItem>
 #include<QTimer>
 #include<QDateTime>
-#include<skin_peeler.h>
 namespace Ui {
 class manage;
 }
@@ -39,8 +38,7 @@ void onaddrecordButtonClicke();
  void onaddButtonClicke();
  void onselecttableButtonClikce();
  void onlogButtonClickee();
- void onskinpeelerButtonClicke();
-void changeBackground(const QColor &color);
+
 private:
     Ui::manage *ui;
 
@@ -49,7 +47,6 @@ private:
     QLabel *time_label;
     QTimer *timer;
     QString m_comment;
-    skin_peeler *peeler;
 
 };
 
