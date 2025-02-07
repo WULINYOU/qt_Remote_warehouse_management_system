@@ -47,7 +47,7 @@ public:
 
     void retranslateUi(QDialog *journal)
     {
-        journal->setWindowTitle(QCoreApplication::translate("journal", "Dialog", nullptr));
+        journal->setWindowTitle(QCoreApplication::translate("journal", "\346\227\245\345\277\227\350\256\260\345\275\225", nullptr));
         journal_OK->setText(QCoreApplication::translate("journal", "\346\270\205\347\251\272", nullptr));
         Exit->setText(QCoreApplication::translate("journal", "\351\200\200\345\207\272", nullptr));
     } // retranslateUi

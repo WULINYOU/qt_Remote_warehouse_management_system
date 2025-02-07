@@ -18,6 +18,7 @@
 #include"delete_table.h"
 #include"select_table.h"
 #include"journal.h"
+#include"skin_peeler.h"
 
 manage::manage(QWidget *parent, const QString &comment)
     : QDialog(parent)
@@ -66,9 +67,18 @@ manage::manage(QWidget *parent, const QString &comment)
     connect(ui->delete_table,&QPushButton::clicked,this,&manage::ondeleteTableButtonClicke);
     connect(ui->select_table,&QPushButton::clicked,this,&manage::onselecttableButtonClikce);
     connect(ui->journal,&QPushButton::clicked,this,&manage::onlogButtonClickee);
+    connect(ui->SkinPeeler,&QPushButton::clicked,this,&manage::onskinpeelerButtonClicke);
+
     //time_label
     connect(timer, &QTimer::timeout, this, &manage::updateShowTimeLabel);
     timer->start(500);
+    //skin_peeler *peeler = new skin_peeler(this);
+    peeler = new skin_peeler(this);
+    if (connect(peeler, &skin_peeler::changeBackgroundColor, this, &manage::changeBackground)) {
+        qDebug() << "Signal and slot connected successfully!";
+    } else {
+        qDebug() << "Failed to connect signal and slot!";
+    }
 }
 
 manage::~manage()
@@ -277,6 +287,22 @@ void manage::onlogButtonClickee()
     QSqlDatabase::removeDatabase("manageUniqueConnectionName");
     journal *journalDialog = new journal;
     journalDialog->show();
+}
+
+void manage::onskinpeelerButtonClicke()
+{
+   skin_peeler *skin_peelerDialog = new skin_peeler(this);;
+    skin_peelerDialog->show();
+}
+
+void manage::changeBackground(const QColor &color)
+{
+    qDebug() << "Changing background color to:" << color;
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Window, color);
+    this->setPalette(palette);
+    this->update();
+    // this->setStyleSheet(QString("background-color: %1;").arg(color.name()));
 }
 
 void manage::on_comboBox_currentIndexChanged()

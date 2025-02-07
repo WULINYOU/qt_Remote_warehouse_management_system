@@ -12,6 +12,7 @@ release/manage.o
 release/registec.o
 release/select_record.o
 release/select_table.o
+release/skin_peeler.o
 release/update_record.o
 release/moc_add_record.o
 release/moc_add_storage.o
@@ -26,4 +27,5 @@ release/moc_manage.o
 release/moc_registec.o
 release/moc_select_record.o
 release/moc_select_table.o
+release/moc_skin_peeler.o
 release/moc_update_record.o

@@ -47,10 +47,11 @@ public:
     QHBoxLayout *horizontalLayout_5;
     QPushButton *Storage;
     QPushButton *lessen;
-    QWidget *widget;
+    QWidget *layoutWidget2;
     QHBoxLayout *horizontalLayout_6;
     QPushButton *journal;
     QPushButton *refresh;
+    QPushButton *SkinPeeler;
 
     void setupUi(QDialog *manage)
     {
@@ -131,7 +132,7 @@ public:
 
         time_label = new QLabel(manage);
         time_label->setObjectName("time_label");
-        time_label->setGeometry(QRect(590, 20, 311, 21));
+        time_label->setGeometry(QRect(460, 20, 311, 21));
         layoutWidget1 = new QWidget(manage);
         layoutWidget1->setObjectName("layoutWidget1");
         layoutWidget1->setGeometry(QRect(590, 460, 311, 51));
@@ -148,22 +149,25 @@ public:
 
         horizontalLayout_5->addWidget(lessen);
 
-        widget = new QWidget(manage);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(410, 20, 158, 25));
-        horizontalLayout_6 = new QHBoxLayout(widget);
+        layoutWidget2 = new QWidget(manage);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(270, 20, 170, 25));
+        horizontalLayout_6 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_6->setObjectName("horizontalLayout_6");
         horizontalLayout_6->setContentsMargins(0, 0, 0, 0);
-        journal = new QPushButton(widget);
+        journal = new QPushButton(layoutWidget2);
         journal->setObjectName("journal");
 
         horizontalLayout_6->addWidget(journal);
 
-        refresh = new QPushButton(widget);
+        refresh = new QPushButton(layoutWidget2);
         refresh->setObjectName("refresh");
 
         horizontalLayout_6->addWidget(refresh);
 
+        SkinPeeler = new QPushButton(manage);
+        SkinPeeler->setObjectName("SkinPeeler");
+        SkinPeeler->setGeometry(QRect(820, 20, 75, 23));
 
         retranslateUi(manage);
 
@@ -172,7 +176,7 @@ public:
 
     void retranslateUi(QDialog *manage)
     {
-        manage->setWindowTitle(QCoreApplication::translate("manage", "Dialog", nullptr));
+        manage->setWindowTitle(QCoreApplication::translate("manage", "\347\256\241\347\220\206\347\225\214\351\235\242", nullptr));
         delete_record->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\256\260\345\275\225", nullptr));
         delete_table->setText(QCoreApplication::translate("manage", "\345\210\240\351\231\244\350\241\250", nullptr));
         update_record->setText(QCoreApplication::translate("manage", "\346\233\264\346\224\271\350\256\260\345\275\225", nullptr));
@@ -186,6 +190,7 @@ public:
         lessen->setText(QCoreApplication::translate("manage", "\345\207\272\345\272\223", nullptr));
         journal->setText(QCoreApplication::translate("manage", "\346\227\245\345\277\227", nullptr));
         refresh->setText(QCoreApplication::translate("manage", "\345\210\267\346\226\260", nullptr));
+        SkinPeeler->setText(QCoreApplication::translate("manage", "\346\215\242\350\202\244", nullptr));
     } // retranslateUi
 
 };

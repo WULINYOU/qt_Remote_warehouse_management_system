@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>查询表</string>
   </property>
   <widget class="QPushButton" name="select_table_ok">
    <property name="geometry">

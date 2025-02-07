@@ -41,7 +41,6 @@ constexpr auto qt_meta_stringdata_CLASSadd_StorageENDCLASS = QtMocHelpers::strin
     "add_Storage",
     "on_Storage_oldok_clicked",
     "",
-    "checked",
     "validatePositiveInteger",
     "input",
     "int&",
@@ -50,16 +49,15 @@ constexpr auto qt_meta_stringdata_CLASSadd_StorageENDCLASS = QtMocHelpers::strin
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSadd_StorageENDCLASS_t {
-    uint offsetsAndSizes[18];
+    uint offsetsAndSizes[16];
     char stringdata0[12];
     char stringdata1[25];
     char stringdata2[1];
-    char stringdata3[8];
-    char stringdata4[24];
-    char stringdata5[6];
-    char stringdata6[5];
-    char stringdata7[7];
-    char stringdata8[24];
+    char stringdata3[24];
+    char stringdata4[6];
+    char stringdata5[5];
+    char stringdata6[7];
+    char stringdata7[24];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSadd_StorageENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -68,17 +66,15 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSadd_StorageENDCLASS_t qt_meta_s
         QT_MOC_LITERAL(0, 11),  // "add_Storage"
         QT_MOC_LITERAL(12, 24),  // "on_Storage_oldok_clicked"
         QT_MOC_LITERAL(37, 0),  // ""
-        QT_MOC_LITERAL(38, 7),  // "checked"
-        QT_MOC_LITERAL(46, 23),  // "validatePositiveInteger"
-        QT_MOC_LITERAL(70, 5),  // "input"
-        QT_MOC_LITERAL(76, 4),  // "int&"
-        QT_MOC_LITERAL(81, 6),  // "output"
-        QT_MOC_LITERAL(88, 23)   // "on_Storage_exit_clicked"
+        QT_MOC_LITERAL(38, 23),  // "validatePositiveInteger"
+        QT_MOC_LITERAL(62, 5),  // "input"
+        QT_MOC_LITERAL(68, 4),  // "int&"
+        QT_MOC_LITERAL(73, 6),  // "output"
+        QT_MOC_LITERAL(80, 23)   // "on_Storage_exit_clicked"
     },
     "add_Storage",
     "on_Storage_oldok_clicked",
     "",
-    "checked",
     "validatePositiveInteger",
     "input",
     "int&",
@@ -103,14 +99,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSadd_StorageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   32,    2, 0x08,    1 /* Private */,
-       4,    2,   35,    2, 0x08,    3 /* Private */,
-       8,    1,   40,    2, 0x08,    6 /* Private */,
+       1,    0,   32,    2, 0x08,    1 /* Private */,
+       3,    2,   33,    2, 0x08,    2 /* Private */,
+       7,    0,   38,    2, 0x08,    5 /* Private */,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Bool,    3,
-    QMetaType::Bool, QMetaType::QString, 0x80000000 | 6,    5,    7,
-    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void,
+    QMetaType::Bool, QMetaType::QString, 0x80000000 | 5,    4,    6,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -126,14 +122,12 @@ Q_CONSTINIT const QMetaObject add_Storage::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<add_Storage, std::true_type>,
         // method 'on_Storage_oldok_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'validatePositiveInteger'
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<int &, std::false_type>,
         // method 'on_Storage_exit_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<bool, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -144,10 +138,10 @@ void add_Storage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         auto *_t = static_cast<add_Storage *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_Storage_oldok_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 0: _t->on_Storage_oldok_clicked(); break;
         case 1: { bool _r = _t->validatePositiveInteger((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int&>>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 2: _t->on_Storage_exit_clicked((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->on_Storage_exit_clicked(); break;
         default: ;
         }
     }

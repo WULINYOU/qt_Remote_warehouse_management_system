@@ -65,7 +65,7 @@ public:
 
     void retranslateUi(QDialog *add_record)
     {
-        add_record->setWindowTitle(QCoreApplication::translate("add_record", "Dialog", nullptr));
+        add_record->setWindowTitle(QCoreApplication::translate("add_record", "\346\267\273\345\212\240\350\256\260\345\275\225", nullptr));
         add->setText(QCoreApplication::translate("add_record", "\345\242\236\345\212\240\350\256\260\345\275\225\350\241\214", nullptr));
         reduce->setText(QCoreApplication::translate("add_record", "\345\207\217\345\260\221\350\256\260\345\275\225\350\241\214", nullptr));
         add_ok->setText(QCoreApplication::translate("add_record", "\346\267\273\345\212\240", nullptr));

@@ -66,7 +66,7 @@ public:
 
     void retranslateUi(QDialog *delete_table)
     {
-        delete_table->setWindowTitle(QCoreApplication::translate("delete_table", "Dialog", nullptr));
+        delete_table->setWindowTitle(QCoreApplication::translate("delete_table", "\345\210\240\351\231\244\350\241\250", nullptr));
         label->setText(QCoreApplication::translate("delete_table", "\351\200\211\346\213\251\350\241\250\345\220\215", nullptr));
         label_2->setText(QCoreApplication::translate("delete_table", "\346\214\207\345\256\232\350\241\250\345\220\215", nullptr));
         delete_table_ok->setText(QCoreApplication::translate("delete_table", "\347\241\256\350\256\244\345\210\240\351\231\244", nullptr));

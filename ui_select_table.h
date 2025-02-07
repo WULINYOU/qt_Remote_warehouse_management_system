@@ -61,7 +61,7 @@ public:
 
     void retranslateUi(QDialog *select_table)
     {
-        select_table->setWindowTitle(QCoreApplication::translate("select_table", "Dialog", nullptr));
+        select_table->setWindowTitle(QCoreApplication::translate("select_table", "\346\237\245\350\257\242\350\241\250", nullptr));
         select_table_ok->setText(QCoreApplication::translate("select_table", "\346\237\245\350\257\242", nullptr));
         exit->setText(QCoreApplication::translate("select_table", "\351\200\200\345\207\272", nullptr));
         label->setText(QCoreApplication::translate("select_table", "\346\237\245\350\257\242\346\214\207\345\256\232\350\241\250\345\220\215", nullptr));

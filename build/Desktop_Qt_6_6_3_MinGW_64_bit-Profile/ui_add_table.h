@@ -74,7 +74,7 @@ public:
 
     void retranslateUi(QDialog *add_table)
     {
-        add_table->setWindowTitle(QCoreApplication::translate("add_table", "Dialog", nullptr));
+        add_table->setWindowTitle(QCoreApplication::translate("add_table", "\346\226\260\345\273\272\350\241\250", nullptr));
         add_table_ok->setText(QCoreApplication::translate("add_table", "\347\241\256\350\256\244\345\210\233\345\273\272", nullptr));
         add_table_clear->setText(QCoreApplication::translate("add_table", "\351\207\215\347\275\256\345\206\205\345\256\271", nullptr));
         exit->setText(QCoreApplication::translate("add_table", "\351\200\200\345\207\272", nullptr));

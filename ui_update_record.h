@@ -84,7 +84,7 @@ public:
 
     void retranslateUi(QDialog *update_record)
     {
-        update_record->setWindowTitle(QCoreApplication::translate("update_record", "Dialog", nullptr));
+        update_record->setWindowTitle(QCoreApplication::translate("update_record", "\346\233\264\346\226\260\350\256\260\345\275\225", nullptr));
         update_button->setText(QCoreApplication::translate("update_record", "\346\233\264\346\226\260", nullptr));
         exit_button->setText(QCoreApplication::translate("update_record", "\351\200\200\345\207\272", nullptr));
         label_2->setText(QCoreApplication::translate("update_record", "\345\220\215\347\247\260", nullptr));

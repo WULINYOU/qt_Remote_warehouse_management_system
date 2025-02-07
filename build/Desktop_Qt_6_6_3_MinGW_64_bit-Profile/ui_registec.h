@@ -126,7 +126,7 @@ public:
 
         add_password = new QLineEdit(layoutWidget1);
         add_password->setObjectName("add_password");
-        add_password->setEchoMode(QLineEdit::EchoMode::Normal);
+        add_password->setEchoMode(QLineEdit::EchoMode::Password);
 
         horizontalLayout_3->addWidget(add_password);
 
@@ -142,7 +142,7 @@ public:
 
         add_password_again = new QLineEdit(layoutWidget1);
         add_password_again->setObjectName("add_password_again");
-        add_password_again->setEchoMode(QLineEdit::EchoMode::Normal);
+        add_password_again->setEchoMode(QLineEdit::EchoMode::Password);
 
         horizontalLayout_4->addWidget(add_password_again);
 
@@ -172,7 +172,7 @@ public:
 
     void retranslateUi(QDialog *registec)
     {
-        registec->setWindowTitle(QCoreApplication::translate("registec", "Dialog", nullptr));
+        registec->setWindowTitle(QCoreApplication::translate("registec", "\346\263\250\345\206\214", nullptr));
         label_6->setText(QCoreApplication::translate("registec", "\344\273\223\345\272\223\347\256\241\347\220\206\346\263\250\345\206\214\347\225\214\351\235\242", nullptr));
         btn_back_login->setText(QCoreApplication::translate("registec", "\350\277\224\345\233\236\347\231\273\345\275\225", nullptr));
         btn_make_user->setText(QCoreApplication::translate("registec", "\347\241\256\345\256\232", nullptr));

@@ -25,7 +25,7 @@ QT_BEGIN_NAMESPACE
 class Ui_lessen_storage
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout_4;
     QVBoxLayout *verticalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -46,22 +46,22 @@ public:
         if (lessen_storage->objectName().isEmpty())
             lessen_storage->setObjectName("lessen_storage");
         lessen_storage->resize(420, 246);
-        widget = new QWidget(lessen_storage);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 10, 411, 231));
-        horizontalLayout_4 = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(lessen_storage);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(0, 10, 411, 231));
+        horizontalLayout_4 = new QHBoxLayout(layoutWidget);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName("verticalLayout_2");
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName("horizontalLayout");
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName("label");
 
         horizontalLayout->addWidget(label);
 
-        comboBox = new QComboBox(widget);
+        comboBox = new QComboBox(layoutWidget);
         comboBox->setObjectName("comboBox");
 
         horizontalLayout->addWidget(comboBox);
@@ -71,12 +71,12 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName("horizontalLayout_2");
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName("label_2");
 
         horizontalLayout_2->addWidget(label_2);
 
-        lineEdit = new QLineEdit(widget);
+        lineEdit = new QLineEdit(layoutWidget);
         lineEdit->setObjectName("lineEdit");
 
         horizontalLayout_2->addWidget(lineEdit);
@@ -86,12 +86,12 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        label_3 = new QLabel(widget);
+        label_3 = new QLabel(layoutWidget);
         label_3->setObjectName("label_3");
 
         horizontalLayout_3->addWidget(label_3);
 
-        lineEdit_2 = new QLineEdit(widget);
+        lineEdit_2 = new QLineEdit(layoutWidget);
         lineEdit_2->setObjectName("lineEdit_2");
 
         horizontalLayout_3->addWidget(lineEdit_2);
@@ -104,12 +104,12 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName("verticalLayout");
-        lessen_ok = new QPushButton(widget);
+        lessen_ok = new QPushButton(layoutWidget);
         lessen_ok->setObjectName("lessen_ok");
 
         verticalLayout->addWidget(lessen_ok);
 
-        lessen_exit = new QPushButton(widget);
+        lessen_exit = new QPushButton(layoutWidget);
         lessen_exit->setObjectName("lessen_exit");
 
         verticalLayout->addWidget(lessen_exit);
@@ -125,7 +125,7 @@ public:
 
     void retranslateUi(QDialog *lessen_storage)
     {
-        lessen_storage->setWindowTitle(QCoreApplication::translate("lessen_storage", "Dialog", nullptr));
+        lessen_storage->setWindowTitle(QCoreApplication::translate("lessen_storage", "\345\207\272\345\272\223", nullptr));
         label->setText(QCoreApplication::translate("lessen_storage", "\351\200\211\346\213\251\350\241\250", nullptr));
         label_2->setText(QCoreApplication::translate("lessen_storage", "\345\207\272\345\272\223\344\272\247\345\223\201\345\220\215", nullptr));
         label_3->setText(QCoreApplication::translate("lessen_storage", "\346\225\260\351\207\217", nullptr));

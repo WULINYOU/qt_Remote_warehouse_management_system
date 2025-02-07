@@ -121,7 +121,7 @@ public:
 
     void retranslateUi(QDialog *add_Storage)
     {
-        add_Storage->setWindowTitle(QCoreApplication::translate("add_Storage", "Dialog", nullptr));
+        add_Storage->setWindowTitle(QCoreApplication::translate("add_Storage", "\345\205\245\345\272\223", nullptr));
         Storage_oldok->setText(QCoreApplication::translate("add_Storage", "\345\205\245\345\272\223\345\216\237\346\234\211\344\272\247\345\223\201", nullptr));
         Storage_exit->setText(QCoreApplication::translate("add_Storage", "\350\277\224\345\233\236", nullptr));
         label_5->setText(QCoreApplication::translate("add_Storage", "\351\200\211\346\213\251\350\241\250", nullptr));
